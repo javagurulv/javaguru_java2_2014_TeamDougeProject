@@ -2,6 +2,7 @@ package lv.javaguru.java2.database;
 
 
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.Widget;
 import java.util.List;
 /**
@@ -17,5 +18,7 @@ public interface WidgetDAO {
      void update(Widget widget)throws DBException;
 
      List<Widget> getAll() throws DBException;
+
+     List<Widget> getAllForDasbhoard(Dashboard dashboard)throws DBException;
 
 }

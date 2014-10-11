@@ -26,9 +26,10 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into USERS values (default, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
+                    connection.prepareStatement("insert into USERS values (default, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getComments());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -58,9 +59,10 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             User user = null;
             if (resultSet.next()) {
                 user = new User();
-                user.setUserId(resultSet.getLong("UserID"));
-                user.setFirstName(resultSet.getString("FirstName"));
-                user.setLastName(resultSet.getString("LastName"));
+                user.setUserId(resultSet.getLong(1));
+                user.setLogin(resultSet.getString(2));
+                user.setPassword(resultSet.getString(3));
+                user.setComments(resultSet.getString(4));
             }
             return user;
         } catch (Throwable e) {
@@ -82,9 +84,10 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
-                user.setUserId(resultSet.getLong("UserID"));
-                user.setFirstName(resultSet.getString("FirstName"));
-                user.setLastName(resultSet.getString("LastName"));
+                user.setUserId(resultSet.getLong(1));
+                user.setLogin(resultSet.getString(2));
+                user.setPassword(resultSet.getString(3));
+                user.setComments(resultSet.getString(4));
                 users.add(user);
             }
         } catch (Throwable e) {
@@ -125,11 +128,12 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update USERS set FirstName = ?, LastName = ? " +
-                            "where UserID = ?");
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setLong(3, user.getUserId());
+                    .prepareStatement("update USERS set LOGIN = ?, PASSWORD = ? , COMMENTS = ?" +
+                            "where ID = ?");
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getComments());
+            preparedStatement.setLong(4,user.getUserId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.update()");

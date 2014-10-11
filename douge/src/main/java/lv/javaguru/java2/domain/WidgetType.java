@@ -5,6 +5,7 @@ package lv.javaguru.java2.domain;
  */
 public class WidgetType {
     private Long id;
+    private String name;
     private String comments;
 
     public Long getId() {
@@ -21,5 +22,13 @@ public class WidgetType {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

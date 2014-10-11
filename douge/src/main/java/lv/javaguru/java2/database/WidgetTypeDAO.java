@@ -16,4 +16,6 @@ public interface WidgetTypeDAO {
     void delete(Long id) throws DBException;
 
     List<WidgetType> getAll()throws DBException;
+
+
 }

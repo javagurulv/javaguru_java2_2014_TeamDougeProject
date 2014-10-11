@@ -5,6 +5,8 @@ package lv.javaguru.java2.database;
  */
 
 import lv.javaguru.java2.domain.Dashboard;
+import lv.javaguru.java2.domain.User;
+
 import java.util.List;
 
 public interface DashboardDAO {
@@ -17,5 +19,7 @@ public interface DashboardDAO {
     void delete (Long id) throws DBException;
 
     List<Dashboard> getAll() throws DBException;
+
+    List<Dashboard> getAllForUser(User user) throws DBException;
 
 }
