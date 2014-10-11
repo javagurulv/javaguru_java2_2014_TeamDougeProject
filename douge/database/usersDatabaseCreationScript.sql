@@ -103,3 +103,5 @@ CREATE TABLE `widgets` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2014-10-10 16:07:14
+ALTER TABLE `douge_project_user`.`widget_types`
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
