@@ -8,14 +8,11 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import com.sun.xml.internal.org.jvnet.fastinfoset.stax.LowLevelFastInfosetStreamWriter;
-import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.UserTypeDAO;
 import org.junit.Before;
 import org.junit.Test;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserType;
 
 public class UserTypeDAOImplTest {
