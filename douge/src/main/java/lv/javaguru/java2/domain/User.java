@@ -7,9 +7,17 @@ public class User {
 
     private long userId;
     private String login;
+    private long user_type;
     private String password;
     private String comments;
 
+    public long getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(long user_type) {
+        this.user_type = user_type;
+    }
 
     public long getUserId() {
         return userId;

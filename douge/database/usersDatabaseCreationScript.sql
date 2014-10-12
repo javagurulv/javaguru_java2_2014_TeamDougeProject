@@ -105,3 +105,5 @@ CREATE TABLE `widgets` (
 -- Dump completed on 2014-10-10 16:07:14
 ALTER TABLE `douge_project_user`.`widget_types`
 CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `douge_project_user`.`user_types`
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
