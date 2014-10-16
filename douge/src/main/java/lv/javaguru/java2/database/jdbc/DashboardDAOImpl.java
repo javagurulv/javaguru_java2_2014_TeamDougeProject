@@ -30,8 +30,9 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
             preparedStatement.setString(2,dashboard.getComments());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            dashboard.setId(resultSet.getLong(1));
-
+            if (resultSet.next()) {
+                dashboard.setId(resultSet.getLong(1));
+            }
 
         }
         catch (Throwable e){

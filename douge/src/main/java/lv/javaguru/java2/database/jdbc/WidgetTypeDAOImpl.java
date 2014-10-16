@@ -80,7 +80,7 @@ public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
                     connection.prepareStatement("UPDATE WIDGET_TYPES set NAME = ?, COMMENTS = ? where ID = ?");
             preparedStatement.setString(1, widgetType.getName());
             preparedStatement.setString(2, widgetType.getComments());
-            preparedStatement.setLong(2,widgetType.getId());
+            preparedStatement.setLong(3,widgetType.getId());
             preparedStatement.executeUpdate();
 
         }
