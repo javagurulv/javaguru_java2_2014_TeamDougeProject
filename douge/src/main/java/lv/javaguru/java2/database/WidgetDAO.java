@@ -19,6 +19,6 @@ public interface WidgetDAO {
 
      List<Widget> getAll() throws DBException;
 
-     List<Widget> getAllForDasbhoard(Dashboard dashboard)throws DBException;
+     List<Widget> getAllForDashboard(Dashboard dashboard)throws DBException;
 
 }
