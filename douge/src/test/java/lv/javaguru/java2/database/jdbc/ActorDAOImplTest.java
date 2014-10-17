@@ -8,7 +8,6 @@ import lv.javaguru.java2.domain.Actor;
 import lv.javaguru.java2.domain.Widget;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Date;
 import java.util.List;
 
 
@@ -21,7 +20,7 @@ public class ActorDAOImplTest {
 
     private ActorDAO actorDAO = new ActorDAOImpl();
 
-    private Actor createActor(String first_name, String last_name, Date last_update) {
+    private Actor createActor(String first_name, String last_name, java.sql.Date last_update) {
         Actor actor = new Actor();
         actor.setFirst_name(first_name);
         actor.setLast_name(last_name);
@@ -38,8 +37,14 @@ public class ActorDAOImplTest {
     @Test
     public void testCreate() throws DBException
     {
-        Date cdate = new Date();
-        Actor actor = createActor("Name", "Surname",cdate);
+
+        /*избаляемся от времени в дате*/
+        java.util.Date date = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        String inputDate=sqlDate.toString();
+        String outputDate=inputDate.substring(0,10);
+
+        Actor actor = createActor("Name", "Surname",sqlDate.valueOf(outputDate));
 
         actorDAO.create(actor);
         Actor actorFromDB = actorDAO.getByID(actor.getActor_id());
@@ -53,8 +58,9 @@ public class ActorDAOImplTest {
     @Test
     public void testDelete() throws DBException
     {
-        Date cdate = new Date();
-        Actor actor = createActor("Name", "Surname", cdate);
+        java.util.Date date = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        Actor actor = createActor("Name", "Surname", sqlDate);
         actorDAO.create(actor);
         Actor actorFromDB = actorDAO.getByID(actor.getActor_id());
 
@@ -70,13 +76,19 @@ public class ActorDAOImplTest {
     @Test
     public void testUpdate() throws DBException
     {
-        Date cdate = new Date();
-        Actor actor = createActor("Name", "Surname", cdate);
+
+        /*избавляемся от времени в дате*/
+        java.util.Date date = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        String inputDate=sqlDate.toString();
+        String outputDate=inputDate.substring(0,10);
+
+        Actor actor = createActor("Name", "Surname",sqlDate.valueOf(outputDate));
         actorDAO.create(actor);
 
         actor.setFirst_name("Newname");
         actor.setLast_name("Newsurname");
-        actor.setLast_update(cdate);
+        actor.setLast_update(sqlDate.valueOf(outputDate));
 
         actorDAO.update(actor);
 
@@ -93,9 +105,11 @@ public class ActorDAOImplTest {
     @Test
     public void testGetAll() throws DBException
     {
-        Date cdate = new Date();
-        Actor actor1 = createActor("Name1", "Surname1", cdate);
-        Actor actor2 = createActor("Name2", "Surname2", cdate);
+        java.util.Date date = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        Actor actor1 = createActor("Name1", "Surname1", sqlDate);
+        Actor actor2 = createActor("Name2", "Surname2", sqlDate);
         actorDAO.create(actor1);
         actorDAO.create(actor2);
 
