@@ -7,7 +7,7 @@ import lv.javaguru.java2.domain.Actor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ACTORS VALUES (default ,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,actor.getFirst_name());
             preparedStatement.setString(2,actor.getLast_name());
-            preparedStatement.setDate(3,actor.getLast_update());
+            preparedStatement.setDate(3, (java.sql.Date) actor.getLast_update());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -103,7 +103,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
                     connection.prepareStatement("UPDATE WIDGETS SET first_name = ?, last_name = ?, last_update = ? where id = ?");
             preparedStatement.setString(1, actor.getFirst_name());
             preparedStatement.setString(2, actor.getLast_name());
-            preparedStatement.setDate(3, actor.getLast_update());
+            preparedStatement.setDate(3, (java.sql.Date) actor.getLast_update());
             preparedStatement.executeUpdate();
         }
         catch (Throwable e)
