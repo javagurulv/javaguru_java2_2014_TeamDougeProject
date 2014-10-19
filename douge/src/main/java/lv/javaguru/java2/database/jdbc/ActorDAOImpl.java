@@ -78,7 +78,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM ACTOR WHERE ACTOR_ID = ?");
-            preparedStatement.setLong(1,actor_id);
+            preparedStatement.setShort(1,actor_id);
             preparedStatement.executeUpdate();
         }
         catch (Throwable e)
