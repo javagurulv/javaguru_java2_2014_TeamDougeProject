@@ -21,6 +21,7 @@ public class DatabaseCleaner extends DAOImpl {
         tableNames.add("WIDGET_TYPES");
         tableNames.add("ACTOR");
         tableNames.add("CITY");
+        tableNames.add("ADDRESS");
         return tableNames;
     }
 
