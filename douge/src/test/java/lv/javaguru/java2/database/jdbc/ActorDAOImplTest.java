@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Actor;
-import lv.javaguru.java2.domain.Widget;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;

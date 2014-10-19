@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface ActorDAO {
 
-    Actor getByID(Long id) throws DBException;
+    Actor getByID(Short actor_id) throws DBException;
 
     void create(Actor actor) throws DBException;
 
-    void delete(Long id) throws DBException;
+    void delete(Short actor_id) throws DBException;
 
     void update(Actor actor) throws  DBException;
 

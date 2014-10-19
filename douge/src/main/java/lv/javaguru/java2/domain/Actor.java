@@ -1,22 +1,22 @@
 package lv.javaguru.java2.domain;
 
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by Juris on 17.10.2014.
  */
 public class Actor {
-    private Long actor_id;
+    private Short actor_id;
     private String first_name;
     private String last_name;
     private Date last_update;
 
-    public Long getActor_id() {
+    public Short getActor_id() {
         return actor_id;
     }
 
-    public void setActor_id(Long actor_id) {
+    public void setActor_id(Short actor_id) {
         this.actor_id = actor_id;
     }
 
