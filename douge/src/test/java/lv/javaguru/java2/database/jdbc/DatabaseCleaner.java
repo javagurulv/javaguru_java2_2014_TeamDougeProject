@@ -27,6 +27,7 @@ public class DatabaseCleaner extends DAOImpl {
         tableNames.add("COUNTRY");
         tableNames.add("FILM");
         tableNames.add("STORE");
+        tableNames.add("FILM_ACTOR");
 
         return tableNames;
     }
