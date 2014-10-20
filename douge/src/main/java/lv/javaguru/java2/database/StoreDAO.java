@@ -12,7 +12,7 @@ public interface StoreDAO {
     Store getByID(int id) throws DBException;
     void create(Store store) throws DBException;
     void update(Store store) throws DBException;
-    void delete(in id) throws DBException;
+    void delete(int id) throws DBException;
 
     List<Store> getAllByManagerStaffID(int id) throws DBException;
     List<Store> getAllByAddressId(int id) throws DBException;

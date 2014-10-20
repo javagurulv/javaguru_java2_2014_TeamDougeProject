@@ -19,8 +19,13 @@ public class DatabaseCleaner extends DAOImpl {
         tableNames.add("DASHBOARDS");
         tableNames.add("WIDGETS");
         tableNames.add("WIDGET_TYPES");
-        tableNames.add("ACTOR");
         tableNames.add("CITY");
+        tableNames.add("CUSTOMER");
+        tableNames.add("ACTOR");
+        tableNames.add("COUNTRY");
+        tableNames.add("FILM");
+        tableNames.add("STORE");
+
         return tableNames;
     }
 
