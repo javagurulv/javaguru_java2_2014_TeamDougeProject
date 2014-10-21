@@ -4,10 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.Film_ActorDAO;
 import lv.javaguru.java2.domain.Film_Actor;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +56,8 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
                     connection.prepareStatement("INSERT INTO FILM_ACTOR(ACTOR_ID,FILM_ID,LAST_UPDATE) VALUES (?,?,?)");
             preparedStatement.setInt(1,film_actor.getActor_id());
             preparedStatement.setInt(2, film_actor.getFilm_id());
-            preparedStatement.setDate(3, new Date(film_actor.getLast_update().getTime()));
+           // preparedStatement.setDate(3, new Date(film_actor.getLast_update().getTime()));
+            preparedStatement.setTimestamp(3, new Timestamp(film_actor.getLast_update().getTime()));
             preparedStatement.executeUpdate();
 
 
