@@ -7,6 +7,7 @@ import lv.javaguru.java2.domain.Category;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO CATEGORY VALUES (default ,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, category.getName());
-            preparedStatement.setDate(2, category.getLast_update());
+            preparedStatement.setTimestamp(2, new Timestamp(category.getLast_update().getTime()));
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -79,7 +80,7 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("UPDATE CATEGORY SET name = ?, last_update = ? where category_id = ?");
             preparedStatement.setString(1, category.getName());
-            preparedStatement.setDate(2, category.getLast_update());
+            preparedStatement.setTimestamp(2,  new Timestamp(category.getLast_update().getTime()));
             preparedStatement.setInt(3, category.getCategory_id());
             preparedStatement.executeUpdate();
         }

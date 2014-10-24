@@ -8,6 +8,7 @@ import lv.javaguru.java2.domain.Country;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO CITY VALUES (default ,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, city.getCity());
             preparedStatement.setShort(2, city.getCountry_id());
-            preparedStatement.setDate(3,city.getLast_update());
+            preparedStatement.setTimestamp(3, new Timestamp(city.getLast_update().getTime()));
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -60,7 +61,7 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
                 city.setCity_id(resultSet.getShort(1));
                 city.setCity(resultSet.getString(2));
                 city.setCountry_id(resultSet.getShort(3));
-                city.setLast_update(resultSet.getDate(4));
+                city.setLast_update(resultSet.getTimestamp(4));
             }
         }
         catch (Throwable e)
@@ -85,7 +86,7 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
                     connection.prepareStatement("UPDATE CITY SET city = ?, country_id = ?, last_update = ? where city_id = ?");
             preparedStatement.setString(1, city.getCity());
             preparedStatement.setShort(2, city.getCountry_id());
-            preparedStatement.setDate(3, city.getLast_update());
+            preparedStatement.setTimestamp(3,  new Timestamp(city.getLast_update().getTime()));
             preparedStatement.setShort(4, city.getCity_id());
             preparedStatement.executeUpdate();
         }

@@ -8,6 +8,8 @@ import lv.javaguru.java2.domain.Category;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,10 +20,10 @@ public class CategoryDAOImplTest {
 
     private CategoryDAO categoryDAO = new CategoryDAOImpl();
 
-    private Category createCategory(String name, java.sql.Date lase_update) {
+    private Category createCategory(String name) {
         Category category = new Category();
         category.setName(name);
-        category.setLast_update(lase_update);
+        category.setLast_update(new Date());
 
         return category;
     }
@@ -34,27 +36,19 @@ public class CategoryDAOImplTest {
     @Test
     public void testCreate() throws DBException {
 
-        /*избаляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate = sqlDate.toString();
-        String outputDate = inputDate.substring(0, 10);
-
-        Category category = createCategory("name", sqlDate.valueOf(outputDate));
+        Category category = createCategory("name");
 
         categoryDAO.create(category);
         Category categoryFromDB = categoryDAO.getById(category.getCategory_id());
         assertNotNull(categoryFromDB);
         assertEquals(category.getName(), categoryFromDB.getName());
         assertEquals(category.getCategory_id(), categoryFromDB.getCategory_id());
-        assertEquals(category.getLast_update(), categoryFromDB.getLast_update());
+        assertionEqualsDateCustom(category.getLast_update(), categoryFromDB.getLast_update());
     }
 
     @Test
     public void testDelete() throws DBException {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Category category = createCategory("Name", sqlDate);
+        Category category = createCategory("Name");
         categoryDAO.create(category);
         Category categoryFromDB = categoryDAO.getById(category.getCategory_id());
 
@@ -71,17 +65,11 @@ public class CategoryDAOImplTest {
     public void testUpdate() throws DBException
     {
 
-        /*избавляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        Category category = createCategory("Name", sqlDate.valueOf(outputDate));
+        Category category = createCategory("Name");
         categoryDAO.create(category);
 
         category.setName("Newname");
-        category.setLast_update(sqlDate.valueOf(outputDate));
+        category.setLast_update(new Date());
 
         categoryDAO.update(category);
 
@@ -90,17 +78,15 @@ public class CategoryDAOImplTest {
         assertNotNull(categoryFromDB);
         assertEquals(category.getName(), categoryFromDB.getName());
         assertEquals(category.getCategory_id(), categoryFromDB.getCategory_id());
-        assertEquals(category.getLast_update(),categoryFromDB.getLast_update());
+        assertionEqualsDateCustom(category.getLast_update(),categoryFromDB.getLast_update());
     }
 
     @Test
     public void testGetAll() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        Category category1 = createCategory("category1", sqlDate);
-        Category category2 = createCategory("category2", sqlDate);
+        Category category1 = createCategory("category1");
+        Category category2 = createCategory("category2");
         categoryDAO.create(category1);
         categoryDAO.create(category2);
 
@@ -108,4 +94,12 @@ public class CategoryDAOImplTest {
 
         assertEquals(categories.size(),2);
     }
+    private void assertionEqualsDateCustom(Date date1, Date date2)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate1 = simpleDateFormat.format(date1);
+        String strDate2 = simpleDateFormat.format(date2);
+        assertEquals(strDate1, strDate2);
+    }
+
 }

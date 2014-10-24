@@ -8,6 +8,7 @@ import lv.javaguru.java2.domain.City;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
             preparedStatement.setShort(4, address.getCity_id());
             preparedStatement.setString(5, address.getPostal_code());
             preparedStatement.setString(6, address.getPhone());
-            preparedStatement.setDate(7, address.getLast_update());
+            preparedStatement.setTimestamp(7, new Timestamp(address.getLast_update().getTime()));
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -67,7 +68,7 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
                 address.setCity_id(resultSet.getShort(5));
                 address.setPostal_code(resultSet.getString(6));
                 address.setPhone(resultSet.getString(7));
-                address.setLast_update(resultSet.getDate(8));
+                address.setLast_update(resultSet.getTimestamp(8));
             }
         }
         catch (Throwable e)
@@ -96,7 +97,7 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
             preparedStatement.setShort(4, address.getCity_id());
             preparedStatement.setString(5, address.getPostal_code());
             preparedStatement.setString(6, address.getPhone());
-            preparedStatement.setDate(7, address.getLast_update());
+            preparedStatement.setTimestamp(7,  new Timestamp(address.getLast_update().getTime()));
             preparedStatement.setShort(8, address.getAddress_id());
             preparedStatement.executeUpdate();
         }
@@ -192,7 +193,7 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
 
         }
         catch (Throwable e){
-            System.out.println("Exception while execute AddressDAOImpl.getAllForCountry()");
+            System.out.println("Exception while execute AddressDAOImpl.getAllForCity()");
             e.printStackTrace();
             throw new DBException(e);
         }

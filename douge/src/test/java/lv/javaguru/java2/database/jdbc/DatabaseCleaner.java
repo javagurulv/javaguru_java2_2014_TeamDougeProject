@@ -31,6 +31,7 @@ public class DatabaseCleaner extends DAOImpl {
         tableNames.add("FILM_TEXT");
         tableNames.add("LANGUAGE");
         tableNames.add("CATEGORY");
+        tableNames.add("FILM_CATEGORY");
 
         return tableNames;
     }

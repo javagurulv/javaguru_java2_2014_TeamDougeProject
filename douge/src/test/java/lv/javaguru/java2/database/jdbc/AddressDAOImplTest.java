@@ -7,6 +7,8 @@ import lv.javaguru.java2.domain.City;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -19,7 +21,7 @@ public class AddressDAOImplTest {
 
     private AddressDAO addressDAO= new AddressDAOImpl();
 
-    private Address createAddress(String address, String address2, String district, Short city_id, String postal_code, String phone, java.sql.Date lase_update) {
+    private Address createAddress(String address, String address2, String district, Short city_id, String postal_code, String phone) {
         Address address0 = new Address();
         address0.setAddress(address);
         address0.setAddress2(address2);
@@ -27,7 +29,7 @@ public class AddressDAOImplTest {
         address0.setCity_id(city_id);
         address0.setPostal_code(postal_code);
         address0.setPhone(phone);
-        address0.setLast_update(lase_update);
+        address0.setLast_update(new Date());
 
         return address0;
     }
@@ -41,13 +43,7 @@ public class AddressDAOImplTest {
     public void testCreate() throws DBException
     {
 
-        /*избаляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        Address address = createAddress("address", "address2", "district", (short) 1, "postalcode", "phone", sqlDate.valueOf(outputDate));
+        Address address = createAddress("address", "address2", "district", (short) 1, "postalcode", "phone");
 
         addressDAO.create(address);
         Address addressFromDB = addressDAO.getById(address.getAddress_id());
@@ -59,15 +55,13 @@ public class AddressDAOImplTest {
         assertEquals(address.getCity_id(), addressFromDB.getCity_id());
         assertEquals(address.getPostal_code(), addressFromDB.getPostal_code());
         assertEquals(address.getPhone(), addressFromDB.getPhone());
-        assertEquals(address.getLast_update(),addressFromDB.getLast_update());
+        assertionEqualsDateCustom(address.getLast_update(), address.getLast_update());
     }
 
     @Test
     public void testDelete() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Address address = createAddress("address", "address2", "district", (short) 1, "postalcode", "phone", sqlDate);
+        Address address = createAddress("address", "address2", "district", (short) 1, "postalcode", "phone");
         addressDAO.create(address);
         Address addressFromDB = addressDAO.getById(address.getAddress_id());
 
@@ -84,13 +78,7 @@ public class AddressDAOImplTest {
     public void testUpdate() throws DBException
     {
 
-        /*избавляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        Address address = createAddress("address", "address2", "district", (short) 1, "postalcode", "phone", sqlDate);
+        Address address = createAddress("address", "address2", "district", (short) 1, "postalcode", "phone");
         addressDAO.create(address);
 
         address.setAddress("NewAddress");
@@ -99,7 +87,7 @@ public class AddressDAOImplTest {
         address.setCity_id((short) 2);
         address.setPostal_code("NewCode");
         address.setPhone("NewPhone");
-        address.setLast_update(sqlDate.valueOf(outputDate));
+        address.setLast_update(new Date());
 
         addressDAO.update(address);
 
@@ -113,18 +101,15 @@ public class AddressDAOImplTest {
         assertEquals(address.getCity_id(), addressFromDB.getCity_id());
         assertEquals(address.getPostal_code(), addressFromDB.getPostal_code());
         assertEquals(address.getPhone(), addressFromDB.getPhone());
-        assertEquals(address.getLast_update(),address.getLast_update());
+        assertionEqualsDateCustom(address.getLast_update(), address.getLast_update());
 
     }
 
     @Test
     public void testGetAll() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-        Address address1 = createAddress("address1", "address21", "district1", (short) 1, "postalcod1", "phone1", sqlDate);
-        Address address2 = createAddress("address2", "address22", "district2", (short) 2, "postalcod2", "phone2", sqlDate);
+        Address address1 = createAddress("address1", "address21", "district1", (short) 1, "postalcod1", "phone1");
+        Address address2 = createAddress("address2", "address22", "district2", (short) 2, "postalcod2", "phone2");
         addressDAO.create(address1);
         addressDAO.create(address2);
 
@@ -136,19 +121,16 @@ public class AddressDAOImplTest {
     @Test
     public void testGetAllForCity()throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-        Address address1 = createAddress("address1", "address21", "district1", (short) 1, "postalcod1", "phone1", sqlDate);
+        Address address1 = createAddress("address1", "address21", "district1", (short) 1, "postalcod1", "phone1");
         addressDAO.create(address1);
 
-        Address address2 = createAddress("address2", "address22", "district2", (short) 1, "postalcod2", "phone2", sqlDate);
+        Address address2 = createAddress("address2", "address22", "district2", (short) 1, "postalcod2", "phone2");
         addressDAO.create(address2);
 
-        Address address3 = createAddress("address3", "address23", "district3", (short) 1, "postalcod3", "phone3", sqlDate);
+        Address address3 = createAddress("address3", "address23", "district3", (short) 1, "postalcod3", "phone3");
         addressDAO.create(address3);
 
-        Address address4 = createAddress("address4", "address24", "district4", (short) 2, "postalcod4", "phone4", sqlDate);
+        Address address4 = createAddress("address4", "address24", "district4", (short) 2, "postalcod4", "phone4");
         addressDAO.create(address4);
 
 
@@ -166,5 +148,12 @@ public class AddressDAOImplTest {
 
         assertEquals(addresses.size(), 1);
 
+    }
+    private void assertionEqualsDateCustom(Date date1, Date date2)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate1 = simpleDateFormat.format(date1);
+        String strDate2 = simpleDateFormat.format(date2);
+        assertEquals(strDate1, strDate2);
     }
 }

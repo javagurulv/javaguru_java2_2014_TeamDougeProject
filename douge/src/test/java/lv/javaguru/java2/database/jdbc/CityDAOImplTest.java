@@ -10,6 +10,8 @@ import lv.javaguru.java2.domain.Country;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,11 +23,11 @@ public class CityDAOImplTest {
 
     private CityDAO cityDAO= new CityDAOImpl();
 
-    private City createCity(String city, Short country_id, java.sql.Date lase_update) {
+    private City createCity(String city, Short country_id) {
         City city0 = new City();
         city0.setCity(city);
         city0.setCountry_id(country_id);
-        city0.setLast_update(lase_update);
+        city0.setLast_update(new Date());
 
         return city0;
     }
@@ -41,13 +43,7 @@ public class CityDAOImplTest {
     public void testCreate() throws DBException
     {
 
-        /*избаляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        City city = createCity("city",(short)1, sqlDate.valueOf(outputDate));
+        City city = createCity("city",(short)1);
 
         cityDAO.create(city);
         City cityFromDB = cityDAO.getById(city.getCity_id());
@@ -55,15 +51,14 @@ public class CityDAOImplTest {
         assertEquals(city.getCity(), cityFromDB.getCity());
         assertEquals(city.getCity_id(), cityFromDB.getCity_id());
         assertEquals(city.getCountry_id(), cityFromDB.getCountry_id());
-        assertEquals(city.getLast_update(),cityFromDB.getLast_update());
+        assertionEqualsDateCustom(city.getLast_update(),cityFromDB.getLast_update());
+
     }
 
     @Test
     public void testDelete() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        City city = createCity("City",(short)2, sqlDate);
+        City city = createCity("City",(short)2);
         cityDAO.create(city);
         City cityFromDB = cityDAO.getById(city.getCity_id());
 
@@ -80,18 +75,12 @@ public class CityDAOImplTest {
     public void testUpdate() throws DBException
     {
 
-        /*избавляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        City city = createCity("City", (short) 1, sqlDate.valueOf(outputDate));
+        City city = createCity("City", (short) 1);
         cityDAO.create(city);
 
         city.setCity("Newcity");
         city.setCountry_id((short) 2);
-        city.setLast_update(sqlDate.valueOf(outputDate));
+        city.setLast_update(new Date());
 
         cityDAO.update(city);
 
@@ -101,18 +90,16 @@ public class CityDAOImplTest {
         assertEquals(city.getCity(), cityFromDB.getCity());
         assertEquals(city.getCountry_id(), cityFromDB.getCountry_id());
         assertEquals(city.getCity_id(), cityFromDB.getCity_id());
-        assertEquals(city.getLast_update(),cityFromDB.getLast_update());
+        assertionEqualsDateCustom(city.getLast_update(),cityFromDB.getLast_update());
 
     }
 
     @Test
     public void testGetAll() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        City city1 = createCity("city1", (short) 1, sqlDate);
-        City city2 = createCity("city2", (short) 2, sqlDate);
+        City city1 = createCity("city1", (short) 1);
+        City city2 = createCity("city2", (short) 2);
         cityDAO.create(city1);
         cityDAO.create(city2);
 
@@ -124,19 +111,17 @@ public class CityDAOImplTest {
     @Test
     public void testGetAllForCountry()throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        City city1 = createCity("City1", (short) 1, sqlDate);
+        City city1 = createCity("City1", (short) 1);
         cityDAO.create(city1);
 
-        City city2 = createCity("city2", (short) 1, sqlDate);
+        City city2 = createCity("city2", (short) 1);
         cityDAO.create(city2);
 
-        City city3 = createCity("city3", (short) 1, sqlDate);
+        City city3 = createCity("city3", (short) 1);
         cityDAO.create(city3);
 
-        City city4 = createCity("city4", (short) 2, sqlDate);
+        City city4 = createCity("city4", (short) 2);
         cityDAO.create(city4);
 
 
@@ -154,6 +139,14 @@ public class CityDAOImplTest {
 
         assertEquals(cities.size(), 1);
 
+    }
+
+    private void assertionEqualsDateCustom(Date date1, Date date2)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate1 = simpleDateFormat.format(date1);
+        String strDate2 = simpleDateFormat.format(date2);
+        assertEquals(strDate1, strDate2);
     }
 
 }

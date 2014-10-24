@@ -7,6 +7,9 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Actor;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,11 +22,11 @@ public class ActorDAOImplTest {
 
     private ActorDAO actorDAO = new ActorDAOImpl();
 
-    private Actor createActor(String first_name, String last_name, java.sql.Date last_update) {
+    private Actor createActor(String first_name, String last_name) {
         Actor actor = new Actor();
         actor.setFirst_name(first_name);
         actor.setLast_name(last_name);
-        actor.setLast_update(last_update);
+        actor.setLast_update(new Date());
 
         return actor;
     }
@@ -37,13 +40,7 @@ public class ActorDAOImplTest {
     public void testCreate() throws DBException
     {
 
-        /*избаляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        Actor actor = createActor("Name", "Surname",sqlDate.valueOf(outputDate));
+        Actor actor = createActor("Name", "Surname");
 
         actorDAO.create(actor);
         Actor actorFromDB = actorDAO.getByID(actor.getActor_id());
@@ -51,15 +48,13 @@ public class ActorDAOImplTest {
         assertEquals(actor.getFirst_name(), actorFromDB.getFirst_name());
         assertEquals(actor.getLast_name(), actorFromDB.getLast_name());
         assertEquals(actor.getActor_id(), actorFromDB.getActor_id());
-        assertEquals(actor.getLast_update(),actorFromDB.getLast_update());
+        assertionEqualsDateCustom(actor.getLast_update(), actorFromDB.getLast_update());
     }
 
     @Test
     public void testDelete() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Actor actor = createActor("Name", "Surname", sqlDate);
+        Actor actor = createActor("Name", "Surname");
         actorDAO.create(actor);
         Actor actorFromDB = actorDAO.getByID(actor.getActor_id());
 
@@ -76,18 +71,12 @@ public class ActorDAOImplTest {
     public void testUpdate() throws DBException
     {
 
-        /*избавляемся от времени в дате*/
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String inputDate=sqlDate.toString();
-        String outputDate=inputDate.substring(0,10);
-
-        Actor actor = createActor("Name", "Surname",sqlDate.valueOf(outputDate));
+        Actor actor = createActor("Name", "Surname");
         actorDAO.create(actor);
 
         actor.setFirst_name("Newname");
         actor.setLast_name("Newsurname");
-        actor.setLast_update(sqlDate.valueOf(outputDate));
+        actor.setLast_update(new Date());
 
         actorDAO.update(actor);
 
@@ -97,18 +86,17 @@ public class ActorDAOImplTest {
         assertEquals(actor.getFirst_name(), actorFromDB.getFirst_name());
         assertEquals(actor.getLast_name(), actorFromDB.getLast_name());
         assertEquals(actor.getActor_id(), actorFromDB.getActor_id());
-        assertEquals(actor.getLast_update(),actorFromDB.getLast_update());
+        assertionEqualsDateCustom(actor.getLast_update(), actor.getLast_update());
+
 
     }
 
     @Test
     public void testGetAll() throws DBException
     {
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        Actor actor1 = createActor("Name1", "Surname1", sqlDate);
-        Actor actor2 = createActor("Name2", "Surname2", sqlDate);
+        Actor actor1 = createActor("Name1", "Surname1");
+        Actor actor2 = createActor("Name2", "Surname2");
         actorDAO.create(actor1);
         actorDAO.create(actor2);
 
@@ -116,6 +104,12 @@ public class ActorDAOImplTest {
 
         assertEquals(actors.size(),2);
     }
-
+    private void assertionEqualsDateCustom(Date date1, Date date2)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate1 = simpleDateFormat.format(date1);
+        String strDate2 = simpleDateFormat.format(date2);
+        assertEquals(strDate1, strDate2);
+    }
 }
 

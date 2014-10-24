@@ -7,6 +7,7 @@ import lv.javaguru.java2.domain.Actor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
                 actor.setActor_id(resultSet.getShort(1));
                 actor.setFirst_name(resultSet.getString(2));
                 actor.setLast_name(resultSet.getString(3));
-                actor.setLast_update(resultSet.getDate(4));
+                actor.setLast_update(resultSet.getTimestamp(4));
             }
         }
         catch (Throwable e)
@@ -53,7 +54,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ACTOR VALUES (default ,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,actor.getFirst_name());
             preparedStatement.setString(2,actor.getLast_name());
-            preparedStatement.setDate(3,  actor.getLast_update());
+            preparedStatement.setTimestamp(3,  new Timestamp(actor.getLast_update().getTime()));
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -102,7 +103,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
                     connection.prepareStatement("UPDATE ACTOR SET first_name = ?, last_name = ?, last_update = ? where actor_id = ?");
             preparedStatement.setString(1, actor.getFirst_name());
             preparedStatement.setString(2, actor.getLast_name());
-            preparedStatement.setDate(3, actor.getLast_update());
+            preparedStatement.setTimestamp(3,  new Timestamp(actor.getLast_update().getTime()));
             preparedStatement.setShort(4, actor.getActor_id());
             preparedStatement.executeUpdate();
         }

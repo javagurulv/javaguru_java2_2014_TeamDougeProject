@@ -3,12 +3,20 @@ package lv.javaguru.java2.domain;
 import java.util.Date;
 
 /**
- * Created by Juris on 23.10.2014.
+ * Created by Juris on 24.10.2014.
  */
-public class Category {
-    private int category_id;
-    private String name;
-    private Date last_update;
+public class Film_Category {
+   private Short film_id;
+   private int category_id;
+   private Date last_update;
+
+    public Short getFilm_id() {
+        return film_id;
+    }
+
+    public void setFilm_id(Short film_id) {
+        this.film_id = film_id;
+    }
 
     public int getCategory_id() {
         return category_id;
@@ -16,14 +24,6 @@ public class Category {
 
     public void setCategory_id(int category_id) {
         this.category_id = category_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Date getLast_update() {
