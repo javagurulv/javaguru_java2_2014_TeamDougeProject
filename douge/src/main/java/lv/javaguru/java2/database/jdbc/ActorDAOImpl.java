@@ -133,7 +133,8 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
                 actor.setActor_id(resultSet.getShort("ACTOR_ID"));
                 actor.setFirst_name(resultSet.getString("FIRST_NAME"));
                 actor.setLast_name(resultSet.getString("LAST_NAME"));
-                actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
+                //actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
+                actor.setLast_update(resultSet.getTimestamp("LAST_UPDATE"));
                 actors.add(actor);
             }
         }

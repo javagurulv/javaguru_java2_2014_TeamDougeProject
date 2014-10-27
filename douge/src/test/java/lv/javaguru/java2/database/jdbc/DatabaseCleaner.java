@@ -33,6 +33,7 @@ public class DatabaseCleaner extends DAOImpl {
         tableNames.add("CATEGORY");
         tableNames.add("FILM_CATEGORY");
         tableNames.add("INVENTORY");
+        tableNames.add("STAFF");
 
         return tableNames;
     }

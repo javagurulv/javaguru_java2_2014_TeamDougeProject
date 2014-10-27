@@ -2,6 +2,7 @@ package lv.javaguru.java2.domain;
 
 import com.mysql.jdbc.Blob;
 
+import javax.sql.rowset.serial.SerialBlob;
 import java.util.Date;
 
 /**
@@ -12,7 +13,10 @@ public class Staff{
     String first_name;
     String last_name;
     Short address_id;
-    Blob picture;
+
+
+
+    SerialBlob picture;
     String email;
     int store_id;
     int active;
@@ -52,12 +56,12 @@ public class Staff{
         this.address_id = address_id;
     }
 
-    public Blob getPicture() {
-        return picture;
+    public void setPicture(SerialBlob picture) {
+        this.picture = picture;
     }
 
-    public void setPicture(Blob picture) {
-        this.picture = picture;
+    public SerialBlob getPicture() {
+        return picture;
     }
 
     public String getEmail() {
