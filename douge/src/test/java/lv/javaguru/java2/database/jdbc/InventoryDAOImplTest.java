@@ -63,7 +63,7 @@ public class InventoryDAOImplTest {
 
         inventoryDAO.delete(inventory.getInventory_id());
 
-        inventoryFromDB = inventoryDAO.getByID(inventory.getFilm_id());
+        inventoryFromDB = inventoryDAO.getByID(inventory.getInventory_id());
 
         assertNull(inventoryFromDB);
     }
