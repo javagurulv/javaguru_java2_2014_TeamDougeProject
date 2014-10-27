@@ -3,6 +3,7 @@ package lv.javaguru.java2.database;
 import lv.javaguru.java2.domain.Customer;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Rental;
+import lv.javaguru.java2.domain.Staff;
 
 import java.util.List;
 
@@ -24,5 +25,5 @@ public interface RentalDAO {
 
     List<Rental> getAllForCustomer(Customer customer) throws DBException;
 
-//    List<Inventory> getAllForStaff(Staff staff) throws DBException;
+    List<Rental> getAllForStaff(Staff staff) throws DBException;
 }

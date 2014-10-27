@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.RentalDAO;
 import lv.javaguru.java2.domain.Customer;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Rental;
+import lv.javaguru.java2.domain.Staff;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -171,7 +172,7 @@ public class RentalDAOImplTest {
         assertEquals(rentals.size(), 1);
     }
 
-/*    @Test
+    @Test
     public void testGetAllForStaff() throws DBException, InterruptedException {
         Rental rental1 = createRental(new Date(), 1, (short) 1, new Date(), 1);
         rentalDAO.create(rental1);
@@ -190,16 +191,16 @@ public class RentalDAOImplTest {
 
         staff.setStaff_id(1);
 
-        List<Rental> rentals = rentalDAO.getAllForInventory(staff);
+        List<Rental> rentals = rentalDAO.getAllForStaff(staff);
 
         assertEquals(rentals.size(), 3);
 
         staff.setStaff_id(2);
 
-        rentals = rentalDAO.getAllForInventory(staff);
+        rentals = rentalDAO.getAllForStaff(staff);
 
         assertEquals(rentals.size(), 1);
-    }*/
+    }
 
     private void assertionEqualsDateCustom(Date date1, Date date2)
     {

@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.RentalDAO;
 import lv.javaguru.java2.domain.Customer;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Rental;
+import lv.javaguru.java2.domain.Staff;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -231,7 +232,7 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
         }
         return rentals;
     }
-/*
+
     @Override
     public List<Rental> getAllForStaff(Staff staff) throws DBException {
         List<Rental> rentals = new ArrayList<Rental>();
@@ -264,5 +265,5 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
             closeConnection(connection);
         }
         return rentals;
-    } */
+    }
 }
