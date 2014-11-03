@@ -1,17 +1,16 @@
 package lv.javaguru.java2.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
- * @author <a href="mailto:viktor.savonin@odnoklassniki.ru">Viktor Savonin</a>
+ * Created by Juris on 02.11.2014.
  */
-public class HelloWorldServlet extends HttpServlet {
+public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req,
@@ -22,7 +21,11 @@ public class HelloWorldServlet extends HttpServlet {
 
         // Prepare output html
         PrintWriter out = resp.getWriter();
-        out.println("<h1>" + "Hello WWW world from Java!" + "</h1>");
-        out.println("<h1>" + "Hello WWW world from Java!" + "</h1>");
+        out.println("<br>" + "<br>");
+        out.println("<h3>" + "Sign in" + "</h3>");
+        out.println("<h3>" + "New user" + "</h3>");
+        out.println("<h3>" + "Show film list" + "</h3>");
+        out.println("<h3>" + "Show actor list" + "</h3>");
+
     }
 }
