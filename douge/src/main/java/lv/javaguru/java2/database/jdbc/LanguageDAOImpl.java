@@ -5,6 +5,8 @@ import lv.javaguru.java2.database.LanguageDAO;
 import lv.javaguru.java2.domain.Language;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sergo on 21.10.2014.
@@ -121,5 +123,38 @@ public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
         finally {
             closeConnection(connection);
         }
+    }
+
+    @Override
+    public List<Language> getAll() throws DBException {
+        List<Language> languages = new ArrayList<Language>();
+        Connection connection = null;
+        try
+        {
+            connection = getConnection();
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT LANGUAGE_ID, NAME, LAST_UPDATE FROM LANGUAGE");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                Language language = new Language();
+                language.setLanguage_id(resultSet.getInt("LANGUAGE_ID"));
+                language.setName(resultSet.getString("NAME"));
+                language.setLast_update(new Date(resultSet.getTimestamp("LAST_UPDATE").getTime()));
+                languages.add(language);
+            }
+        }
+        catch (Throwable e)
+        {
+            System.out.println("Exception while execute LanguageDAOImpl.getAll()");
+            e.printStackTrace();
+            throw new DBException(e);
+        }
+        finally {
+            closeConnection(connection);
+        }
+
+
+        return languages;
     }
 }

@@ -9,6 +9,7 @@
         <servlet-name>HelloWorldServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlets.HelloWorldServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
         <url-pattern>/hello</url-pattern>
@@ -21,6 +22,17 @@
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>FilmTableServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlets.FilmTableServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FilmTableServlet</servlet-name>
+        <url-pattern>/films</url-pattern>
     </servlet-mapping>
 
 </web-app>
