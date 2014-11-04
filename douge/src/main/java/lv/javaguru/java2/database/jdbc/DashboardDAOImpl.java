@@ -33,6 +33,8 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
             if (resultSet.next()) {
                 dashboard.setId(resultSet.getLong(1));
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){
@@ -60,6 +62,8 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
                 dashboard.setUser_id(resultSet.getLong(2));
                 dashboard.setComments(resultSet.getString(3));
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){
@@ -87,6 +91,8 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
             preparedStatement.setString(2,dashboard.getComments());
             preparedStatement.setLong(3, dashboard.getId());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e){
             System.out.println("Exception while execute DashboardDAOImpl.update()");
@@ -106,6 +112,8 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
                     connection.prepareStatement("delete from DASHBOARDS where ID = ?");
             preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e){
             System.out.println("Exception while execute DashboardDAOImpl.delete()");
@@ -132,6 +140,8 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
                 dashboard.setComments(resultSet.getString(3));
                 dashboards.add(dashboard);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e){
             System.out.println("Exception while execute DashboardDAOImpl.getAll()");
@@ -160,6 +170,8 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
                 dashboard.setComments(resultSet.getString(3));
                 dashboards.add(dashboard);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){

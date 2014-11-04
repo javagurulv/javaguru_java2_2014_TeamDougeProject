@@ -29,6 +29,8 @@ public class CountryDAOImpl extends DAOImpl implements CountryDAO {
             if(resultSet.next()){
                 country.setCountry_id(resultSet.getInt(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -59,6 +61,8 @@ public class CountryDAOImpl extends DAOImpl implements CountryDAO {
                 country.setCountry(resultSet.getString(2));
                 country.setLast_update(resultSet.getDate(3));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -82,6 +86,7 @@ public class CountryDAOImpl extends DAOImpl implements CountryDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -106,6 +111,8 @@ public class CountryDAOImpl extends DAOImpl implements CountryDAO {
             preparedStatement.setDate(2, new Date(country.getLast_update().getTime()));
             preparedStatement.setLong(3, country.getCountry_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -137,6 +144,8 @@ public class CountryDAOImpl extends DAOImpl implements CountryDAO {
                 country.setLast_update(resultSet.getDate(3));
                 countries.add(country);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

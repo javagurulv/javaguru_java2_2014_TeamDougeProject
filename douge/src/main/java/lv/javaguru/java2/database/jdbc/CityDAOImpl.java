@@ -32,6 +32,8 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
             if (resultSet.next()) {
                 city.setCity_id(resultSet.getShort(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -63,6 +65,8 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
                 city.setCountry_id(resultSet.getShort(3));
                 city.setLast_update(resultSet.getTimestamp(4));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -89,6 +93,8 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
             preparedStatement.setTimestamp(3,  new Timestamp(city.getLast_update().getTime()));
             preparedStatement.setShort(4, city.getCity_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -109,6 +115,8 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM CITY WHERE CITY_ID = ?");
             preparedStatement.setShort(1, city_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -139,6 +147,8 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
                 city.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 cities.add(city);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -170,6 +180,8 @@ public class CityDAOImpl extends DAOImpl implements CityDAO {
                 city.setLast_update(resultSet.getDate(4));
                 cities.add(city);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){

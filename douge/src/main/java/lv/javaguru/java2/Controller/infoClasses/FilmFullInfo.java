@@ -5,6 +5,7 @@ import lv.javaguru.java2.domain.Film;
 
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -38,7 +39,8 @@ public class FilmFullInfo {
 
     public Map<String, String> getFilmInfo()
     {
-        Map<String, String> filmInfo = new HashMap<String, String>();
+
+        Map<String, String> filmInfo = new LinkedHashMap<String, String>();
         filmInfo.put("id",id.toString() );
         filmInfo.put("Title", title);
         filmInfo.put("Description", description);

@@ -35,6 +35,8 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
                 store.setManager_staff_id(resultSet.getInt("MANAGER_STAFF_ID"));
                 store.setLast_update(resultSet.getDate("LAST_UPDATE"));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -66,6 +68,8 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
             {
                store.setStore_id(resultSet.getInt(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -93,6 +97,8 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
             preparedStatement.setInt(4,store.getStore_id());
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
+
         }
         catch (Throwable e)
         {
@@ -117,6 +123,9 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
             preparedStatement.setInt(1,id);
 
             preparedStatement.executeUpdate();
+
+
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -150,6 +159,8 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
                 store.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 stores.add(store);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -183,6 +194,8 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
                 store.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 stores.add(store);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -216,6 +229,8 @@ public class StoreDAOImpl extends DAOImpl implements StoreDAO {
                 store.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 stores.add(store);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

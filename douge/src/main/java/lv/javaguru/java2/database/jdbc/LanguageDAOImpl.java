@@ -27,6 +27,8 @@ public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
             {
                 language = new Language(resultSet.getInt("LANGUAGE_ID"), resultSet.getString("NAME"), new Date(resultSet.getTimestamp("LAST_UPDATE").getTime()));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -59,6 +61,8 @@ public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
             {
                 language.setLanguage_id(resultSet.getInt(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -83,6 +87,7 @@ public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
 
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
 
 
         }
@@ -111,6 +116,7 @@ public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
 
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
 
 
         }
@@ -143,6 +149,8 @@ public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
                 language.setLast_update(new Date(resultSet.getTimestamp("LAST_UPDATE").getTime()));
                 languages.add(language);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

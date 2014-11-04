@@ -32,6 +32,8 @@ public class Film_TextDAOImpl extends DAOImpl implements Film_TextDAO {
                 film_text.setTitle(resultSet.getString("TITLE"));
                 film_text.setDescription(resultSet.getString("DESCRIPTION"));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -60,6 +62,8 @@ public class Film_TextDAOImpl extends DAOImpl implements Film_TextDAO {
             preparedStatement.setString(3, film_text.getDescription());
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
+
         }
         catch (Throwable e)
         {
@@ -87,6 +91,8 @@ public class Film_TextDAOImpl extends DAOImpl implements Film_TextDAO {
             preparedStatement.setInt(3,film_text.getFilm_id());
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
+
         }
         catch (Throwable e)
         {
@@ -111,6 +117,8 @@ public class Film_TextDAOImpl extends DAOImpl implements Film_TextDAO {
             preparedStatement.setInt(1,id );
 
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
 
         }
         catch (Throwable e)

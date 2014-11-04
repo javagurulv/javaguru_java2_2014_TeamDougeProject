@@ -33,11 +33,15 @@ public class UserTypeDAOImpl extends DAOImpl implements UserTypeDAO {
             if (rs.next()){
                 userType.setTypeId(rs.getLong(1));
             }
-        } catch (Throwable e) {
+            rs.close();
+            preparedStatement.close();
+        }
+        catch (Throwable e) {
             System.out.println("Exception while execute UserTypeDAOImpl.create()");
             e.printStackTrace();
             throw new DBException(e);
-        } finally {
+        }
+        finally {
             closeConnection(connection);
         }
     }
@@ -56,6 +60,8 @@ public class UserTypeDAOImpl extends DAOImpl implements UserTypeDAO {
                 userType.setTypeId(resultSet.getLong(1));
                 userType.setTypeName(resultSet.getString(2));
             }
+            resultSet.close();
+            preparedStatement.close();
             return userType;
         }
         catch (Throwable e){
@@ -77,6 +83,8 @@ public class UserTypeDAOImpl extends DAOImpl implements UserTypeDAO {
                     connection.prepareStatement("delete from USER_TYPES where ID = ?");
             preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e){
             System.out.println("Exception while execute UserTypeDAOImpl.delete()");
@@ -100,6 +108,8 @@ public class UserTypeDAOImpl extends DAOImpl implements UserTypeDAO {
             preparedStatement.setString(1,userType.getTypeName());
             preparedStatement.setLong(2,userType.getTypeId());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e){
             System.out.println("Exception while execute UserTypeDAOImpl.update()");
@@ -126,6 +136,8 @@ public class UserTypeDAOImpl extends DAOImpl implements UserTypeDAO {
                 userType.setTypeName(resultSet.getString(2));
                 typesList.add(userType);
             }
+            resultSet.close();
+            preparedStatement.close();
             return typesList;
         }
         catch (Throwable e){

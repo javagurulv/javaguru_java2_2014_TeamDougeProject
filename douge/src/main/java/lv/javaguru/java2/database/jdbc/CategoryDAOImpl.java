@@ -29,6 +29,8 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
             if (resultSet.next()) {
                 category.setCategory_id(resultSet.getShort(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -58,6 +60,8 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
                 category.setName(resultSet.getString(2));
                 category.setLast_update(resultSet.getDate(3));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -83,6 +87,8 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
             preparedStatement.setTimestamp(2,  new Timestamp(category.getLast_update().getTime()));
             preparedStatement.setInt(3, category.getCategory_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -103,6 +109,8 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM CATEGORY WHERE CATEGORY_ID = ?");
             preparedStatement.setInt(1, category_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -132,6 +140,8 @@ public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
                 category.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 categories.add(category);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

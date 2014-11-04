@@ -40,8 +40,9 @@ public class DatabaseCleaner extends DAOImpl {
     }
 
     public void cleanDatabase() throws DBException {
+        Connection connection = null;
         for(String tableName : getTableNames()) {
-            Connection connection = getConnection();
+
             try {
                 connection = getConnection();
                 PreparedStatement preparedStatement = connection

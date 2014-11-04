@@ -17,7 +17,7 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
 
-        // Set response content type
+               // Set response content type
         resp.setContentType("text/html");
         HttpSession httpSession = req.getSession();
 

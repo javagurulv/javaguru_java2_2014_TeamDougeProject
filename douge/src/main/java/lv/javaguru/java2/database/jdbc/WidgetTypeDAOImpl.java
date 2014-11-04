@@ -31,6 +31,8 @@ public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
             if (resultSet.next()){
                 widgetType.setId(resultSet.getLong(1));
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -58,6 +60,8 @@ public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
                 widgetType.setName(resultSet.getString(2));
                 widgetType.setComments(resultSet.getString(3));
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){
@@ -83,6 +87,8 @@ public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
             preparedStatement.setLong(3,widgetType.getId());
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
+
         }
         catch (Throwable e){
             System.out.println("Exception while execute WidgetTypeDAOImpl.update()");
@@ -104,6 +110,7 @@ public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
             preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -132,6 +139,8 @@ public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
                 widgetType.setComments(resultSet.getString(3));
                 widgetTypes.add(widgetType);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e){
             System.out.println("Exception while execute WidgetTypeDAOImpl.getAll()");

@@ -33,6 +33,8 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
                 widget.setDashboard_id(resultSet.getLong(2));
                 widget.setComments(resultSet.getString(3));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -60,6 +62,8 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
             if (resultSet.next()) {
                 widget.setWidget_id(resultSet.getLong(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -81,6 +85,8 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM WIDGETS WHERE ID = ?");
             preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -106,6 +112,8 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
             preparedStatement.setString(2,widget.getComments());
             preparedStatement.setLong(3,widget.getWidget_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -136,6 +144,8 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
                 widget.setComments(resultSet.getString("COMMENTS"));
                 widgets.add(widget);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -167,6 +177,8 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
                 widget.setComments(resultSet.getString("COMMENTS"));
                 widgets.add(widget);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

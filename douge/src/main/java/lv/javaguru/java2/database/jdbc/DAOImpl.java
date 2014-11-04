@@ -54,7 +54,7 @@ public class DAOImpl {
         try{
             return DriverManager.getConnection(dbUrl, userName, password);
         } catch (SQLException e) {
-            System.out.println("Exciption while getting connection to database");
+            System.out.println("Exception while getting connection to database");
             e.printStackTrace();
             throw new DBException(e);
         }
@@ -66,7 +66,7 @@ public class DAOImpl {
                 connection.close();
             }
         } catch (SQLException e) {
-            System.out.println("Exciption while closing connection to database");
+            System.out.println("Exception while closing connection to database");
             e.printStackTrace();
             throw new DBException(e);
         }

@@ -31,6 +31,8 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
                 film_actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 film_actors.add(film_actor);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -60,6 +62,7 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
             preparedStatement.setTimestamp(3, new Timestamp(film_actor.getLast_update().getTime()));
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
 
 
         }
@@ -86,6 +89,8 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
                     connection.prepareStatement("DELETE FROM FILM_ACTOR where FILM_ID = ?");
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -118,6 +123,8 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
                 film_actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 film_actors.add(film_actor);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
