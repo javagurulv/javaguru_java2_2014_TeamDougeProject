@@ -39,6 +39,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
                 rental.setStaff_id(resultSet.getInt(6));
                 rental.setLast_update(resultSet.getTimestamp(7));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -70,6 +72,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
             if (resultSet.next()) {
                 rental.setRental_id(resultSet.getInt(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -91,6 +95,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM RENTAL WHERE RENTAL_ID = ?");
             preparedStatement.setInt(1, rental_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -119,6 +125,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
             preparedStatement.setTimestamp(6, new Timestamp(rental.getLast_update().getTime()));
             preparedStatement.setInt(7, rental.getRental_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -152,6 +160,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
                 rental.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 rentals.add(rental);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -186,6 +196,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
                 rental.setLast_update(resultSet.getDate(7));
                 rentals.add(rental);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){
@@ -220,6 +232,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
                 rental.setLast_update(resultSet.getDate(7));
                 rentals.add(rental);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){
@@ -254,6 +268,8 @@ public class RentalDAOImpl extends DAOImpl implements RentalDAO {
                 rental.setLast_update(resultSet.getDate(7));
                 rentals.add(rental);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){

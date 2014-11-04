@@ -37,6 +37,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             if (rs.next()){
                 user.setUserId(rs.getLong(1));
             }
+            rs.close();
+            preparedStatement.close();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.create()");
             e.printStackTrace();
@@ -66,6 +68,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setPassword(resultSet.getString(4));
                 user.setComments(resultSet.getString(5));
             }
+            resultSet.close();
+            preparedStatement.close();
             return user;
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.getById()");
@@ -94,6 +98,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setComments(resultSet.getString(5));
                 users.add(user);
             }
+            resultSet.close();
+            preparedStatement.close();
         } catch (Throwable e) {
             System.out.println("Exception while getting customer list UserDAOImpl.getList()");
             e.printStackTrace();
@@ -113,6 +119,9 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                     .prepareStatement("delete from USERS where ID = ?");
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
+
+
+            preparedStatement.close();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.delete()");
             e.printStackTrace();
@@ -140,6 +149,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setLong(4,user.getUser_type());
             preparedStatement.setLong(5,user.getUserId());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.update()");
             e.printStackTrace();

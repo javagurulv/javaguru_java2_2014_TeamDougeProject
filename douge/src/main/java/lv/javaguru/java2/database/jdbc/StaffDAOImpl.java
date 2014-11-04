@@ -20,28 +20,10 @@ import java.util.List;
  */
 public class StaffDAOImpl extends DAOImpl implements StaffDAO {
 
-    private void setPacketSizeInDB() throws DBException
-    {
-        Connection connection = null;
-        try
-        {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SET GLOBAL max_allowed_packet = 1024*1024*14");
-            preparedStatement.execute();
-        }
-        catch (Throwable e)
-        {
-            System.out.println("Exception while execute StaffDAOImpl.setPacketSizeInDB()");
-            e.printStackTrace();
-            throw new DBException(e);
-        }
-        finally {
-            closeConnection(connection);
-        }
-    }
+
     @Override
     public void create(Staff staff) throws DBException {
-        setPacketSizeInDB();
+
         Connection connection = null;
         try
         {
@@ -63,6 +45,8 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
             if (resultSet.next()) {
                 staff.setStaff_id(resultSet.getInt(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -105,6 +89,8 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
 
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -121,7 +107,7 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
 
     @Override
     public void update(Staff staff) throws DBException {
-        setPacketSizeInDB();
+
         Connection connection = null;
         try
         {
@@ -142,6 +128,8 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
             preparedStatement.setTimestamp(10, new Timestamp(staff.getLast_update().getTime()));
             preparedStatement.setInt(11,staff.getStaff_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -167,6 +155,9 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
 
             preparedStatement.setInt(1,staff_id);
             preparedStatement.executeUpdate();
+
+
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -210,6 +201,8 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
                 staffList.add(staff);
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -252,6 +245,8 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
                 staffList.add(staff);
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -294,6 +289,8 @@ public class StaffDAOImpl extends DAOImpl implements StaffDAO {
                 staffList.add(staff);
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

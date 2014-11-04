@@ -35,6 +35,8 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
             if (resultSet.next()) {
                 address.setAddress_id(resultSet.getShort(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -70,6 +72,8 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
                 address.setPhone(resultSet.getString(7));
                 address.setLast_update(resultSet.getTimestamp(8));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -100,6 +104,8 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
             preparedStatement.setTimestamp(7,  new Timestamp(address.getLast_update().getTime()));
             preparedStatement.setShort(8, address.getAddress_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -120,6 +126,8 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM ADDRESS WHERE ADDRESS_ID = ?");
             preparedStatement.setShort(1, address_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -154,6 +162,8 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
                 address.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 addresses.add(address);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -190,6 +200,8 @@ public class AddressDAOImpl extends DAOImpl implements AddressDAO {
                 address.setLast_update(resultSet.getDate(8));
                 addresses.add(address);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){

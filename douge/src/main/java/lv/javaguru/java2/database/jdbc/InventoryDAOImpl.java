@@ -34,6 +34,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
                 inventory.setStore_id(resultSet.getInt(3));
                 inventory.setLast_update(resultSet.getTimestamp(4));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -62,6 +64,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
             if (resultSet.next()) {
                 inventory.setInventory_id(resultSet.getInt(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -83,6 +87,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM INVENTORY WHERE INVENTORY_ID = ?");
             preparedStatement.setInt(1, inventory_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -108,6 +114,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
             preparedStatement.setTimestamp(3, new Timestamp(inventory.getLast_update().getTime()));
             preparedStatement.setInt(4, inventory.getInventory_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -138,6 +146,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
                 inventory.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 inventories.add(inventory);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -169,6 +179,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
                 inventory.setLast_update(resultSet.getDate(4));
                 inventories.add(inventory);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){
@@ -200,6 +212,8 @@ public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
                 inventory.setLast_update(resultSet.getDate(4));
                 inventories.add(inventory);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){

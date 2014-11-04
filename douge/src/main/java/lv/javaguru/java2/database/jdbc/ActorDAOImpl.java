@@ -32,6 +32,8 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
                 actor.setLast_name(resultSet.getString(3));
                 actor.setLast_update(resultSet.getTimestamp(4));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -40,6 +42,7 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
             throw new DBException(e);
         }
         finally {
+
             closeConnection(connection);
         }
         return actor;
@@ -60,6 +63,8 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
             if (resultSet.next()) {
                 actor.setActor_id(resultSet.getShort(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -81,7 +86,11 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM ACTOR WHERE ACTOR_ID = ?");
             preparedStatement.setShort(1,actor_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
+
+
         catch (Throwable e)
         {
             System.out.println("Exception while execute ActorDAOImpl.delete()");
@@ -106,6 +115,8 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
             preparedStatement.setTimestamp(3,  new Timestamp(actor.getLast_update().getTime()));
             preparedStatement.setShort(4, actor.getActor_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -136,6 +147,8 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
                 actor.setLast_update(resultSet.getTimestamp("LAST_UPDATE"));
                 actors.add(actor);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {

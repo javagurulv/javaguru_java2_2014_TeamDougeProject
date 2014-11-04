@@ -35,6 +35,8 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
             if (resultSet.next()){
                 customer.setCustomer_id((int) resultSet.getLong(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -73,6 +75,8 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
             preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
+
         }
         catch (Throwable e)
         {
@@ -108,6 +112,7 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
             preparedStatement.setLong(9,customer.getCustomer_id());
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -141,6 +146,8 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
                 fillCustomer(customer, resultSet);
 
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -173,7 +180,8 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
                 fillCustomer(customer, resultSet);
                 customers.add(customer);
             }
-
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -205,6 +213,8 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
                 fillCustomer(customer, resultSet);
                 customers.add(customer);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e)
@@ -237,6 +247,8 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
                 fillCustomer(customer, resultSet);
                 customers.add(customer);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e)

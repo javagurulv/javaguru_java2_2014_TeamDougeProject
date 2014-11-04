@@ -32,6 +32,8 @@ public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
                 film_category.setCategory_id(resultSet.getInt(2));
                 film_category.setLast_update(resultSet.getTimestamp(3));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -61,6 +63,8 @@ public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
             if (resultSet.next()) {
                 film_category.setFilm_id(resultSet.getShort(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -83,6 +87,8 @@ public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM FILM_CATEGORY WHERE FILM_ID = ?");
             preparedStatement.setShort(1, film_id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -107,6 +113,8 @@ public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
             preparedStatement.setTimestamp(2, new Timestamp(film_category.getLast_update().getTime()));
             preparedStatement.setShort(3, film_category.getFilm_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -136,6 +144,8 @@ public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
                 film_category.setLast_update(resultSet.getDate("LAST_UPDATE"));
                 film_categories.add(film_category);
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -166,6 +176,8 @@ public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
                 film_category.setLast_update(resultSet.getDate(3));
                 film_categories.add(film_category);
             }
+            resultSet.close();
+            preparedStatement.close();
 
         }
         catch (Throwable e){

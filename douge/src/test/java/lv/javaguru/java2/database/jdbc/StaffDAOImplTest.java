@@ -8,6 +8,7 @@ import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Staff;
 import lv.javaguru.java2.domain.Store;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import sun.net.ResourceManager;
@@ -27,6 +28,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 25.10.2014.
  */
+@Ignore
 public class StaffDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 

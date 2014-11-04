@@ -48,6 +48,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
             {
                 film.setFilm_id((int) resultSet.getLong(1));
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -72,6 +74,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
                     connection.prepareStatement("DELETE FROM FILM WHERE FILM_ID = ?");
             preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -117,7 +121,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
                 film.setLast_update(resultSet.getDate("last_update"));
 
             }
-
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -158,6 +163,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
             preparedStatement.setDate(12, new Date(film.getLast_update().getTime()));//(Date)film.getLast_update());
             preparedStatement.setInt(13, film.getFilm_id());
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -201,6 +208,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
                 films.add(film);
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -245,6 +254,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
                 films.add(film);
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
@@ -289,6 +300,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
                 films.add(film);
 
             }
+            resultSet.close();
+            preparedStatement.close();
         }
         catch (Throwable e)
         {
