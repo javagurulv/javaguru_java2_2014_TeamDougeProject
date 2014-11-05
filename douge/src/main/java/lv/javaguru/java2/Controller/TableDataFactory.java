@@ -1,5 +1,6 @@
 package lv.javaguru.java2.Controller;
 
+import lv.javaguru.java2.Controller.Builders.ActorInfoBuilder;
 import lv.javaguru.java2.Controller.Builders.FilmInfoBuilder;
 
 /**
@@ -25,4 +26,5 @@ public class TableDataFactory {
     public TableData getFilmTableData(){
         return new FilmInfoBuilder();
     }
+    public TableData getActorTableData(){ return new ActorInfoBuilder();}
 }

@@ -35,4 +35,14 @@
         <url-pattern>/films</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ActorTableServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlets.ActorTableServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ActorTableServlet</servlet-name>
+        <url-pattern>/actors</url-pattern>
+    </servlet-mapping>
+
 </web-app>
