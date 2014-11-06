@@ -24,8 +24,8 @@ public class IndexServlet extends HttpServlet {
         out.println("<br>" + "<br>");
         out.println("<h3>" + "Sign in" + "</h3>");
         out.println("<h3>" + "New user" + "</h3>");
-        out.println("<h3>" + "Show film list" + "</h3>");
-        out.println("<h3>" + "Show actor list" + "</h3>");
+        out.println("<h3><a href=/films>" + "Show film list" + "</a></h3>");
+        out.println("<h3><a href=/actors>" + "Show actor list" + "</a></h3>");
 
     }
 }
