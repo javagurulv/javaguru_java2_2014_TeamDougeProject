@@ -782,4 +782,8 @@ CREATE TABLE `widgets` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
+
+ALTER TABLE `douge_project_user`.`users`
+ADD UNIQUE INDEX `login_UNIQUE` (`login` ASC);
 -- Dump completed on 2014-10-18 11:17:20

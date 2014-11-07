@@ -865,6 +865,9 @@ LOCK TABLES `widgets` WRITE;
 /*!40000 ALTER TABLE `widgets` ENABLE KEYS */;
 UNLOCK TABLES;
 
+ALTER TABLE `douge_project_user`.`users`
+ADD UNIQUE INDEX `login_UNIQUE` (`login` ASC);
+
 --
 -- Final view structure for view `actor_info`
 --
