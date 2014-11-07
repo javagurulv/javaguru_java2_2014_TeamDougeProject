@@ -22,8 +22,8 @@ public class ActorInfoBuilder implements TableData {
         tableData = new ArrayList<Map<String, String>>();
         List<Actor> actorList = DAOFactory.getInstance().getActorDAO().getAll();
         for (int i = 0; i < actorList.size() ; i++) {
-            ActorFullInfo filmFullInfo = new ActorFullInfo(actorList.get(i));
-            tableData.add(filmFullInfo.getActorInfo());
+            ActorFullInfo actorFullInfo = new ActorFullInfo(actorList.get(i));
+            tableData.add(actorFullInfo.getActorInfo());
         }
     }
 
