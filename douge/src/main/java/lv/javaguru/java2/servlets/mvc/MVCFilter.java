@@ -21,6 +21,7 @@ public class MVCFilter implements Filter {
         controllerMap.put("/hello", new HelloWorldController());
         controllerMap.put("/actors",new ActorTableController());
         controllerMap.put("/films",new FilmTableCotroller());
+        controllerMap.put("/index", new IndexController());
     }
 
     @Override
