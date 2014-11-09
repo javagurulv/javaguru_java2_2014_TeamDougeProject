@@ -1,30 +1,20 @@
-package lv.javaguru.java2.servlets;
-
+package lv.javaguru.java2.servlets.mvc;
 import lv.javaguru.java2.Controller.TableData;
 import lv.javaguru.java2.Controller.TableDataFactory;
 import lv.javaguru.java2.Controller.View.TableDataToWEBTableConverter;
 import lv.javaguru.java2.database.DBException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * Created by Juris on 05.11.2014.
+ * Created by Juris on 08.11.2014.
  */
-public class ActorTableServlet extends HttpServlet {
-
+public class ActorTableController implements MVCController {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        resp.setContentType("text/html");
-
-        PrintWriter out = resp.getWriter();
-        out.println("<body>");
         TableData actorTableData = TableDataFactory.getInstance().getActorTableData();
         try {
             actorTableData.buildTableData();
@@ -32,8 +22,7 @@ public class ActorTableServlet extends HttpServlet {
             e.printStackTrace();
         }
         TableDataToWEBTableConverter tableDataToWEBTableConverter = new TableDataToWEBTableConverter();
-        out.println(tableDataToWEBTableConverter.convertToWebTable(actorTableData));
 
-        out.println("</body>");
+        return new MVCModel("/actors.jsp",tableDataToWEBTableConverter.convertToWebTable(actorTableData));
     }
 }

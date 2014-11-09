@@ -19,6 +19,7 @@ public class MVCFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         controllerMap = new HashMap<String,MVCController>();
         controllerMap.put("/hello", new HelloWorldController());
+        controllerMap.put("/actors",new ActorTableController());
     }
 
     @Override
@@ -38,11 +39,11 @@ public class MVCFilter implements Filter {
         MVCController controller = controllerMap.get(contextURI);
         MVCModel model = controller.processRequest(req, resp);
 
+
         req.setAttribute("model", model.getData());
         ServletContext context = req.getServletContext();
         System.out.println("View: "+model.getView());
-        RequestDispatcher requestDispacher
-                = context.getRequestDispatcher(model.getView());
+        RequestDispatcher requestDispacher = context.getRequestDispatcher(model.getView());
         requestDispacher.forward(req, resp);
     }
 

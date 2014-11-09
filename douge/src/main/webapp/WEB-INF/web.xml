@@ -47,16 +47,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ActorTableServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlets.ActorTableServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>ActorTableServlet</servlet-name>
-        <url-pattern>/actors</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>AddUserServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlets.AddUserServlet</servlet-class>
     </servlet>
