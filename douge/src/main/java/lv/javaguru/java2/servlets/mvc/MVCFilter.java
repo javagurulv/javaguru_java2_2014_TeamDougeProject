@@ -20,6 +20,7 @@ public class MVCFilter implements Filter {
         controllerMap = new HashMap<String,MVCController>();
         controllerMap.put("/hello", new HelloWorldController());
         controllerMap.put("/actors",new ActorTableController());
+        controllerMap.put("/films",new FilmTableCotroller());
     }
 
     @Override
