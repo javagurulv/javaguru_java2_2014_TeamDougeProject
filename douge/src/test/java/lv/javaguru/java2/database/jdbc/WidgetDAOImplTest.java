@@ -5,6 +5,7 @@ package lv.javaguru.java2.database.jdbc;
  */
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -35,6 +36,16 @@ public class WidgetDAOImplTest {
         databaseCleaner.cleanDatabase();
     }
 
+    private void matchWidgets(Widget widget, Widget widgetFromDB)
+    {
+        assertEquals(widget.getComments(), widgetFromDB.getComments());
+        assertEquals(widget.getDashboard_id(), widgetFromDB.getDashboard_id());
+        assertEquals(widget.getWidget_id(), widgetFromDB.getWidget_id());
+        assertEquals(widget.getMetric_set_id(), widgetFromDB.getMetric_set_id());
+        assertEquals(widget.getPosition(), widgetFromDB.getPosition());
+        assertEquals(widget.getWidget_type_id(), widgetFromDB.getWidget_type_id());
+    }
+
     @Test
     public void testCreate() throws DBException
     {
@@ -43,9 +54,7 @@ public class WidgetDAOImplTest {
         widgetDAO.create(widget);
         Widget widgetFromDB = widgetDAO.getByID(widget.getWidget_id());
         assertNotNull(widgetFromDB);
-        assertEquals(widget.getComments(), widgetFromDB.getComments());
-        assertEquals(widget.getDashboard_id(), widgetFromDB.getDashboard_id());
-        assertEquals(widget.getWidget_id(), widgetFromDB.getWidget_id());
+        matchWidgets(widget, widgetFromDB);
     }
 
     @Test
@@ -78,9 +87,7 @@ public class WidgetDAOImplTest {
         Widget widgetFromDB = widgetDAO.getByID(widget.getWidget_id());
 
         assertNotNull(widgetFromDB);
-        assertEquals(widget.getComments(), widgetFromDB.getComments());
-        assertEquals(widget.getDashboard_id(), widgetFromDB.getDashboard_id());
-        assertEquals(widget.getWidget_id(), widgetFromDB.getWidget_id());
+        matchWidgets(widget, widgetFromDB);
 
     }
 

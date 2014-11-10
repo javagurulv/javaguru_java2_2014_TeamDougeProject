@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.net.ConnectException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +24,14 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
         try
         {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("Select * from WIDGETS where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("Select id,dashboard_id, comments, type_id, metric_set_id, position " +
+                    "from WIDGETS where id = ?");
             preparedStatement.setLong(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
             {
-                widget = new Widget();
-                widget.setWidget_id(resultSet.getLong(1));
-                widget.setDashboard_id(resultSet.getLong(2));
-                widget.setComments(resultSet.getString(3));
+                widget = buildWidget(resultSet);
+
             }
             resultSet.close();
             preparedStatement.close();
@@ -48,15 +48,32 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
         return widget;
     }
 
+    private Widget buildWidget(ResultSet resultSet) throws SQLException {
+        Widget widget;
+        widget = new Widget();
+        widget.setWidget_id(resultSet.getLong("id"));
+        widget.setDashboard_id(resultSet.getLong("dashboard_id"));
+        widget.setComments(resultSet.getString("comments"));
+        widget.setWidget_type_id(resultSet.getLong("type_id"));
+        widget.setMetric_set_id(resultSet.getLong("metric_set_id"));
+        widget.setPosition(resultSet.getLong("position"));
+        return widget;
+    }
+
     @Override
     public void create(Widget widget) throws DBException {
         Connection connection = null;
         try
         {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO WIDGETS VALUES (default ,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO WIDGETS(id,dashboard_id,comments,type_id,metric_set_id,position )" +
+                    " VALUES (default ,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1,widget.getDashboard_id());
             preparedStatement.setString(2,widget.getComments());
+            preparedStatement.setLong(3,widget.getWidget_type_id());
+            preparedStatement.setLong(4,widget.getMetric_set_id());
+            preparedStatement.setLong(5,widget.getPosition());
+
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -107,10 +124,15 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
         {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("UPDATE WIDGETS SET dashboard_id = ?, comments = ? where id = ?");
+                    connection.prepareStatement("UPDATE WIDGETS SET dashboard_id = ?, comments = ? , type_id = ?," +
+                            " metric_set_id = ?, position = ?    where id = ?");
             preparedStatement.setLong(1,widget.getDashboard_id());
             preparedStatement.setString(2,widget.getComments());
-            preparedStatement.setLong(3,widget.getWidget_id());
+            preparedStatement.setLong(3,widget.getWidget_type_id());
+            preparedStatement.setLong(4,widget.getMetric_set_id());
+            preparedStatement.setLong(5, widget.getPosition());
+
+            preparedStatement.setLong(6,widget.getWidget_id());
             preparedStatement.executeUpdate();
 
             preparedStatement.close();
@@ -134,15 +156,15 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
         try
         {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM WIDGETS ");
+            /*Select id,dashboard_id, comments, type_id, metric_set_id, position " +
+                    "from WIDGETS */
+            PreparedStatement preparedStatement = connection.prepareStatement("select id,dashboard_id, comments, " +
+                    "type_id, metric_set_id, position " +
+                    "FROM WIDGETS");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
             {
-                Widget widget = new Widget();
-                widget.setWidget_id(resultSet.getLong("ID"));
-                widget.setDashboard_id(resultSet.getLong("DASHBOARD_ID"));
-                widget.setComments(resultSet.getString("COMMENTS"));
-                widgets.add(widget);
+                widgets.add(buildWidget(resultSet));
             }
             resultSet.close();
             preparedStatement.close();
@@ -166,16 +188,14 @@ public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
         try
         {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM WIDGETS WHERE DASHBOARD_ID = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id,dashboard_id, comments,type_id, metric_set_id, position " +
+                    "FROM WIDGETS WHERE DASHBOARD_ID = ?");
             preparedStatement.setLong(1,dashboard.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
             {
-                Widget widget = new Widget();
-                widget.setWidget_id(resultSet.getLong("ID"));
-                widget.setDashboard_id(resultSet.getLong("DASHBOARD_ID"));
-                widget.setComments(resultSet.getString("COMMENTS"));
-                widgets.add(widget);
+
+                widgets.add(buildWidget(resultSet));
             }
             resultSet.close();
             preparedStatement.close();

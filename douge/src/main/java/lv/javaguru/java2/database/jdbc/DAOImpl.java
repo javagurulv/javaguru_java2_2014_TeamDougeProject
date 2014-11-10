@@ -21,6 +21,7 @@ public class DAOImpl {
     private String driverClass = null;
 
 
+
     public DAOImpl() {
         initDatabaseConnectionProperties();
         registerJDBCDriver();
@@ -70,6 +71,13 @@ public class DAOImpl {
             e.printStackTrace();
             throw new DBException(e);
         }
+    }
+
+    protected void handleException(Throwable e, String methodMessage) throws DBException
+    {
+        System.out.println(methodMessage);
+        e.printStackTrace();
+        throw new DBException(e);
     }
 
 }

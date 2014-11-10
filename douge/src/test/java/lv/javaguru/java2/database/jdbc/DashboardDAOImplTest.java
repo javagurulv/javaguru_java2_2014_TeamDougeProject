@@ -26,7 +26,7 @@ public class DashboardDAOImplTest {
     {
         Dashboard dashboard = new Dashboard();
         dashboard.setUser_id(userId);
-        dashboard.setComments(comments);
+        dashboard.setName(comments);
         return dashboard;
     }
 
@@ -45,7 +45,7 @@ public class DashboardDAOImplTest {
 
         assertNotNull(dashboardFromDB);
         assertEquals(dashboard.getUser_id(), dashboardFromDB.getUser_id());
-        assertEquals(dashboard.getComments(), dashboardFromDB.getComments());
+        assertEquals(dashboard.getName(), dashboardFromDB.getName());
     }
 
     @Test
@@ -71,14 +71,14 @@ public class DashboardDAOImplTest {
         Dashboard dashboard = createDashboard((long)2,"TEST!");
         dashboardDAO.create(dashboard);
         dashboard.setUser_id((long)50);
-        dashboard.setComments("TEST TEST");
+        dashboard.setName("TEST TEST");
         dashboardDAO.update(dashboard);
 
         Dashboard dashboardFromDB = dashboardDAO.getById(dashboard.getId());
 
         assertNotNull(dashboardFromDB);
         assertEquals(dashboard.getUser_id(), dashboardFromDB.getUser_id());
-        assertEquals(dashboard.getComments(), dashboardFromDB.getComments());
+        assertEquals(dashboard.getName(), dashboardFromDB.getName());
     }
 
     @Test

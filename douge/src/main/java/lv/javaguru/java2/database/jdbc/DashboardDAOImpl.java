@@ -24,10 +24,12 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into DASHBOARDS VALUES(default ,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+
+
+                    connection.prepareStatement("insert into DASHBOARDS(id,user_id,name ) VALUES(default ,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setLong(1,dashboard.getUser_id());
-            preparedStatement.setString(2,dashboard.getComments());
+            preparedStatement.setString(2,dashboard.getName());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -60,7 +62,7 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
                 dashboard = new Dashboard();
                 dashboard.setId(resultSet.getLong(1));
                 dashboard.setUser_id(resultSet.getLong(2));
-                dashboard.setComments(resultSet.getString(3));
+                dashboard.setName(resultSet.getString(3));
             }
             resultSet.close();
             preparedStatement.close();
@@ -86,9 +88,9 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
         try{
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("update DASHBOARDS set USER_ID = ?, COMMENTS = ? where ID = ?");
+                    connection.prepareStatement("update DASHBOARDS set USER_ID = ?, NAME = ? where ID = ?");
             preparedStatement.setLong(1,dashboard.getUser_id());
-            preparedStatement.setString(2,dashboard.getComments());
+            preparedStatement.setString(2,dashboard.getName());
             preparedStatement.setLong(3, dashboard.getId());
             preparedStatement.executeUpdate();
 
@@ -130,14 +132,15 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
         Connection connection = null;
         try{
             connection = getConnection();
+
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("select * from DASHBOARDS");
+                    connection.prepareStatement("select id,user_id,name from DASHBOARDS");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Dashboard dashboard = new Dashboard();
-                dashboard.setId(resultSet.getLong(1));
-                dashboard.setUser_id(resultSet.getLong(2));
-                dashboard.setComments(resultSet.getString(3));
+                dashboard.setId(resultSet.getLong("ID"));
+                dashboard.setUser_id(resultSet.getLong("USER_ID"));
+                dashboard.setName(resultSet.getString("NAME"));
                 dashboards.add(dashboard);
             }
             resultSet.close();
@@ -160,14 +163,14 @@ public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
         try{
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("select * from DASHBOARDS where USER_ID = ?");
+                    connection.prepareStatement("select id,user_id,name from DASHBOARDS where USER_ID = ?");
             preparedStatement.setLong(1,user.getUserId());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Dashboard dashboard = new Dashboard();
-                dashboard.setId(resultSet.getLong(1));
-                dashboard.setUser_id(resultSet.getLong(2));
-                dashboard.setComments(resultSet.getString(3));
+                dashboard.setId(resultSet.getLong("ID"));
+                dashboard.setUser_id(resultSet.getLong("USER_ID"));
+                dashboard.setName(resultSet.getString("NAME"));
                 dashboards.add(dashboard);
             }
             resultSet.close();

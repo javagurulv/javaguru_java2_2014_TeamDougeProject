@@ -7,15 +7,19 @@ public class Dashboard {
 
     private Long id;
     private Long user_id;
-    private String comments;
+    private String name;
 
-    public String getComments() {
-        return comments;
+    public String getName() {
+        return name;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setName(String name) {
+        this.name = name;
     }
+
+
+
+
 
     public void setId(Long id) {
         this.id = id;
