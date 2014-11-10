@@ -36,6 +36,7 @@ public class DatabaseCleaner extends DAOImpl {
         tableNames.add("RENTAL");
         tableNames.add("STAFF");
         tableNames.add("METRICS");
+        tableNames.add("METRICS_SETS");
 
         return tableNames;
     }

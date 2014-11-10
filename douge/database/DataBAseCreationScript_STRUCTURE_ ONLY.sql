@@ -400,6 +400,20 @@ CREATE TABLE `metrics` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `metrics_sets`
+--
+
+DROP TABLE IF EXISTS `metrics_sets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `metrics_sets` (
+  `id` int(11) NOT NULL,
+  `metric_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`metric_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Temporary table structure for view `nicer_but_slower_film_list`
 --
 
@@ -797,4 +811,4 @@ CREATE TABLE `widgets` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-10 14:06:53
+-- Dump completed on 2014-11-10 17:42:18
