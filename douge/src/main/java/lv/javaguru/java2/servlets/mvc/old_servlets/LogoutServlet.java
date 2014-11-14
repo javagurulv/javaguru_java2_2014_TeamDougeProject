@@ -1,11 +1,11 @@
 package lv.javaguru.java2.servlets.mvc.old_servlets;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
+        import javax.servlet.ServletException;
+        import javax.servlet.http.HttpServlet;
+        import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
+        import javax.servlet.http.HttpSession;
+        import java.io.IOException;
 
 /**
  * Created by user on 07-Nov-14.
@@ -22,6 +22,6 @@ public class LogoutServlet extends HttpServlet{
         if (session != null) {
             session.invalidate();
         }
-        resp.sendRedirect("/login.html");
+        resp.sendRedirect("/login_form.html");
     }
 }

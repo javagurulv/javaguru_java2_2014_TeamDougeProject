@@ -43,13 +43,13 @@ public class LoginServlet extends HttpServlet {
 
                     resp.sendRedirect("securearea.jsp");
                 } else {
-                    out.println("<font color=\"red\">Login and/or password incorrect!</font><a href=\"/login.html\">Back</a>");
+                    out.println("<font color=\"red\">Login and/or password incorrect!</font><a href=\"/login_form.html\">Back</a>");
                 }
             } catch (DBException e) {
                 e.printStackTrace();
             }
         } else {
-            out.println("<font color=\"red\">Login and/or password can't be empty!</font><a href=\"/login.html\">Back</a>");
+            out.println("<font color=\"red\">Login and/or password can't be empty!</font><a href=\"/login_form.html\">Back</a>");
         }
         /*
         //debug

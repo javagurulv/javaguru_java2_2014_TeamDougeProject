@@ -16,7 +16,7 @@
     String sessionLogin = null;
 
     if (session.getAttribute("sessionLogin") == null) {
-        response.sendRedirect("login.html");
+        response.sendRedirect("/login");
     } else {
         sessionLogin = (String) session.getAttribute("sessionLogin");
     }

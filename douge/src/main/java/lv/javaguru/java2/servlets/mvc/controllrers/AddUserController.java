@@ -25,12 +25,12 @@ public class AddUserController implements MVCController {
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
 
-            //create user and add to database
-            User user = createUserFromRequest(req);
-            storeUserToDatabase(user);
-
             //check that fields are not empty
             if (isParametersValid(req)) {
+                //create user and add to database
+                User user = createUserFromRequest(req);
+                storeUserToDatabase(user);
+
                 ErrorString = "User successfully added!";
             } else {
                 ErrorString =  "<font color=\"red\">Name and/or password can't be empty!</font>";

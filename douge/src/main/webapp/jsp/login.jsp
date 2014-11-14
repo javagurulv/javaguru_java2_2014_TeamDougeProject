@@ -11,6 +11,8 @@
     <title></title>
 </head>
 <body>
-<jsp:include page="templates/login.html" ></jsp:include>
+<%=(String)request.getAttribute("model")%>
+<br>
+<jsp:include page="templates/login_form.html" ></jsp:include>
 </body>
 </html>
