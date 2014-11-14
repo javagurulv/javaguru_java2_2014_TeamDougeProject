@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlets;
+package lv.javaguru.java2.servlets.mvc.old_servlets;
 
 /**
  * Created by Radchuk on 11/3/2014.

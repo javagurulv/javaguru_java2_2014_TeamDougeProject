@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlets;
+package lv.javaguru.java2.servlets.mvc.old_servlets;
 
 import lv.javaguru.java2.Controller.TableData;
 import lv.javaguru.java2.Controller.TableDataFactory;
