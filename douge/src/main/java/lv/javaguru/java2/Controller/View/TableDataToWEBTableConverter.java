@@ -1,6 +1,6 @@
 package lv.javaguru.java2.Controller.View;
 
-import javafx.scene.control.Tab;
+
 import lv.javaguru.java2.Controller.TableData;
 
 import java.util.ArrayList;

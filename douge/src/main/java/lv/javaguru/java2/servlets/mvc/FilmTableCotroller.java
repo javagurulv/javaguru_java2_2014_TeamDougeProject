@@ -22,7 +22,7 @@ public class FilmTableCotroller implements MVCController {
             e.printStackTrace();
         }
         TableDataToWEBTableConverter tableDataToWEBTableConverter = new TableDataToWEBTableConverter();
-        return new MVCModel("/films.jsp",tableDataToWEBTableConverter.convertToWebTable(filmTableData));
+        return new MVCModel("/jsp/films.jsp", tableDataToWEBTableConverter.convertToWebTable(filmTableData));
 
     }
 }

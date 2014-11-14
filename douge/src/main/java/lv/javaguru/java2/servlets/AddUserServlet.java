@@ -41,12 +41,12 @@ public class AddUserServlet extends HttpServlet{
 
             try {
                 userDAO.create(user);
-                out.println("User successfully added. <a href=\"/adduser.html\">Back</a>");
+                out.println("User successfully added. <a href=\"/adduser\">Back</a>");
             } catch (DBException e) {
                 e.printStackTrace();
             }
         } else {
-            out.println("<font color=\"red\">Login and/or Password can't be empty!</font> <a href=\"/adduser.html\">Back</a>");
+            out.println("<font color=\"red\">Login and/or Password can't be empty!</font> <a href=\"/adduser\">Back</a>");
         }
 
     }

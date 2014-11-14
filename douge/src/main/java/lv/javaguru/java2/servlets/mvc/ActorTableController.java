@@ -6,7 +6,6 @@ import lv.javaguru.java2.database.DBException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by Juris on 08.11.2014.
@@ -23,6 +22,6 @@ public class ActorTableController implements MVCController {
         }
         TableDataToWEBTableConverter tableDataToWEBTableConverter = new TableDataToWEBTableConverter();
 
-        return new MVCModel("/actors.jsp",tableDataToWEBTableConverter.convertToWebTable(actorTableData));
+        return new MVCModel("/jsp/actors.jsp", tableDataToWEBTableConverter.convertToWebTable(actorTableData));
     }
 }

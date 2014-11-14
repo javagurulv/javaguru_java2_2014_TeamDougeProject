@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Juris
-  Date: 09.11.2014
-  Time: 19:54
+  User: Radchuk
+  Date: 11/14/2014
+  Time: 12:07 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-<%=(String)request.getAttribute("model")%>
+<jsp:include page="templates/login.html" ></jsp:include>
 </body>
 </html>

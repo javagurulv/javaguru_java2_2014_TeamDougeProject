@@ -22,6 +22,8 @@ public class MVCFilter implements Filter {
         controllerMap.put("/actors",new ActorTableController());
         controllerMap.put("/films",new FilmTableCotroller());
         controllerMap.put("/index", new IndexController());
+        controllerMap.put("/login", new LoginController());
+        controllerMap.put("/adduser", new AddUserController());
     }
 
     @Override
@@ -33,6 +35,9 @@ public class MVCFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)response;
 
         String contextURI = req.getServletPath();
+        if (contextURI.equals("/") || contextURI.equals("/favicon.ico")){contextURI = "/index";}
+
+        System.out.println("contextURI " + contextURI);
 
         //String path = ((HttpServletRequest) request).getRequestURI();
         //System.out.println(path);

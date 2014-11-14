@@ -11,7 +11,7 @@ public class HelloWorldController implements MVCController {
     @Override
     public MVCModel processRequest(HttpServletRequest request,
                                    HttpServletResponse response) {
-        return new MVCModel("/hello.jsp", "Hello World from MVC!");
+        return new MVCModel("/jsp/hello.jsp", "Hello!");
     }
 
 }

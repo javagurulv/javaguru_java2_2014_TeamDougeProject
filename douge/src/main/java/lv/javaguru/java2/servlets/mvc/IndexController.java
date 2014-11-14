@@ -14,12 +14,12 @@ public class IndexController implements MVCController {
         String indexPageCode;
 
         indexPageCode="<br>" + "<br>" + "\n" +
-                      "<h3><a href=\"/login.html\">Sign in</h3>" + "\n" +
-                      "<h3><a href=\"/adduser.html\">Add User</h3>" + "\n" +
+                      "<h3><a href=\"/login\">Sign in</h3>" + "\n" +
+                      "<h3><a href=\"/adduser\">Add User</h3>" + "\n" +
                       "<h3><a href=\"/films\">Show film list</a></h3>" + "\n" +
                       "<h3><a href=\"/actors\">Show actor list</a></h3>" + "\n";
 
 
-        return new MVCModel("/index.jsp",indexPageCode);
+        return new MVCModel("/jsp/index.jsp", indexPageCode);
     }
 }

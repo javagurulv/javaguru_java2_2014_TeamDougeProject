@@ -13,6 +13,11 @@ public class MVCModel {
         this.data = data;
     }
 
+    public MVCModel(String view){
+        this.view = view;
+        this.data = new Object();
+    }
+
     public String getView() {
         return view;
     }

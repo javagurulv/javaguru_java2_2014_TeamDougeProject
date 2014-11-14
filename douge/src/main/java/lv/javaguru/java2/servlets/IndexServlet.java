@@ -23,7 +23,7 @@ public class IndexServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.println("<br>" + "<br>");
         out.println("<h3><a href=\"/login.html\">Sign in</h3>");
-        out.println("<h3><a href=\"/adduser.html\">Add User</h3>");
+        out.println("<h3><a href=\"/adduser\">Add User</h3>");
         out.println("<h3><a href=\"/films\">Show film list</a></h3>");
         out.println("<h3><a href=\"/actors\">Show actor list</a></h3>");
 
