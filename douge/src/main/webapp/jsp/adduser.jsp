@@ -11,6 +11,8 @@
     <title></title>
 </head>
 <body>
+<%=(String)request.getAttribute("model")%>
+<br>
 <jsp:include page="templates/adduser_form.html" ></jsp:include>
 </body>
 </html>
