@@ -1,7 +1,7 @@
 package lv.javaguru.java2.servlets.mvc;
 
 import lv.javaguru.java2.servlets.mvc.controllrers.*;
-import lv.javaguru.java2.servlets.mvc.models.MVCModel;
+import lv.javaguru.java2.servlets.mvc.models.*;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
