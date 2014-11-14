@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlets.mvc;
+package lv.javaguru.java2.servlets.mvc.models;
 
 /**
  * Created by Juris on 08.11.2014.
