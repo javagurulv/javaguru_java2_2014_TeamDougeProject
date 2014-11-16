@@ -25,6 +25,8 @@ public class LoginController implements MVCController {
 
         String Model = "/jsp/login.jsp";
         String ErrorString = "";
+        final String incorrectLoginString = "<font color=\"red\">Login and/or password incorrect!</font>";
+        final String emptyLoginString ="<font color=\"red\">Name and/or password can't be empty!</font>";
 
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
@@ -47,13 +49,13 @@ public class LoginController implements MVCController {
 
                         Model = "/jsp/securearea.jsp";
                     } else {
-                        ErrorString = "<font color=\"red\">Login and/or password incorrect!</font>";
+                        ErrorString = incorrectLoginString;
                     }
                 } catch (DBException e) {
                     e.printStackTrace();
                 }
             } else {
-                ErrorString = "<font color=\"red\">Name and/or password can't be empty!</font>";
+                ErrorString = emptyLoginString;
             }
         }
         return new MVCModel(Model, ErrorString);

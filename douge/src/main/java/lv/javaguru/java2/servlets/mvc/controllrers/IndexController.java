@@ -25,6 +25,8 @@ public class IndexController implements MVCController {
 
         String Model = "/jsp/index.jsp";
         String ErrorString = "";
+        final String incorrectLoginString = "<font color=\"red\">Login and/or password incorrect!</font>";
+        final String emptyLoginString ="<font color=\"red\">Name and/or password can't be empty!</font>";
 
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
@@ -47,14 +49,14 @@ public class IndexController implements MVCController {
 
                         Model = "/jsp/securearea.jsp";
                     } else {
-                        ErrorString = "<font color=\"red\">Login and/or password incorrect!</font>";
+                        ErrorString = incorrectLoginString;
                         Model ="/jsp/login.jsp";
                     }
                 } catch (DBException e) {
                     e.printStackTrace();
                 }
             } else {
-                ErrorString = "<font color=\"red\">Name and/or password can't be empty!</font>";
+                ErrorString = emptyLoginString;
                 Model ="/jsp/login.jsp";
             }
         }

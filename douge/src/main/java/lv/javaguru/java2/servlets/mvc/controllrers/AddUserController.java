@@ -26,7 +26,9 @@ public class AddUserController implements MVCController {
     public MVCModel processRequest(HttpServletRequest req,
                                    HttpServletResponse resp) {
 
-         String errorString = "";
+        String infoString = "";
+        final String successString = "User successfully added!";
+        final String errorString = "<font color=\"red\">Name and/or password can't be empty!</font>";
 
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
@@ -37,13 +39,13 @@ public class AddUserController implements MVCController {
                 User user = createUserFromRequest(req);
                 storeUserToDatabase(user);
 
-                errorString = "User successfully added!";
+                infoString = successString;
             } else {
-                errorString =  "<font color=\"red\">Name and/or password can't be empty!</font>";
+                infoString =  errorString;
             }
         }
 
-        return new MVCModel("/jsp/adduser.jsp", errorString);
+        return new MVCModel("/jsp/adduser.jsp", infoString);
     }
 
     protected boolean isParametersValid(HttpServletRequest req) {
