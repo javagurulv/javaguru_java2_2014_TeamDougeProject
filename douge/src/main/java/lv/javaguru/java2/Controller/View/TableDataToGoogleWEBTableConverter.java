@@ -1,8 +1,11 @@
 package lv.javaguru.java2.Controller.View;
 
+import com.google.visualization.datasource.base.TypeMismatchException;
 import com.google.visualization.datasource.datatable.ColumnDescription;
 import com.google.visualization.datasource.datatable.DataTable;
+import com.google.visualization.datasource.datatable.TableRow;
 import com.google.visualization.datasource.datatable.value.ValueType;
+import com.google.visualization.datasource.render.HtmlRenderer;
 import lv.javaguru.java2.Controller.TableData;
 
 import java.util.*;
@@ -24,14 +27,35 @@ public class TableDataToGoogleWEBTableConverter {
 
     }
 
-    public String convertToGoogleTable(TableData tableData)
-    {
+    private void appendTableRow(Map<String, String> row) throws TypeMismatchException {
+        TableRow tableRow = new TableRow();
+        Set<String> keys = row.keySet();
+        for (String key : keys){
+            tableRow.addCell(row.get(key));
+        }
+
+        dataTable.addRow(tableRow);
+    }
+
+    private void buildTableRows(TableData tableData) throws TypeMismatchException {
+        List<Map<String, String>> table = tableData.getTableData();
+        for (int i = 0; i < table.size(); i++) {
+            appendTableRow(table.get(i));
+        }
+    }
+
+    public String convertToGoogleTable(TableData tableData) throws TypeMismatchException {
         if(tableData.getTableData().size() == 0){
             return "No Data";
         }
-        DataTable dataTable = new DataTable();
+
         setTableHeader(tableData);
-        return null;
+        buildTableRows(tableData);
+        return dataTable.toString();
+    }
+    public TableDataToGoogleWEBTableConverter()
+    {
+        dataTable = new DataTable();
     }
 
 }
