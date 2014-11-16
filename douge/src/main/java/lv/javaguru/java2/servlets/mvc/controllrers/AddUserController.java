@@ -6,6 +6,9 @@ import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,14 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Radchuk on 11/14/2014.
  */
+@Component
 public class AddUserController implements MVCController {
 
-    private UserDAO userDAO = new UserDAOImpl();
+    @Autowired
+    private UserDAO userDAO;
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
+    public MVCModel processRequest(HttpServletRequest req,
+                                   HttpServletResponse resp) {
 
-         String ErrorString = "";
+        String infoString = "";
+        final String successString = "User successfully added!";
+        final String errorString = "<font color=\"red\">Name and/or password can't be empty!</font>";
 
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
@@ -31,16 +39,16 @@ public class AddUserController implements MVCController {
                 User user = createUserFromRequest(req);
                 storeUserToDatabase(user);
 
-                ErrorString = "User successfully added!";
+                infoString = successString;
             } else {
-                ErrorString =  "<font color=\"red\">Name and/or password can't be empty!</font>";
+                infoString =  errorString;
             }
         }
 
-        return new MVCModel("/jsp/adduser.jsp", ErrorString);
+        return new MVCModel("/jsp/adduser.jsp", infoString);
     }
 
-    private boolean isParametersValid(HttpServletRequest req) {
+    protected boolean isParametersValid(HttpServletRequest req) {
         return !req.getParameter("user_type").trim().isEmpty() &&
                 !req.getParameter("login").trim().isEmpty() &&
                 !req.getParameter("passwd").trim().isEmpty();
@@ -54,7 +62,7 @@ public class AddUserController implements MVCController {
         }
     }
 
-    private User createUserFromRequest(HttpServletRequest req) {
+    protected User createUserFromRequest(HttpServletRequest req) {
         User user = new User();
         String user_type = req.getParameter("user_type");
         String login = req.getParameter("login");

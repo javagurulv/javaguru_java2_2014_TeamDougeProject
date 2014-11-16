@@ -6,6 +6,7 @@ import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Juris on 09.11.2014.
  */
+@Component
 public class IndexController implements MVCController {
 
     private UserDAO userDAO = new UserDAOImpl();
@@ -23,6 +25,8 @@ public class IndexController implements MVCController {
 
         String Model = "/jsp/index.jsp";
         String ErrorString = "";
+        final String incorrectLoginString = "<font color=\"red\">Login and/or password incorrect!</font>";
+        final String emptyLoginString ="<font color=\"red\">Name and/or password can't be empty!</font>";
 
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
@@ -45,14 +49,14 @@ public class IndexController implements MVCController {
 
                         Model = "/jsp/securearea.jsp";
                     } else {
-                        ErrorString = "<font color=\"red\">Login and/or password incorrect!</font>";
+                        ErrorString = incorrectLoginString;
                         Model ="/jsp/login.jsp";
                     }
                 } catch (DBException e) {
                     e.printStackTrace();
                 }
             } else {
-                ErrorString = "<font color=\"red\">Name and/or password can't be empty!</font>";
+                ErrorString = emptyLoginString;
                 Model ="/jsp/login.jsp";
             }
         }
