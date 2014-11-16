@@ -6,7 +6,6 @@ import lv.javaguru.java2.servlets.mvc.spring.SpringAppConfig;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +40,7 @@ public class MVCFilter implements Filter {
         controllerMap = new HashMap<String,MVCController>();
         controllerMap.put("/hello", getBean(HelloWorldController.class));
         controllerMap.put("/actors", getBean(ActorTableController.class));
-        controllerMap.put("/films", getBean(FilmTableCotroller.class));
+        controllerMap.put("/films", getBean(FilmTableController.class));
         controllerMap.put("/index", getBean(IndexController.class));
         controllerMap.put("/login", getBean(LoginController.class));
         controllerMap.put("/logout", getBean(LogoutController.class));

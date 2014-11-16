@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Juris on 09.11.2014.
  */
 @Component
-public class FilmTableCotroller implements MVCController {
+public class FilmTableController implements MVCController {
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
