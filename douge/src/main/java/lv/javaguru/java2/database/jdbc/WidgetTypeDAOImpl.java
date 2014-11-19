@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.WidgetTypeDAO;
 import lv.javaguru.java2.domain.WidgetType;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by Radchuk on 10/11/2014.
  */
+@Component
 public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
 
     public void create (WidgetType widgetType)throws DBException{

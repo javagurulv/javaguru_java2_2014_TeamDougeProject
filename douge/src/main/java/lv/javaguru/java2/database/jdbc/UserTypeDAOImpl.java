@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserTypeDAO;
 import lv.javaguru.java2.domain.UserType;
+import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 /**
  * Created by Radchuk on 10/11/2014.
  */
+@Component
 public class UserTypeDAOImpl extends DAOImpl implements UserTypeDAO {
 
     public void create(UserType userType) throws DBException{

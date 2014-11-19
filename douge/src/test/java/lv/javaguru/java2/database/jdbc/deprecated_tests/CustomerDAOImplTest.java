@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 /**
  * Created by Sergo on 19.10.2014.
@@ -7,14 +7,17 @@ import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.CustomerDAO;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.CustomerDAOImpl;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Customer;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+@Ignore
 public class CustomerDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 

@@ -1,12 +1,15 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.RentalDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.database.jdbc.RentalDAOImpl;
 import lv.javaguru.java2.domain.Customer;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Rental;
 import lv.javaguru.java2.domain.Staff;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +21,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 25.10.2014.
  */
+@Ignore
 public class RentalDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 

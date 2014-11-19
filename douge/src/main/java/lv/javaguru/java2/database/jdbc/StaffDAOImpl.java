@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.StaffDAO;
 import lv.javaguru.java2.domain.Address;
 import lv.javaguru.java2.domain.Staff;
 import lv.javaguru.java2.domain.Store;
+import org.springframework.stereotype.Component;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.sql.Connection;
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * Created by Juris on 25.10.2014.
  */
+@Component
 public class StaffDAOImpl extends DAOImpl implements StaffDAO {
 
 

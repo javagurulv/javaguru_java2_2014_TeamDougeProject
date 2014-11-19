@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.Film_TextDAO;
 import lv.javaguru.java2.domain.Film_Text;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 /**
  * Created by Sergo on 21.10.2014.
  */
+@Component
 public class Film_TextDAOImpl extends DAOImpl implements Film_TextDAO {
 
     @Override

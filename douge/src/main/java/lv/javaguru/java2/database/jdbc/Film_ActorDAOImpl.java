@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.Film_ActorDAO;
 import lv.javaguru.java2.domain.Film_Actor;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Radchuk on 10/20/2014.
  */
+@Component
 public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
     @Override
     public List<Film_Actor> getAllByActorID(int id) throws DBException {
@@ -20,7 +22,7 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
         {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("SELECT ACTOR_ID,FILM_ID, LAST_UPDATE FROM FILM_ACTOR WHERE ACTOR_ID = ?");
+                    connection.prepareStatement("SELECT ACTOR_ID,FILM_ID, LAST_UPDATE, record_id FROM FILM_ACTOR WHERE ACTOR_ID = ?");
             preparedStatement.setLong(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -29,6 +31,7 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
                 film_actor.setActor_id(resultSet.getInt("ACTOR_ID"));
                 film_actor.setFilm_id(resultSet.getInt("FILM_ID"));
                 film_actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
+                film_actor.setRecord_id(resultSet.getInt("record_id"));
                 film_actors.add(film_actor);
             }
             resultSet.close();
@@ -55,13 +58,14 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
         {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO FILM_ACTOR(ACTOR_ID,FILM_ID,LAST_UPDATE) VALUES (?,?,?)");
+                    connection.prepareStatement("INSERT INTO FILM_ACTOR(ACTOR_ID,FILM_ID,LAST_UPDATE, RECORD_ID) VALUES (?,?,?, default )", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,film_actor.getActor_id());
             preparedStatement.setInt(2, film_actor.getFilm_id());
            // preparedStatement.setDate(3, new Date(film_actor.getLast_update().getTime()));
             preparedStatement.setTimestamp(3, new Timestamp(film_actor.getLast_update().getTime()));
             preparedStatement.executeUpdate();
-
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) film_actor.setRecord_id(resultSet.getInt(1));
             preparedStatement.close();
 
 
@@ -77,7 +81,36 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
         }
     }
 
+    @Override
+    public Film_Actor getByRecordId(int id) throws DBException {
+        Film_Actor film_actor = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT actor_id, film_id, last_update, record_id FROM FILM_ACTOR WHERE RECORD_ID = ?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next())
+            {
+                film_actor = new Film_Actor();
+                film_actor.setActor_id(resultSet.getInt("ACTOR_ID"));
+                film_actor.setFilm_id(resultSet.getInt("FILM_ID"));
+                film_actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
+                film_actor.setRecord_id(resultSet.getInt("record_id"));
 
+            }
+
+        }
+        catch (Throwable e)
+        {
+            handleException(e, "\"Exception while execute Film_ActorDAOImpl.getByRecordId()");
+        }
+        finally {
+            closeConnection(connection);
+        }
+        return film_actor;
+    }
 
     @Override
     public void deleteByFilmID(int id) throws DBException {
@@ -112,7 +145,7 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
         {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("SELECT ACTOR_ID,FILM_ID, LAST_UPDATE FROM FILM_ACTOR WHERE FILM_ID = ?");
+                    connection.prepareStatement("SELECT ACTOR_ID,FILM_ID, LAST_UPDATE, record_id FROM FILM_ACTOR WHERE FILM_ID = ?");
             preparedStatement.setLong(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -121,6 +154,7 @@ public class Film_ActorDAOImpl extends DAOImpl implements Film_ActorDAO{
                 film_actor.setActor_id(resultSet.getInt("ACTOR_ID"));
                 film_actor.setFilm_id(resultSet.getInt("FILM_ID"));
                 film_actor.setLast_update(resultSet.getDate("LAST_UPDATE"));
+                film_actor.setRecord_id(resultSet.getInt("record_id"));
                 film_actors.add(film_actor);
             }
             resultSet.close();

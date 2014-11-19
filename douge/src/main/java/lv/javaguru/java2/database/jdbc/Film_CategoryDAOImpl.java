@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.Film_CategoryDAO;
 import lv.javaguru.java2.domain.Category;
 import lv.javaguru.java2.domain.Film_Category;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,8 @@ import java.util.List;
 /**
  * Created by Juris on 24.10.2014.
  */
+
+@Component
 public class Film_CategoryDAOImpl extends DAOImpl implements Film_CategoryDAO {
     @Override
     public Film_Category getByID(Short film_id) throws DBException {

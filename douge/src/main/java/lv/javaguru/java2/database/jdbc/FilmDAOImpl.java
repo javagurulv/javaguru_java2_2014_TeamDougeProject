@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.FilmDAO;
 import lv.javaguru.java2.domain.Film;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Sergo on 17.10.2014.
  */
+@Component
 public class FilmDAOImpl extends DAOImpl implements FilmDAO {
     @Override
     public void create(Film film) throws DBException {

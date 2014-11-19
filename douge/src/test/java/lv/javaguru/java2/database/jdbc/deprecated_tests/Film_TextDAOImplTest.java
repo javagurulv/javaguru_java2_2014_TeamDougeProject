@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 /**
  * Created by Sergo on 21.10.2014.
@@ -7,10 +7,13 @@ import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.Film_TextDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.database.jdbc.Film_TextDAOImpl;
 import lv.javaguru.java2.domain.Film_Text;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-
+@Ignore
 public class Film_TextDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 

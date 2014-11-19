@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.CustomerDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Customer;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by Sergo on 18.10.2014.
  */
+@Component
 public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
     @Override
     public void create(Customer customer) throws DBException {

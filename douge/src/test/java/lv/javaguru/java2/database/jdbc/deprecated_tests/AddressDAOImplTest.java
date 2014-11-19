@@ -1,10 +1,13 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.AddressDAO;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.AddressDAOImpl;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Address;
 import lv.javaguru.java2.domain.City;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -16,6 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 19.10.2014.
  */
+@Ignore
 public class AddressDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 

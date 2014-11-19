@@ -6,6 +6,7 @@ import lv.javaguru.java2.domain.Customer;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Rental;
 import lv.javaguru.java2.domain.Staff;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by Juris on 25.10.2014.
  */
+@Component
 public class RentalDAOImpl extends DAOImpl implements RentalDAO {
 
     @Override

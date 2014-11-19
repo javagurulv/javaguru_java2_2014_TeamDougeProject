@@ -1,11 +1,14 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.ActorDAOImpl;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Actor;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -17,6 +20,7 @@ import java.util.List;
 /**
  * Created by Juris on 17.10.2014.
  */
+@Ignore
 public class ActorDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
@@ -95,6 +99,7 @@ public class ActorDAOImplTest {
     public void testGetAll() throws DBException
     {
 
+        int count = actorDAO.getAll().size();
         Actor actor1 = createActor("Name1", "Surname1");
         Actor actor2 = createActor("Name2", "Surname2");
         actorDAO.create(actor1);
@@ -102,7 +107,7 @@ public class ActorDAOImplTest {
 
         List<Actor> actors = actorDAO.getAll();
 
-        assertEquals(actors.size(),2);
+        assertEquals(actors.size(),count + 2);
     }
     private void assertionEqualsDateCustom(Date date1, Date date2)
     {

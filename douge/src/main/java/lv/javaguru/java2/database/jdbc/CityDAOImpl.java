@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.CityDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.City;
 import lv.javaguru.java2.domain.Country;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * Created by Juris on 19.10.2014.
  */
+@Component
 public class CityDAOImpl extends DAOImpl implements CityDAO {
     @Override
     public void create(City city) throws DBException {

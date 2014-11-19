@@ -1,11 +1,14 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.InventoryDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.database.jdbc.InventoryDAOImpl;
 import lv.javaguru.java2.domain.Film;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Store;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +20,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 24.10.2014.
  */
-
+@Ignore
 public class InventoryDAOImplTest {
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();

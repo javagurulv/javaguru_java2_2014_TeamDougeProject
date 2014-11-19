@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.AddressDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Address;
 import lv.javaguru.java2.domain.City;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * Created by Juris on 19.10.2014.
  */
+@Component
 public class AddressDAOImpl extends DAOImpl implements AddressDAO {
     @Override
     public void create(Address address) throws DBException {

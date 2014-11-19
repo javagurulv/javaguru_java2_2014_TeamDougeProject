@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.InventoryDAO;
 import lv.javaguru.java2.domain.Film;
 import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Store;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * Created by Juris on 24.10.2014.
  */
+@Component
 public class InventoryDAOImpl extends DAOImpl implements InventoryDAO {
     @Override
     public Inventory getByID(int inventory_id) throws DBException {

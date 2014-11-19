@@ -1,10 +1,12 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.Controller.infoClasses;
 
 import lv.javaguru.java2.Controller.Builders.ActorInfoBuilder;
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Actor;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 05.11.2014.
  */
+@Ignore
 public class ActorInfoBuilderTest {
 
     private Actor createActor(String first_name, String last_name){
@@ -32,19 +35,14 @@ public class ActorInfoBuilderTest {
 
         ActorDAO actorDAO = DAOFactory.getInstance().getActorDAO();
 
-        Actor actor1 = createActor("Jim", "Cerry");
-        actorDAO.create(actor1);
-
-        Actor actor2 = createActor("Andrew", "Garfield");
-        actorDAO.create(actor2);
-
+        int count = actorDAO.getAll().size();
 
         ActorInfoBuilder actorInfoBuilder = new ActorInfoBuilder();
         actorInfoBuilder.buildTableData();
 
         ArrayList<Map<String, String>> tableData = actorInfoBuilder.getTableData();
 
-        assertEquals(tableData.size(),2);
+        assertEquals(tableData.size(),count);
 
 
     }

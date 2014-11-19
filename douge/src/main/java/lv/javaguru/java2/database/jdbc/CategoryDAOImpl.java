@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.CategoryDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Category;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.List;
 /**
  * Created by Juris on 23.10.2014.
  */
+
+@Component
 public class CategoryDAOImpl extends DAOImpl implements CategoryDAO {
     @Override
     public void create(Category category) throws DBException {

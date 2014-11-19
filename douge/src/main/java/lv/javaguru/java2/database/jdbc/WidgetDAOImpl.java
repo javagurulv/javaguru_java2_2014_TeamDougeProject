@@ -4,6 +4,8 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.WidgetDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.Widget;
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 
 import java.net.ConnectException;
@@ -16,6 +18,7 @@ import java.util.List;
 /**
  * Created by Sergo on 16.10.2014.
  */
+@Component
 public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
     @Override
     public Widget getByID(Long id) throws DBException {

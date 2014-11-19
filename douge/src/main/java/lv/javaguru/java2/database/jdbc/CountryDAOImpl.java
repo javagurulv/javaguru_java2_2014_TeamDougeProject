@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.CountryDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Country;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Sergo on 18.10.2014.
  */
+@Component
 public class CountryDAOImpl extends DAOImpl implements CountryDAO {
     @Override
     public void create(Country country) throws DBException {

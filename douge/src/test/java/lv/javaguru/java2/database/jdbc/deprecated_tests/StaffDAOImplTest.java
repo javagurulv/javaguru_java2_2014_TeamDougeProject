@@ -1,20 +1,17 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
-import com.mysql.jdbc.Blob;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.StaffDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.database.jdbc.StaffDAOImpl;
 import lv.javaguru.java2.domain.Address;
-import lv.javaguru.java2.domain.Inventory;
 import lv.javaguru.java2.domain.Staff;
 import lv.javaguru.java2.domain.Store;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import sun.net.ResourceManager;
-
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

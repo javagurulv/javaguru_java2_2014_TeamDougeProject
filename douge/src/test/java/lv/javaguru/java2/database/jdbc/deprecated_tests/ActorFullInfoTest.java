@@ -1,12 +1,14 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.Controller.infoClasses.ActorFullInfo;
 import lv.javaguru.java2.Controller.infoClasses.FilmFullInfo;
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Actor;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -17,6 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 05.11.2014.
  */
+@Ignore
 public class ActorFullInfoTest {
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();

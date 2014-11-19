@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.LanguageDAO;
 import lv.javaguru.java2.domain.Language;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Sergo on 21.10.2014.
  */
+@Component
 public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
     @Override
     public Language getById(int id) throws DBException {

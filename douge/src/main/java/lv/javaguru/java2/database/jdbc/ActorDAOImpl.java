@@ -3,6 +3,8 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Actor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.util.List;
 /**
  * Created by Juris on 17.10.2014.
  */
+@Component
 public class ActorDAOImpl extends DAOImpl implements ActorDAO {
     @Override
     public Actor getByID(Short actor_id) throws DBException {

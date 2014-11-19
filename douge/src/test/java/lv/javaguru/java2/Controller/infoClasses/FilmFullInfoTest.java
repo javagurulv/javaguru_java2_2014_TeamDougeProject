@@ -1,26 +1,24 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.Controller.infoClasses;
 
-/**
- * Created by Radchuk Sergey on 11/3/2014.
- */
-
-import static org.junit.Assert.*;
-
-import lv.javaguru.java2.Controller.infoClasses.FilmFullInfo;
-import lv.javaguru.java2.Controller.infoClasses.LanguagesList;
+import junit.framework.TestCase;
 import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.FilmDAO;
 import lv.javaguru.java2.database.LanguageDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Film;
 import lv.javaguru.java2.domain.Language;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.Map;
 
-public class FilmFullInfoTest {
+import static org.junit.Assert.assertEquals;
+@Ignore
+public class FilmFullInfoTest extends TestCase {
+
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
     private Film createFilm(String title, String description, int release_year,int language_id ,int original_language_id,
@@ -64,7 +62,7 @@ public class FilmFullInfoTest {
     @Test
     public void testFullInfoCreation() throws DBException {
 
-        FilmDAO  filmDAO = DAOFactory.getInstance().getFilmDAO();
+        FilmDAO filmDAO = DAOFactory.getInstance().getFilmDAO();
         LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
         //filmDAO.create(film);
 
@@ -87,5 +85,4 @@ public class FilmFullInfoTest {
         assertEquals(info.get("Language"),"Russian" );
         assertEquals(info.get("Original Language"),"English");
     }
-
 }

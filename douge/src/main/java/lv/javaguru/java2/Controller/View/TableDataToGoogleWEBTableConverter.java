@@ -6,6 +6,7 @@ import com.google.visualization.datasource.datatable.DataTable;
 import com.google.visualization.datasource.datatable.TableRow;
 import com.google.visualization.datasource.datatable.value.ValueType;
 import com.google.visualization.datasource.render.HtmlRenderer;
+import com.ibm.icu.util.ULocale;
 import lv.javaguru.java2.Controller.TableData;
 
 import java.util.*;
@@ -44,14 +45,16 @@ public class TableDataToGoogleWEBTableConverter {
         }
     }
 
-    public String convertToGoogleTable(TableData tableData) throws TypeMismatchException {
+    public CharSequence convertToGoogleTable(TableData tableData) throws TypeMismatchException {
         if(tableData.getTableData().size() == 0){
             return "No Data";
         }
 
         setTableHeader(tableData);
         buildTableRows(tableData);
-        return dataTable.toString();
+
+        return HtmlRenderer.renderDataTable(dataTable, ULocale.createCanonical("UTF-8"));
+
     }
     public TableDataToGoogleWEBTableConverter()
     {

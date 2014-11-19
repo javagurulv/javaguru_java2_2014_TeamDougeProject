@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 /**
  * Created by Sergo on 21.10.2014.
@@ -8,14 +8,17 @@ import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.LanguageDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.database.jdbc.LanguageDAOImpl;
 import lv.javaguru.java2.domain.Language;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+@Ignore
 public class LanguageDAOImplTest {
     private DatabaseCleaner databaseCleaner  = new DatabaseCleaner();
 

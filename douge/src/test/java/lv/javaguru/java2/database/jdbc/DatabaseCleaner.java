@@ -12,51 +12,77 @@ import java.util.List;
  */
 public class DatabaseCleaner extends DAOImpl {
 
-    private List<String> getTableNames() {
+    private List<Table> getTableNames() {
+        List<Table> tables = new ArrayList<Table>();
+        tables.add(new Table("USERS", "id", 1));
+        tables.add(new Table("USER_TYPES", "id",1));
+        tables.add(new Table("DASHBOARDS", "id", 1));
+        tables.add(new Table("WIDGETS" , "id", 1));
+        tables.add(new Table("WIDGET_TYPES", "id", 1));
+        tables.add(new Table("ACTOR", "actor_id",201));
+        tables.add(new Table("CITY", "city_id", 601));
+        tables.add(new Table("ADDRESS", "address_id", 606));
+        tables.add(new Table("CUSTOMER", "customer_id", 600));
+        tables.add(new Table("COUNTRY","country_id", 110));
+        tables.add(new Table("FILM", "film_id", 1001));
+        tables.add(new Table("LANGUAGE", "language_id", 76));
+        tables.add(new Table("CATEGORY", "category_id", 36));
+        tables.add(new Table("INVENTORY", "inventory_id", 4582));
+        tables.add(new Table("RENTAL","rental_id", 16050));
+        tables.add(new Table("STAFF", "staff_id", 3) );
+        tables.add(new Table("METRICS", "id", 1));
+        tables.add(new Table("STORE", "store_id", 42));
+        tables.add(new Table("FILM_ACTOR","record_id",1001));
+        tables.add(new Table("FILM_TEXT", "record_id",1001));
+        tables.add(new Table("FILM_CATEGORY", "record_id", 1001));
+        tables.add(new Table("METRICS_SETS","record_id",1));
         List<String> tableNames = new ArrayList<String>();
-        tableNames.add("USERS");
-        tableNames.add("USER_TYPES");
-        tableNames.add("DASHBOARDS");
-        tableNames.add("WIDGETS");
-        tableNames.add("WIDGET_TYPES");
-        tableNames.add("ACTOR");
-        tableNames.add("CITY");
-        tableNames.add("ADDRESS");
-        tableNames.add("CUSTOMER");
-        tableNames.add("ACTOR");
-        tableNames.add("COUNTRY");
-        tableNames.add("FILM");
-        tableNames.add("STORE");
-        tableNames.add("FILM_ACTOR");
-        tableNames.add("FILM_TEXT");
-        tableNames.add("LANGUAGE");
-        tableNames.add("CATEGORY");
-        tableNames.add("FILM_CATEGORY");
-        tableNames.add("INVENTORY");
-        tableNames.add("RENTAL");
-        tableNames.add("STAFF");
-        tableNames.add("METRICS");
-        tableNames.add("METRICS_SETS");
 
-        return tableNames;
+
+
+
+
+
+
+
+        return tables;
     }
 
     public void cleanDatabase() throws DBException {
         Connection connection = null;
-        for(String tableName : getTableNames()) {
-
-            try {
+        for (Table table : getTableNames()){
+            try{
                 connection = getConnection();
-                PreparedStatement preparedStatement = connection
-                        .prepareStatement("delete from " + tableName);
+                PreparedStatement preparedStatement =
+                        connection.prepareStatement("delete  from " + table.tableName + " where " + table.primaryKey +  ">= " + table.initialAutoIncrement);
                 preparedStatement.executeUpdate();
-            } catch (Throwable e) {
-                System.out.println("Exception while execute cleanDatabase() for table " + tableName);
-                e.printStackTrace();
-                throw new DBException(e);
-            } finally {
+
+                preparedStatement = connection
+                        .prepareStatement("ALTER TABLE " + table.tableName + " AUTO_INCREMENT = " + table.initialAutoIncrement);
+                preparedStatement.executeUpdate();
+
+            }
+            catch (Throwable e)
+            {
+                handleException(e,"Exception while execute cleanDatabase() for table " + table.tableName);
+            }
+            finally {
                 closeConnection(connection);
             }
+        }
+
+
+    }
+
+    private class Table {
+        public String tableName;
+        public String primaryKey;
+        public int initialAutoIncrement;
+
+        private Table(String tableName, String primaryKey, int initialAutoIncrement) {
+            this.tableName = tableName;
+            this.primaryKey = primaryKey;
+            this.initialAutoIncrement = initialAutoIncrement;
         }
     }
 

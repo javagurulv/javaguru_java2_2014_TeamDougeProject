@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.MetricDAO;
 import lv.javaguru.java2.domain.Metric;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Radchuk on 11/10/2014.
  */
+@Component
 public class MetricDAOImpl extends DAOImpl implements MetricDAO {
     @Override
     public void create(Metric metric) throws DBException {

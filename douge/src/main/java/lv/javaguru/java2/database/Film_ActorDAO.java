@@ -15,7 +15,7 @@ public interface Film_ActorDAO {
 
     void create(Film_Actor film_actor) throws DBException;
     void deleteByFilmID(int id) throws DBException;
-
+    Film_Actor getByRecordId(int id) throws DBException;
     List<Film_Actor> getAllByFilmID(int id) throws DBException;
     List<Film_Actor> getAllByActorID(int id) throws DBException;
 

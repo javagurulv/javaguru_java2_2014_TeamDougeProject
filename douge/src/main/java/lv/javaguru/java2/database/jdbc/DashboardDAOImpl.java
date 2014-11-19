@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.DashboardDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.User;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.List;
 /**
  * Created by Radchuk on 10/11/2014.
  */
+
+@Component
 public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
 
     public void create(Dashboard dashboard)throws DBException{

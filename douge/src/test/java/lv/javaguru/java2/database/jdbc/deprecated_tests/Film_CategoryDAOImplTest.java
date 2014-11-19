@@ -1,10 +1,13 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.Film_CategoryDAO;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.database.jdbc.Film_CategoryDAOImpl;
 import lv.javaguru.java2.domain.Category;
 import lv.javaguru.java2.domain.Film_Category;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -16,6 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Juris on 24.10.2014.
  */
+@Ignore
 public class Film_CategoryDAOImplTest {
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();

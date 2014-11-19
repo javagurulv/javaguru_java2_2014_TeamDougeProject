@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.MetricSetDAO;
 import lv.javaguru.java2.domain.Metric;
 import lv.javaguru.java2.domain.MetricSet;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Radchuk on 11/10/2014.
  */
+@Component
 public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
     @Override
     public void create(MetricSet metricSet) throws DBException {

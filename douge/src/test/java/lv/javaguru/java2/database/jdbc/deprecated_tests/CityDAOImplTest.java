@@ -1,13 +1,16 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.CityDAO;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.CityDAOImpl;
+import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Actor;
 import lv.javaguru.java2.domain.City;
 import lv.javaguru.java2.domain.Country;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +21,7 @@ import java.util.List;
 /**
  * Created by Juris on 19.10.2014.
  */
+@Ignore
 public class CityDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
