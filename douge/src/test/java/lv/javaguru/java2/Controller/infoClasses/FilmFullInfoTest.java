@@ -21,38 +21,7 @@ public class FilmFullInfoTest extends TestCase {
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
-    private Film createFilm(String title, String description, int release_year,int language_id ,int original_language_id,
-                            int rental_duration,float rental_rate, int length,float replacement_cost)
-    {
-        /*private String title;
-    private String description;
-    private int release_year;
-    private int language_id;
-    private int original_language_id;
-    private int rental_duration;
-    private float rental_rate;
-    private int length;
-    private float replacement_cost;
-    private String rating;*/;
-        // String special_features;
-        //    private Date last_update;
-        Film film = new Film();
-        film.setTitle(title);
-        film.setDescription(description);
-        film.setRelease_year(release_year);
-        film.setLanguage_id(language_id);
-        film.setOriginal_language_id(original_language_id);
-        film.setRental_duration(rental_duration);
-        film.setRental_rate(rental_rate);
-        film.setLength(length);
-        film.setReplacement_cost(replacement_cost);
-        film.setRating("PG");
-        film.setSpecial_features("Trailers");
-        film.setLast_update(new Date());
-        return film;
 
-
-    }
 
     @Before
     public void cleanDB() throws DBException {
@@ -61,7 +30,7 @@ public class FilmFullInfoTest extends TestCase {
 
     @Test
     public void testFullInfoCreation() throws DBException {
-
+/*
         FilmDAO filmDAO = DAOFactory.getInstance().getFilmDAO();
         LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
         //filmDAO.create(film);
@@ -83,6 +52,6 @@ public class FilmFullInfoTest extends TestCase {
         tmp = film.getRelease_year();
         assertEquals(info.get("Release Year"), tmp.toString());
         assertEquals(info.get("Language"),"Russian" );
-        assertEquals(info.get("Original Language"),"English");
+        assertEquals(info.get("Original Language"),"English");*/
     }
 }

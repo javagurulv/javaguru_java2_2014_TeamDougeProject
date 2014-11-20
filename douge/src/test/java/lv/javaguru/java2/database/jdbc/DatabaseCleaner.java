@@ -19,7 +19,7 @@ public class DatabaseCleaner extends DAOImpl {
         tables.add(new Table("DASHBOARDS", "id", 1));
         tables.add(new Table("WIDGETS" , "id", 1));
         tables.add(new Table("WIDGET_TYPES", "id", 1));
-        tables.add(new Table("ACTOR", "actor_id",201));
+       /* tables.add(new Table("ACTOR", "actor_id",201));
         tables.add(new Table("CITY", "city_id", 601));
         tables.add(new Table("ADDRESS", "address_id", 606));
         tables.add(new Table("CUSTOMER", "customer_id", 600));
@@ -29,22 +29,14 @@ public class DatabaseCleaner extends DAOImpl {
         tables.add(new Table("CATEGORY", "category_id", 36));
         tables.add(new Table("INVENTORY", "inventory_id", 4582));
         tables.add(new Table("RENTAL","rental_id", 16050));
-        tables.add(new Table("STAFF", "staff_id", 3) );
+        tables.add(new Table("STAFF", "staff_id", 3) );*/
         tables.add(new Table("METRICS", "id", 1));
-        tables.add(new Table("STORE", "store_id", 42));
+       /* tables.add(new Table("STORE", "store_id", 42));
         tables.add(new Table("FILM_ACTOR","record_id",1001));
         tables.add(new Table("FILM_TEXT", "record_id",1001));
-        tables.add(new Table("FILM_CATEGORY", "record_id", 1001));
+        tables.add(new Table("FILM_CATEGORY", "record_id", 1001));*/
         tables.add(new Table("METRICS_SETS","record_id",1));
         List<String> tableNames = new ArrayList<String>();
-
-
-
-
-
-
-
-
         return tables;
     }
 

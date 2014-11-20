@@ -1,8 +1,7 @@
 package lv.javaguru.java2.domain;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * Created by Sergo on 16.10.2014.
@@ -11,33 +10,70 @@ import java.util.Set;
 
 public class Film {
 
+    private Integer film_id = 0;
+    private String title = "";
+    private String description = "";
+    private Integer release_year = 0;
+    private String language = "";
+    private String original_language = "";
+    private Integer rental_duration = 0;
+    private Float rental_rate = null;
+    private Integer length = 0;
+    private Float replacement_cost = null;
+    private String rating = "";
+    private String special_features = "";
+    private Date last_update = null;
+    private Map<String, String> infoMap;
 
-    /* `film_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `description` text,
-  `release_year` year(4) DEFAULT NULL,
-  `language_id` tinyint(3) unsigned NOT NULL,
-  `original_language_id` tinyint(3) unsigned DEFAULT NULL,
-  `rental_duration` tinyint(3) unsigned NOT NULL DEFAULT '3',
-  `rental_rate` decimal(4,2) NOT NULL DEFAULT '4.99',
-  `length` smallint(5) unsigned DEFAULT NULL,
-  `replacement_cost` decimal(5,2) NOT NULL DEFAULT '19.99',
-  `rating` enum('G','PG','PG-13','R','NC-17') DEFAULT 'G',
-  `special_features` set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') DEFAULT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,*/
-    private int film_id;
-    private String title;
-    private String description;
-    private int release_year;
-    private int language_id;
-    private int original_language_id;
-    private int rental_duration;
-    private Float rental_rate;
-    private int length;
-    private Float replacement_cost;
-    private String rating;
-    private String special_features;
-    private Date last_update;
+    public Film()
+    {
+        infoMap = new LinkedHashMap<String, String>();
+
+    }
+
+    private String convertFieldNameToKEY(String fieldName)
+    {
+        return fieldName.toUpperCase().replace("_"," ");
+
+    }
+    private void autoInitInfoMap() {
+
+        infoMap.clear();
+        for (Field field : this.getClass().getDeclaredFields()) {
+            try {
+                field.setAccessible(true);
+
+                String f_name = convertFieldNameToKEY(field.getName());
+                if (!f_name.equals("INFOMAP")) {
+                    String value = "";
+                    Object a = this.getClass().getDeclaredField(field.getName()).get(this);
+                    if (!(a == null)) {
+                        value = a.toString();
+                    }
+                    infoMap.put(f_name, value);
+                }
+            }
+            catch (NoSuchFieldException e)
+            {
+                System.out.println(e.getMessage());
+            }
+            catch (IllegalAccessException e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+
+    }
+
+    private void putDataToInfoMap(Field field, Object value)
+    {
+        String f_name = field.getName();
+        f_name = f_name.toUpperCase();
+        f_name = f_name.replace("_"," ");
+        infoMap.put(f_name, value.toString());
+    }
 
     public void setRental_rate(Float rental_rate) {
         this.rental_rate = rental_rate;
@@ -56,7 +92,10 @@ public class Film {
     }
 
     public void setRating(String rating) {
+
         this.rating = rating;
+
+
     }
 
     public Float getReplacement_cost() {
@@ -65,6 +104,7 @@ public class Film {
 
     public void setReplacement_cost(float replacement_cost) {
         this.replacement_cost = replacement_cost;
+
     }
 
     public int getLength() {
@@ -73,38 +113,45 @@ public class Film {
 
     public void setLength(int length) {
         this.length = length;
+
     }
 
     public Float getRental_rate() {
         return rental_rate;
     }
 
-    public void setRental_rate(float rental_rate) {
+    public void setRental_rate(float rental_rate)  {
         this.rental_rate = rental_rate;
+
     }
 
     public int getRental_duration() {
         return rental_duration;
     }
 
-    public void setRental_duration(int rental_duration) {
+    public void setRental_duration(int rental_duration)  {
         this.rental_duration = rental_duration;
+
     }
 
-    public int getOriginal_language_id() {
-        return original_language_id;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setOriginal_language_id(int original_language_id) {
-        this.original_language_id = original_language_id;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public int getLanguage_id() {
-        return language_id;
+    public String getOriginal_language() {
+        return original_language;
     }
 
-    public void setLanguage_id(int language_id) {
-        this.language_id = language_id;
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
+    }
+
+    public void setReplacement_cost(Float replacement_cost) {
+        this.replacement_cost = replacement_cost;
     }
 
     public int getRelease_year() {
@@ -145,5 +192,11 @@ public class Film {
 
     public void setSpecial_features(String special_features) {
         this.special_features = special_features;
+    }
+
+    public Map<String, String> getInfoMap()  {
+
+        autoInitInfoMap();
+        return infoMap;
     }
 }

@@ -30,8 +30,8 @@ public class FilmFullInfo {
         this.title = film.getTitle();
         this.description = film.getDescription();
         this.releaseYear = film.getRelease_year();
-        this.language = languagesList.getLanguageNameById(film.getLanguage_id());
-        this.originalLanguage = languagesList.getLanguageNameById(film.getOriginal_language_id());
+        this.language = film.getLanguage();
+        this.originalLanguage = film.getOriginal_language();
     }
 
 

@@ -20,27 +20,7 @@ import java.util.Map;
 @Ignore
 public class FilmInfoBuilderTest {
 
-    private Film createFilm(String title, String description, int release_year,int language_id ,int original_language_id,
-                            int rental_duration,float rental_rate, int length,float replacement_cost)
-    {
 
-        Film film = new Film();
-        film.setTitle(title);
-        film.setDescription(description);
-        film.setRelease_year(release_year);
-        film.setLanguage_id(language_id);
-        film.setOriginal_language_id(original_language_id);
-        film.setRental_duration(rental_duration);
-        film.setRental_rate(rental_rate);
-        film.setLength(length);
-        film.setReplacement_cost(replacement_cost);
-        film.setRating("PG");
-        film.setSpecial_features("Trailers");
-        film.setLast_update(new Date());
-        return film;
-
-
-    }
 
    @Test
     public void testBuildFilmTable() throws DBException {

@@ -19,11 +19,11 @@ public class FilmInfoBuilder implements TableData{
 
     protected void buildFilmsInfo() throws DBException {
         tableData = new ArrayList<Map<String, String>>();
-        LanguagesList languagesList = new LanguagesList( DAOFactory.getInstance().getLanguageDAO().getAll());
+
         List<Film> filmList = DAOFactory.getInstance().getFilmDAO().getAll();
         for (int i = 0; i < filmList.size() ; i++) {
-            FilmFullInfo filmFullInfo = new FilmFullInfo(filmList.get(i), languagesList);
-            tableData.add(filmFullInfo.getFilmInfo());
+
+            tableData.add(filmList.get(i).getInfoMap());
         }
     }
 
