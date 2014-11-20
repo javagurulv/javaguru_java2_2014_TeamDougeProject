@@ -6,11 +6,11 @@ package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import static org.junit.Assert.*;
 
-import lv.javaguru.java2.database.CountryDAO;
+import lv.javaguru.java2.database.deprecated_dao.CountryDAO;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.CountryDAOImpl;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.CountryDAOImpl;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.domain.Country;
+import lv.javaguru.java2.domain.deprecated_classes.Country;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

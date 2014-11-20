@@ -1,11 +1,11 @@
 package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
-import lv.javaguru.java2.database.AddressDAO;
+import lv.javaguru.java2.database.deprecated_dao.AddressDAO;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.AddressDAOImpl;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.AddressDAOImpl;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.domain.Address;
-import lv.javaguru.java2.domain.City;
+import lv.javaguru.java2.domain.deprecated_classes.Address;
+import lv.javaguru.java2.domain.deprecated_classes.City;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

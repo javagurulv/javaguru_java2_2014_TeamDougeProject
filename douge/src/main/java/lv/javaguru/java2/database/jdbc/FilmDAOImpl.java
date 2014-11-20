@@ -2,6 +2,7 @@ package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.FilmDAO;
+import lv.javaguru.java2.database.jdbc.DAOImpl;
 import lv.javaguru.java2.domain.Film;
 import org.springframework.stereotype.Component;
 

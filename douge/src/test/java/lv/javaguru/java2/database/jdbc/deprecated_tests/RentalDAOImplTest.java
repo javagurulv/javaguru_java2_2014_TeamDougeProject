@@ -1,13 +1,13 @@
 package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.RentalDAO;
+import lv.javaguru.java2.database.deprecated_dao.RentalDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.database.jdbc.RentalDAOImpl;
-import lv.javaguru.java2.domain.Customer;
-import lv.javaguru.java2.domain.Inventory;
-import lv.javaguru.java2.domain.Rental;
-import lv.javaguru.java2.domain.Staff;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.RentalDAOImpl;
+import lv.javaguru.java2.domain.deprecated_classes.Customer;
+import lv.javaguru.java2.domain.deprecated_classes.Inventory;
+import lv.javaguru.java2.domain.deprecated_classes.Rental;
+import lv.javaguru.java2.domain.deprecated_classes.Staff;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

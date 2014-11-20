@@ -4,7 +4,6 @@ package lv.javaguru.java2.Controller.infoClasses;
 import lv.javaguru.java2.domain.Film;
 
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

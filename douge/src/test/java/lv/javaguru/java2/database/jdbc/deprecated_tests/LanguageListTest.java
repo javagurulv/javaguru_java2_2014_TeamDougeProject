@@ -3,7 +3,6 @@ package lv.javaguru.java2.database.jdbc.deprecated_tests;
 /**
  * Created by Radchuk on 11/3/2014.
  */
-import static org.junit.Assert.*;
 
 import lv.javaguru.java2.Controller.infoClasses.LanguagesList;
 import lv.javaguru.java2.database.DBException;
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Date;
 import java.util.List;
 @Ignore
 public class LanguageListTest {

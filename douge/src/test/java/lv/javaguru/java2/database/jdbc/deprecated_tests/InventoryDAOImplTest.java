@@ -1,12 +1,12 @@
 package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.InventoryDAO;
+import lv.javaguru.java2.database.deprecated_dao.InventoryDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.database.jdbc.InventoryDAOImpl;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.InventoryDAOImpl;
 import lv.javaguru.java2.domain.Film;
-import lv.javaguru.java2.domain.Inventory;
-import lv.javaguru.java2.domain.Store;
+import lv.javaguru.java2.domain.deprecated_classes.Inventory;
+import lv.javaguru.java2.domain.deprecated_classes.Store;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

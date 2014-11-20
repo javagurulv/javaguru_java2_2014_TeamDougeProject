@@ -5,11 +5,11 @@ package lv.javaguru.java2.database.jdbc.deprecated_tests;
  */
 import static org.junit.Assert.*;
 
-import lv.javaguru.java2.database.CustomerDAO;
+import lv.javaguru.java2.database.deprecated_dao.CustomerDAO;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.CustomerDAOImpl;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.CustomerDAOImpl;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.domain.Customer;
+import lv.javaguru.java2.domain.deprecated_classes.Customer;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

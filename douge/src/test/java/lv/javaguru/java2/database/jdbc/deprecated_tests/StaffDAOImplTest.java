@@ -1,12 +1,12 @@
 package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.StaffDAO;
+import lv.javaguru.java2.database.deprecated_dao.StaffDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.database.jdbc.StaffDAOImpl;
-import lv.javaguru.java2.domain.Address;
-import lv.javaguru.java2.domain.Staff;
-import lv.javaguru.java2.domain.Store;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.StaffDAOImpl;
+import lv.javaguru.java2.domain.deprecated_classes.Address;
+import lv.javaguru.java2.domain.deprecated_classes.Staff;
+import lv.javaguru.java2.domain.deprecated_classes.Store;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

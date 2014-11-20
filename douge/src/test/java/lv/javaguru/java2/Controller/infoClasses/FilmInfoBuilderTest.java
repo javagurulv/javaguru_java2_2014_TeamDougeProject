@@ -9,11 +9,8 @@ import lv.javaguru.java2.Controller.Builders.FilmInfoBuilder;
 import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.FilmDAO;
-import lv.javaguru.java2.database.LanguageDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Film;
-import lv.javaguru.java2.domain.Language;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 

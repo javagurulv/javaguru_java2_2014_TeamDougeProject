@@ -1,6 +1,8 @@
 package lv.javaguru.java2.database;
 
+import lv.javaguru.java2.database.deprecated_dao.*;
 import lv.javaguru.java2.database.jdbc.*;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.*;
 
 /**
  * Created by Radchuk Sergey on 02.11.2014.

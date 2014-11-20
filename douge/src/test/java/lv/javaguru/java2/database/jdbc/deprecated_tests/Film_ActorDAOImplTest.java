@@ -6,10 +6,10 @@ package lv.javaguru.java2.database.jdbc.deprecated_tests;
 import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.Film_ActorDAO;
+import lv.javaguru.java2.database.deprecated_dao.Film_ActorDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.database.jdbc.Film_ActorDAOImpl;
-import lv.javaguru.java2.domain.Film_Actor;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.Film_ActorDAOImpl;
+import lv.javaguru.java2.domain.deprecated_classes.Film_Actor;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

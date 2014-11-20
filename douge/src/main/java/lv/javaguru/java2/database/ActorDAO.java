@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database;
 
+import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Actor;
 
 import java.util.List;

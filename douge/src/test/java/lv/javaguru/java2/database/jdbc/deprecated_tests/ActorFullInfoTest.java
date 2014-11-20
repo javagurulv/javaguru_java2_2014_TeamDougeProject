@@ -1,7 +1,6 @@
 package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 import lv.javaguru.java2.Controller.infoClasses.ActorFullInfo;
-import lv.javaguru.java2.Controller.infoClasses.FilmFullInfo;
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;

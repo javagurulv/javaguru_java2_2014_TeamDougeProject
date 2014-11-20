@@ -8,10 +8,10 @@ package lv.javaguru.java2.database.jdbc.deprecated_tests;
 import static org.junit.Assert.*;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.StoreDAO;
+import lv.javaguru.java2.database.deprecated_dao.StoreDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.database.jdbc.StoreDAOImpl;
-import lv.javaguru.java2.domain.Store;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.StoreDAOImpl;
+import lv.javaguru.java2.domain.deprecated_classes.Store;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

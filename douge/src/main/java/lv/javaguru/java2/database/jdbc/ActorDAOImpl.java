@@ -2,8 +2,8 @@ package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DAOImpl;
 import lv.javaguru.java2.domain.Actor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;

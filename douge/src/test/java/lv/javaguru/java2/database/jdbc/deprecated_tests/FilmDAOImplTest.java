@@ -6,7 +6,6 @@ package lv.javaguru.java2.database.jdbc.deprecated_tests;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
