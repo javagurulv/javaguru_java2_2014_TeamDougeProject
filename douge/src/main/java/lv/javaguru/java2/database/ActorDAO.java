@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface ActorDAO {
 
-    Actor getByID(Short actor_id) throws DBException;
-
-    void create(Actor actor) throws DBException;
-
-    void delete(Short actor_id) throws DBException;
-
-    void update(Actor actor) throws  DBException;
+    Actor getByID(Short id) throws DBException;
 
     List<Actor> getAll() throws  DBException;
+
+    List<Actor> getAllFromRange(int from, int amount) throws DBException;
+
+    Integer getActorsAmount() throws DBException;
+
+
 }
