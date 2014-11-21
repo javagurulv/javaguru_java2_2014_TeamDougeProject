@@ -5,8 +5,8 @@ package lv.javaguru.java2.domain;
  */
 public class AmountRentalCount extends DBDomain {
     protected String filmCategory;
-    protected String Amount;
-    protected String RentalCount;
+    protected String amount;
+    protected String rentalCount;
 
     public String getFilmCategory() {
         return filmCategory;
@@ -17,18 +17,23 @@ public class AmountRentalCount extends DBDomain {
     }
 
     public String getAmount() {
-        return Amount;
+        return amount;
     }
 
     public void setAmount(String amount) {
-        Amount = amount;
+        this.amount = amount;
     }
 
     public String getRentalCount() {
-        return RentalCount;
+        return rentalCount;
     }
 
     public void setRentalCount(String rentalCount) {
-        RentalCount = rentalCount;
+        this.rentalCount = rentalCount;
+    }
+
+    public AmountRentalCount()
+    {
+        super();
     }
 }

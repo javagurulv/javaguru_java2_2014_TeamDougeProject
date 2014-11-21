@@ -27,9 +27,19 @@ public class DAOFactory {
     }
     //-----------------------------------------------------------------------------
 
+    public CountByMonthsDAO getCountByMonthsDAO()
+    {
+        return new CountByMonthsDAOImpl();
+    }
+
 
     public FilmDAO getFilmDAO(){
         return  new FilmDAOImpl();
+    }
+
+    public AmountRentalCountDAO getAmountRentalCountDAO()
+    {
+        return new AmountRentalCountDAOImpl();
     }
 
     public Film_ActorDAO getFilm_actorDAO()
