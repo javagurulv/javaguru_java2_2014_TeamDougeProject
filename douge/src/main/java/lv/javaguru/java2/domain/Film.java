@@ -8,72 +8,32 @@ import java.util.*;
  */
 
 
-public class Film {
+public class Film extends DBDomain {
 
-    private Integer film_id = 0;
-    private String title = "";
-    private String description = "";
-    private Integer release_year = 0;
-    private String language = "";
-    private String original_language = "";
-    private Integer rental_duration = 0;
-    private Float rental_rate = null;
-    private Integer length = 0;
-    private Float replacement_cost = null;
-    private String rating = "";
-    private String special_features = "";
-    private Date last_update = null;
-    private Map<String, String> infoMap;
+    protected Integer film_id = 0;
+    protected String description = "";
+    protected String title = "";
+    protected Integer release_year = 0;
+    protected String language = "";
+    protected String original_language = "";
+    protected Integer rental_duration = 0;
+    protected Float rental_rate = null;
+    protected Integer length = 0;
+    protected Float replacement_cost = null;
+    protected String rating = "";
+    protected String special_features = "";
+    protected Date last_update = null;
+
 
     public Film()
     {
-        infoMap = new LinkedHashMap<String, String>();
+        super();
 
     }
 
-    private String convertFieldNameToKEY(String fieldName)
-    {
-        return fieldName.toUpperCase().replace("_"," ");
-
-    }
-    private void autoInitInfoMap() {
-
-        infoMap.clear();
-        for (Field field : this.getClass().getDeclaredFields()) {
-            try {
-                field.setAccessible(true);
-
-                String f_name = convertFieldNameToKEY(field.getName());
-                if (!f_name.equals("INFOMAP")) {
-                    String value = "";
-                    Object a = this.getClass().getDeclaredField(field.getName()).get(this);
-                    if (!(a == null)) {
-                        value = a.toString();
-                    }
-                    infoMap.put(f_name, value);
-                }
-            }
-            catch (NoSuchFieldException e)
-            {
-                System.out.println(e.getMessage());
-            }
-            catch (IllegalAccessException e)
-            {
-                System.out.println(e.getMessage());
-            }
-
-        }
 
 
-    }
 
-    private void putDataToInfoMap(Field field, Object value)
-    {
-        String f_name = field.getName();
-        f_name = f_name.toUpperCase();
-        f_name = f_name.replace("_"," ");
-        infoMap.put(f_name, value.toString());
-    }
 
     public void setRental_rate(Float rental_rate) {
         this.rental_rate = rental_rate;
@@ -196,7 +156,7 @@ public class Film {
 
     public Map<String, String> getInfoMap()  {
 
-        autoInitInfoMap();
+        buildInfoMap();
         return infoMap;
     }
 }
