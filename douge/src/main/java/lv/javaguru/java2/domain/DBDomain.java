@@ -48,4 +48,10 @@ public class DBDomain {
         }
 
     }
+
+    public Map<String, String> getInfoMap()
+    {
+        buildInfoMap();
+        return infoMap;
+    }
 }

@@ -32,9 +32,6 @@ public class Film extends DBDomain {
     }
 
 
-
-
-
     public void setRental_rate(Float rental_rate) {
         this.rental_rate = rental_rate;
     }
@@ -154,9 +151,5 @@ public class Film extends DBDomain {
         this.special_features = special_features;
     }
 
-    public Map<String, String> getInfoMap()  {
 
-        buildInfoMap();
-        return infoMap;
-    }
 }
