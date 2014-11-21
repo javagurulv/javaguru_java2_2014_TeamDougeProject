@@ -49,10 +49,6 @@ public class Actor extends DBDomain{
         this.last_update = last_update;
     }
 
-    public Map<String, String> getInfoMap()  {
-        buildInfoMap();
-        return infoMap;
-    }
 }
 
 
