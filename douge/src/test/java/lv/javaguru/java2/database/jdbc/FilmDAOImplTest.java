@@ -22,11 +22,8 @@ import lv.javaguru.java2.domain.Film;
 
 
 public class FilmDAOImplTest {
-    private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
     private  FilmDAO filmDAO = DAOFactory.getInstance().getFilmDAO();
-
-
 
 
     @Test

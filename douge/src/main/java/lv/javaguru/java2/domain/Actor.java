@@ -2,21 +2,26 @@ package lv.javaguru.java2.domain;
 
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by Juris on 17.10.2014.
  */
-public class Actor {
-    private Short actor_id;
-    private String first_name;
-    private String last_name;
-    private Date last_update;
+public class Actor extends DBDomain{
+    protected Integer actor_id = 0;
+    protected String first_name = "";
+    protected String last_name = "";
+    protected Date last_update = null;
 
-    public Short getActor_id() {
+    public Actor(){
+        super();
+    }
+
+    public Integer getActor_id() {
         return actor_id;
     }
 
-    public void setActor_id(Short actor_id) {
+    public void setActor_id(Integer actor_id) {
         this.actor_id = actor_id;
     }
 
@@ -43,4 +48,11 @@ public class Actor {
     public void setLast_update(Date last_update) {
         this.last_update = last_update;
     }
+
+    public Map<String, String> getInfoMap()  {
+        buildInfoMap();
+        return infoMap;
+    }
 }
+
+

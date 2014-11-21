@@ -35,7 +35,7 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
     }
 
     @Override
-    public List<Film> getAllFromRange(int from, int to) throws DBException {
+    public List<Film> getAllFromRange(int from, int amount) throws DBException {
         List<Film> films = new ArrayList<Film>();
         Connection connection = null;
         try
@@ -48,7 +48,7 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
                     "from film f " +
                     "left join language l on f.language_id = l.language_id "+
                     "left join language l1 on (f.original_language_id = l1.language_id or f.language_id = l1.language_id )" +
-                    " limit " + from + "," + to);
+                    " limit " + from + "," + amount);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())

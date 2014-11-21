@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by Juris on 04.11.2014.
  */
 public class ActorFullInfo {
-    private Short id;
+    private Integer id;
     private String first_name;
     private String last_name;
     private Date last_update;

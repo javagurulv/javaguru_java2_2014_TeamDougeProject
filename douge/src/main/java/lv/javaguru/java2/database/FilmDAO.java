@@ -14,6 +14,6 @@ public interface FilmDAO {
 
     List<Film> getAll() throws DBException;
 
-    List<Film> getAllFromRange(int from, int to) throws DBException;
+    List<Film> getAllFromRange(int from, int amount) throws DBException;
     Integer getFilmsAmount() throws DBException;
 }
