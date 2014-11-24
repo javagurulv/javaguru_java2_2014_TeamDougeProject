@@ -18,9 +18,9 @@ import java.util.*;
 @Component("tableDataToGoogleWEBTableConverter")
 public class TableDataToGoogleWEBTableConverter {
 
-    private DataTable dataTable;
+    protected DataTable dataTable;
 
-    private void setTableHeader(TableData tableData){
+    protected void setTableHeader(TableData tableData){
         ArrayList<ColumnDescription> cd = new ArrayList<ColumnDescription>();
         Set<String> keys = tableData.getTableData().get(0).keySet();
         for (String key : keys){
@@ -30,7 +30,7 @@ public class TableDataToGoogleWEBTableConverter {
 
     }
 
-    private void appendTableRow(Map<String, String> row) throws TypeMismatchException {
+    protected void appendTableRow(Map<String, String> row) throws TypeMismatchException {
         TableRow tableRow = new TableRow();
         Set<String> keys = row.keySet();
         for (String key : keys){
@@ -40,7 +40,7 @@ public class TableDataToGoogleWEBTableConverter {
         dataTable.addRow(tableRow);
     }
 
-    private void buildTableRows(TableData tableData) throws TypeMismatchException {
+    protected void buildTableRows(TableData tableData) throws TypeMismatchException {
         List<Map<String, String>> table = tableData.getTableData();
         for (int i = 0; i < table.size(); i++) {
             appendTableRow(table.get(i));
