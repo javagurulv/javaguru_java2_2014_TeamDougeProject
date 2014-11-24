@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.CountByMonthsDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.CountByMonths;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Sergo on 21.11.2014.
  */
+@Component
 public class CountByMonthsDAOImpl extends DAOImpl implements CountByMonthsDAO {
 
     private CountByMonths buildCountByMonths(ResultSet resultSet) throws SQLException {
