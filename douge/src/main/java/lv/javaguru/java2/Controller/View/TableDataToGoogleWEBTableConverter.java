@@ -48,6 +48,8 @@ public class TableDataToGoogleWEBTableConverter {
     }
 
     public CharSequence convertToGoogleTable(TableData tableData) throws TypeMismatchException {
+
+        dataTable = new DataTable();
         if(tableData.getTableData().size() == 0){
             return "No Data";
         }
@@ -60,7 +62,7 @@ public class TableDataToGoogleWEBTableConverter {
     }
     public TableDataToGoogleWEBTableConverter()
     {
-        dataTable = new DataTable();
+        //dataTable = new DataTable();
     }
 
 }
