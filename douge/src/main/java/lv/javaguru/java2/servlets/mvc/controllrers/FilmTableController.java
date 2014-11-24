@@ -8,6 +8,8 @@ import lv.javaguru.java2.Controller.View.TableDataToWEBTableConverter;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +20,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class FilmTableController implements MVCController {
-
+    @Autowired @Qualifier("filmTableData")
+    private TableData filmTableData;
+    @Autowired  @Qualifier("tableDataToGoogleWEBTableConverter")
+    TableDataToGoogleWEBTableConverter tableDataToGoogleWEBTableConverter;
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
-        TableData filmTableData = TableDataFactory.getInstance().getFilmTableData();
+
         try {
             filmTableData.buildTableData();
         } catch (DBException e) {
@@ -30,7 +35,7 @@ public class FilmTableController implements MVCController {
         //TableDataToWEBTableConverter tableDataToWEBTableConverter = new TableDataToWEBTableConverter();
        // return new MVCModel("/jsp/films.jsp", tableDataToWEBTableConverter.convertToWebTable(filmTableData));
         try {
-            return  new MVCModel("/jsp/films.jsp", new TableDataToGoogleWEBTableConverter().convertToGoogleTable(filmTableData));
+            return  new MVCModel("/jsp/films.jsp", tableDataToGoogleWEBTableConverter.convertToGoogleTable(filmTableData));
         } catch (TypeMismatchException e) {
             e.printStackTrace();
         }

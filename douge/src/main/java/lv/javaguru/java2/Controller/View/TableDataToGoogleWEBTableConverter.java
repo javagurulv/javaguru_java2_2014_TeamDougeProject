@@ -8,12 +8,14 @@ import com.google.visualization.datasource.datatable.value.ValueType;
 import com.google.visualization.datasource.render.HtmlRenderer;
 import com.ibm.icu.util.ULocale;
 import lv.javaguru.java2.Controller.TableData;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 /**
  * Created by Sergo on 15.11.2014.
  */
+@Component("tableDataToGoogleWEBTableConverter")
 public class TableDataToGoogleWEBTableConverter {
 
     private DataTable dataTable;
