@@ -4,6 +4,7 @@ import lv.javaguru.java2.Controller.TableData;
 import lv.javaguru.java2.Controller.TableDataFactory;
 import lv.javaguru.java2.Controller.View.TableDataToGoogleWEBTableConverter;
 import lv.javaguru.java2.Controller.View.TableDataToWEBTableConverter;
+import lv.javaguru.java2.Controller.View.ToGoogleTableDataConverter;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
@@ -22,8 +23,8 @@ public class ActorTableController implements MVCController {
 
     @Autowired @Qualifier("actorTableData")
     private TableData actorTableData;
-    @Autowired @Qualifier("tableDataToGoogleWEBTableConverter")
-    TableDataToGoogleWEBTableConverter tableDataToWEBTableConverter;
+    @Autowired @Qualifier("ToGoogleTableDataConverter")
+    ToGoogleTableDataConverter tableDataToWEBTableConverter;
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -35,7 +36,7 @@ public class ActorTableController implements MVCController {
         }
 
         try {
-            return new MVCModel("/jsp/actors.jsp", tableDataToWEBTableConverter.convertToGoogleTable(actorTableData));
+            return new MVCModel("/jsp/tableconverter.jsp", tableDataToWEBTableConverter.convertDataTableToGoogleTable(actorTableData));
         } catch (TypeMismatchException e) {
             e.printStackTrace();
         }
