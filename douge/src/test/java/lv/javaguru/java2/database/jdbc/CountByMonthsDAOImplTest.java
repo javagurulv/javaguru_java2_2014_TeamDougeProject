@@ -14,7 +14,8 @@ public class CountByMonthsDAOImplTest extends TestCase {
 
         for (int i = 0; i < countByMonths.size() ; i++) {
             try {
-                System.out.println(countByMonths.get(i).getInfoMap().toString());
+                //System.out.println(countByMonths.get(i).getInfoMap().toString());
+                System.out.println(countByMonths.get(i).getFullInfoMap().toString());
             }
             catch (Throwable throwable)
             {

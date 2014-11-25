@@ -1,5 +1,6 @@
 package lv.javaguru.java2.servlets.mvc;
 
+import com.google.visualization.datasource.base.TypeMismatchException;
 import lv.javaguru.java2.servlets.mvc.controllrers.*;
 import lv.javaguru.java2.servlets.mvc.models.*;
 import lv.javaguru.java2.servlets.mvc.spring.SpringAppConfig;
@@ -70,7 +71,12 @@ public class MVCFilter implements Filter {
 
 
         MVCController controller = controllerMap.get(contextURI);
-        MVCModel model = controller.processRequest(req, resp);
+        MVCModel model = null;
+        try {
+            model = controller.processRequest(req, resp);
+        } catch (TypeMismatchException e) {
+            e.printStackTrace();
+        }
 
 
         req.setAttribute("model", model.getData());

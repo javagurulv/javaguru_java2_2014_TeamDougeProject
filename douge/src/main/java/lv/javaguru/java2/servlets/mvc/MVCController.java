@@ -1,5 +1,6 @@
 package lv.javaguru.java2.servlets.mvc;
 
+import com.google.visualization.datasource.base.TypeMismatchException;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 public interface MVCController {
 
     MVCModel processRequest(HttpServletRequest request,
-                            HttpServletResponse response);
+                            HttpServletResponse response) throws TypeMismatchException;
 
 }

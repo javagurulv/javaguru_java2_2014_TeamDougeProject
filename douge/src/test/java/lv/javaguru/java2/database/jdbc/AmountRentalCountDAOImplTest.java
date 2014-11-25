@@ -22,7 +22,8 @@ public class AmountRentalCountDAOImplTest extends TestCase {
 
         for (int i = 0; i < amountRentalCounts.size(); i++) {
             try {
-                System.out.println(amountRentalCounts.get(i).getInfoMap().toString());
+                //System.out.println(amountRentalCounts.get(i).getInfoMap().toString());
+                System.out.println(amountRentalCounts.get(i).getFullInfoMap().toString());
             }
             catch (Throwable e)
             {

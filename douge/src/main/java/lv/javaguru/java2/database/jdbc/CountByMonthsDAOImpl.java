@@ -20,7 +20,7 @@ public class CountByMonthsDAOImpl extends DAOImpl implements CountByMonthsDAO {
 
     private CountByMonths buildCountByMonths(ResultSet resultSet) throws SQLException {
         CountByMonths countByMonths = new CountByMonths();
-        countByMonths.setCount(resultSet.getString("Count"));
+        countByMonths.setCount(resultSet.getInt("Count"));
         countByMonths.setMonthName(resultSet.getString("Month"));
         return countByMonths;
     }

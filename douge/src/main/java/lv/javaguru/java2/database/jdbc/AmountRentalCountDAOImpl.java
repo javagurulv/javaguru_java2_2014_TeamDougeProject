@@ -21,9 +21,9 @@ public class AmountRentalCountDAOImpl extends DAOImpl implements AmountRentalCou
 
     private AmountRentalCount buildAmountRentalCount(ResultSet resultSet) throws SQLException {
         AmountRentalCount amountRentalCount = new AmountRentalCount();
-        amountRentalCount.setAmount(resultSet.getString("Amount"));
+        amountRentalCount.setAmount(resultSet.getDouble("Amount"));
         amountRentalCount.setFilmCategory(resultSet.getString("FilmCategory"));
-        amountRentalCount.setRentalCount(resultSet.getString("RentalCount"));
+        amountRentalCount.setRentalCount(resultSet.getInt("RentalCount"));
         return amountRentalCount;
     }
 

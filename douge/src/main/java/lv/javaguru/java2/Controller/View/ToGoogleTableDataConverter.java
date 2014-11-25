@@ -13,11 +13,13 @@ import org.springframework.stereotype.Component;
 @Component("ToGoogleTableDataConverter")
 public class ToGoogleTableDataConverter extends TableDataToGoogleWEBTableConverter {
 
+
     public DataTable convertDataTableToGoogleTable(TableData tableData) throws TypeMismatchException {
         dataTable = new DataTable();
 
         setTableHeader(tableData);
         buildTableRows(tableData);
+
 
         return dataTable;
     }

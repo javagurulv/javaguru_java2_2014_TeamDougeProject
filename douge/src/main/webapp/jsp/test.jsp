@@ -1,3 +1,4 @@
+<%@ page import="com.google.visualization.datasource.datatable.DataTable" %>
 <%--
   Created by IntelliJ IDEA.
   User: Sergo
@@ -9,39 +10,50 @@
 <html>
 <head>
     <title></title>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi">
+
+    </script>
 </head>
 <body>
-<%
-    for(int i = 0; i < 2; i++){
-    %>
+<%   String str =(String)request.getAttribute("model");
+out.print(str);%>
+<script type="text/javascript">
+  /*  google.load("visualization", "1", {packages:["table"]});
+    google.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+        var data = new google.visualization.DataTable(<% out.print(str); %>);
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(data, {showRowNumber: true});
+    }  */
+
+</script>
+<div id = "table_div" style = "width:500px;">
+
+</div>
 
 <script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
+
+
+  /*  google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Work',     11],
-            ['Eat',      2],
-            ['Commute',  2],
-            ['Watch TV', 2],
-            ['Sleep',    7]
-        ]);
+        var data =  new google.visualization.DataTable(<% out.print(str); %>);
 
         var options = {
-            title: 'My Daily Activities'
+            title: 'Company Performance',
+            vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('div<% out.print(String.valueOf(i)); %>'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
-    }
+    } */
+
 </script>
-<div id="div<% out.print(String.valueOf(i)); %>"></div>
-<%
-}
-%>
+<div id = "chart_div" style = "width:500px;">
+
+</div>
+
 </body>
 </html>

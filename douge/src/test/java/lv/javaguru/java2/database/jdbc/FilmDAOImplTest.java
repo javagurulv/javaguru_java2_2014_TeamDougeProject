@@ -6,6 +6,7 @@ package lv.javaguru.java2.database.jdbc;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.database.jdbc.FilmDAOImpl;
+import lv.javaguru.java2.domain.DomainWidgetContent;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,8 +41,13 @@ public class FilmDAOImplTest {
     @Test
     public void testGetAllFromRange() throws DBException
     {
-        List<Film> films = filmDAO.getAllFromRange(50,10);
-        assertEquals(films.size(),10);
+        List<Film> films = filmDAO.getAllFromRange(50,3);
+        List<DomainWidgetContent> f = new ArrayList<DomainWidgetContent>();
+        for (int i = 0; i <films.size() ; i++) {
+            Assert.assertTrue(f.add(films.get(i)));
+            System.out.println(f.get(i).getFullDomainInfo().toString());
+        }
+        assertEquals(films.size(),3);
     }
 
     @Test
@@ -51,8 +59,9 @@ public class FilmDAOImplTest {
     @Test
     public void testInitInfoMap() throws DBException, NoSuchFieldException, IllegalAccessException {
        Film film = filmDAO.getByID((long) 55);
-       System.out.println(film.getInfoMap().toString());
+       //System.out.println(film.getInfoMap().toString());
        assertEquals(film.getInfoMap().keySet().size(),13);
+        System.out.println(film.getFullInfoMap().toString());
 
     }
 

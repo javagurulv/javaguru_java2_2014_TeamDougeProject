@@ -1,14 +1,18 @@
 package lv.javaguru.java2.domain;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Sergo on 21.11.2014.
  */
-public class DBDomain {
+public class DBDomain implements DomainWidgetContent{
     protected Map<String, String> infoMap;
+
+    protected Map<String,DBDomainDataInfo> fullInfoList;
 
     protected String convertFieldNameToKEY(String fieldName)
     {
@@ -18,6 +22,7 @@ public class DBDomain {
 
     public DBDomain(){
         infoMap = new LinkedHashMap<String, String>();
+        fullInfoList = new LinkedHashMap<String, DBDomainDataInfo>();
     }
 
     protected void  buildInfoMap(){
@@ -49,9 +54,59 @@ public class DBDomain {
 
     }
 
+    protected void buildFullInfoList(){
+        fullInfoList.clear();
+        for (Field field : this.getClass().getDeclaredFields()){
+
+            field.setAccessible(true);
+            String f_name = convertFieldNameToKEY(field.getName());
+            if(!f_name.equals("INFOMAP") &&!f_name.equals("FULLINFOLIST")){
+
+                DBDomainDataInfo dbDomainDataInfo = new DBDomainDataInfo();
+                dbDomainDataInfo.dataName = f_name;
+                if(field.getType().isInstance(Boolean.class)){
+                    dbDomainDataInfo.dataType = Boolean.class.getSimpleName();
+                    dbDomainDataInfo.dataName = "false";
+                }
+                if (Number.class.isAssignableFrom(field.getType()))
+                {//field.getType().isInstance(Number.class)){
+                    dbDomainDataInfo.dataType = Number.class.getSimpleName();
+                    dbDomainDataInfo.dataValue = "0";
+                }
+                else {
+                    dbDomainDataInfo.dataType = String.class.getSimpleName();
+                    dbDomainDataInfo.dataValue = "";
+                }
+
+                Object a = null;
+                try {
+                    a = this.getClass().getDeclaredField(field.getName()).get(this);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
+                if (!(a == null)) {
+                    dbDomainDataInfo.dataValue = a.toString();
+                }
+                fullInfoList.put(dbDomainDataInfo.dataName, dbDomainDataInfo);
+
+            }
+        }
+    }
+
     public Map<String, String> getInfoMap()
     {
         buildInfoMap();
         return infoMap;
+    }
+    public Map<String, DBDomainDataInfo> getFullInfoMap(){
+        buildFullInfoList();
+        return fullInfoList;
+    }
+
+    @Override
+    public Map<String, DBDomainDataInfo> getFullDomainInfo() {
+        return getFullInfoMap();
     }
 }

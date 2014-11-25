@@ -5,13 +5,13 @@ package lv.javaguru.java2.domain;
  */
 public class CountByMonths extends DBDomain {
     protected String monthName;
-    protected String count;
+    protected Integer count;
 
     public void setMonthName(String monthName) {
         this.monthName = monthName;
     }
 
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
