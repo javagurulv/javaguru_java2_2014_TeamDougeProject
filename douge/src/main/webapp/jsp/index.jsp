@@ -10,7 +10,7 @@
 <head>
     <title></title>
 </head>
-<body>
+<body background="http://i259.photobucket.com/albums/hh299/forumgrafix2/nintendobackground.png">
 <jsp:include page="templates/index.html" ></jsp:include>
 </body>
 </html>
