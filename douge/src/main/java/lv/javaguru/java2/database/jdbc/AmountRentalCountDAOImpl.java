@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.AmountRentalCountDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.AmountRentalCount;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -29,8 +30,8 @@ public class AmountRentalCountDAOImpl extends DAOImpl implements AmountRentalCou
 
 
     @Override
-    public List<AmountRentalCount> getAmountRentalCountData() throws DBException {
-        List<AmountRentalCount> amountRentalCounts = new ArrayList<AmountRentalCount>();
+    public List<DomainWidgetContent> getAmountRentalCountData() throws DBException {
+        List<DomainWidgetContent> amountRentalCounts = new ArrayList<DomainWidgetContent>();
         Connection connection = null;
         try
         {

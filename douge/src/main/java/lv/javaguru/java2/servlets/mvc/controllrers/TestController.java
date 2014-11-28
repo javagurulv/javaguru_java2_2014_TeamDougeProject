@@ -6,8 +6,10 @@ import com.google.visualization.datasource.datatable.DataTable;
 
 import com.google.visualization.datasource.render.JsonRenderer;
 import com.ibm.icu.util.ULocale;
+import lv.javaguru.java2.Controller.Builders.GoogleVisualizationDataTableBuilder;
 import lv.javaguru.java2.Controller.TableData;
 import lv.javaguru.java2.Controller.View.ToGoogleTableDataConverter;
+import lv.javaguru.java2.Controller.WidgetTableData;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
@@ -28,10 +30,10 @@ import static com.google.visualization.datasource.render.JsonRenderer.renderData
 public class TestController implements MVCController {
 
     @Autowired @Qualifier("chartInfoBuilderRentalCount")
-    private TableData tableData;
+    private WidgetTableData tableData;
 
-    @Autowired @Qualifier("ToGoogleTableDataConverter")
-    private ToGoogleTableDataConverter toGoogleTableDataConverter;
+    @Autowired
+    private GoogleVisualizationDataTableBuilder tableBuilder;
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
@@ -41,12 +43,8 @@ public class TestController implements MVCController {
             e.printStackTrace();
         }
 
-        DataTable dt = toGoogleTableDataConverter.convertDataTableToGoogleTable(tableData);
-        //CharSequence str = CsvRenderer.renderDataTable(dt, ULocale.createCanonical("UTF-8"),",");
-        CharSequence str1 = JsonRenderer.renderDataTable(dt, true, true, true);
-        System.out.println(str1);
-        return new MVCModel("/jsp/test.jsp", str1);
-       // return null;
+        tableBuilder.prepareInfo(tableData);
+        return new MVCModel("/jsp/test.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
 
     }
 }
