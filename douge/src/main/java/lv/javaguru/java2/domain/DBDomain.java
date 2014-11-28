@@ -67,7 +67,7 @@ public class DBDomain implements DomainWidgetContent{
                 dbDomainDataInfo.setDataName(f_name);
                 if(field.getType().isInstance(Boolean.class)){
                     dbDomainDataInfo.setDataType(ValueType.BOOLEAN);
-                    dbDomainDataInfo.setDataName("false");
+                    dbDomainDataInfo.setDataValue("false");
                 }
                 if (Number.class.isAssignableFrom(field.getType()))
                 {//field.getType().isInstance(Number.class)){

@@ -15,17 +15,19 @@
     </script>
 </head>
 <body>
-<%   String str =(String)request.getAttribute("model");
-out.print(str);%>
+<%
+    String str =(String)request.getAttribute("model");
+    //out.print(str);
+%>
 <script type="text/javascript">
-  /*  google.load("visualization", "1", {packages:["table"]});
+    google.load("visualization", "1", {packages:["table"]});
     google.setOnLoadCallback(drawTable);
 
     function drawTable() {
         var data = new google.visualization.DataTable(<% out.print(str); %>);
         var table = new google.visualization.Table(document.getElementById('table_div'));
         table.draw(data, {showRowNumber: true});
-    }  */
+    }
 
 </script>
 <div id = "table_div" style = "width:500px;">
@@ -35,7 +37,7 @@ out.print(str);%>
 <script type="text/javascript">
 
 
-  /*  google.load("visualization", "1", {packages:["corechart"]});
+   google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
         var data =  new google.visualization.DataTable(<% out.print(str); %>);
@@ -48,7 +50,7 @@ out.print(str);%>
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
         chart.draw(data, options);
-    } */
+    }
 
 </script>
 <div id = "chart_div" style = "width:500px;">
