@@ -1,14 +1,9 @@
 package lv.javaguru.java2.servlets.mvc.controllrers;
 
 import com.google.visualization.datasource.base.TypeMismatchException;
-import com.google.visualization.datasource.datatable.DataTable;
-
-
-import com.google.visualization.datasource.render.JsonRenderer;
-import com.ibm.icu.util.ULocale;
 import lv.javaguru.java2.Controller.Builders.GoogleVisualizationDataTableBuilder;
-import lv.javaguru.java2.Controller.TableData;
-import lv.javaguru.java2.Controller.View.ToGoogleTableDataConverter;
+
+
 import lv.javaguru.java2.Controller.WidgetTableData;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.servlets.mvc.MVCController;
@@ -19,10 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Locale;
-
-import static com.google.visualization.datasource.render.JsonRenderer.renderDataTable;
-
 /**
  * Created by Sergo on 24.11.2014.
  */

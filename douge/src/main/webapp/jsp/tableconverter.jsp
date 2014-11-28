@@ -14,8 +14,7 @@
 </head>
 <body>
 <%
-DataTable dataTable=(DataTable)request.getAttribute("model");
-CharSequence str1 = JsonRenderer.renderDataTable(dataTable, true, true, true);
+    String str =(String)request.getAttribute("model");
 %>
 
 <script type="text/javascript">
@@ -25,7 +24,7 @@ CharSequence str1 = JsonRenderer.renderDataTable(dataTable, true, true, true);
 
 
     function drawTable() {
-        var data = new google.visualization.DataTable(<%out.print(str1);%>);
+        var data = new google.visualization.DataTable(<%out.print(str);%>);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
 

@@ -26,5 +26,5 @@ public class TableDataFactory {
     public TableData getFilmTableData(){
         return null;
     }
-    public TableData getActorTableData(){ return new ActorInfoBuilder();}
+    public TableData getActorTableData(){ return null;}
 }

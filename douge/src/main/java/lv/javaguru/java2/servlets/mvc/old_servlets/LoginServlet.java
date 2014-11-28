@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+  /*      resp.setContentType("text/html");
 
         PrintWriter out = resp.getWriter();
 
@@ -51,12 +51,12 @@ public class LoginServlet extends HttpServlet {
         } else {
             out.println("<font color=\"red\">Login and/or password can't be empty!</font><a href=\"/login_form.html\">Back</a>");
         }
-        /*
+        *//*
         //debug
         out.println("<br><br>Debug<br><br>");
         out.println("Login:" + req.getParameter("login"));
         out.println("<br><br>");
         out.println("Password:" + req.getParameter("passwd"));
-        */
+        *//**/
     }
 }

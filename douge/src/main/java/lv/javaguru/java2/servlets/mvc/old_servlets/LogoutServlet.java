@@ -14,7 +14,7 @@ public class LogoutServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+/*        resp.setContentType("text/html");
 
         //invalidate the session if exists
         HttpSession session = req.getSession(false);
@@ -22,6 +22,6 @@ public class LogoutServlet extends HttpServlet{
         if (session != null) {
             session.invalidate();
         }
-        resp.sendRedirect("/login_form.html");
+        resp.sendRedirect("/login_form.html");*/
     }
 }

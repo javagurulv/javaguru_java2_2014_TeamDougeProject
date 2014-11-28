@@ -15,6 +15,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
+/*
 
         // Set response content type
         resp.setContentType("text/html");
@@ -26,6 +27,7 @@ public class IndexServlet extends HttpServlet {
         out.println("<h3><a href=\"/adduser\">Add User</h3>");
         out.println("<h3><a href=\"/films\">Show film list</a></h3>");
         out.println("<h3><a href=\"/actors\">Show actor list</a></h3>");
+*/
 
     }
 }

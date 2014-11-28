@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Actor;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -57,9 +58,9 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
     }
 
     @Override
-    public List<Actor> getAll() throws DBException {
+    public List<DomainWidgetContent> getAll() throws DBException {
         Connection connection = null;
-        List<Actor> actors = new ArrayList<Actor>();
+        List<DomainWidgetContent> actors = new ArrayList<DomainWidgetContent>();
         try
         {
             connection = getConnection();
@@ -82,8 +83,8 @@ public class ActorDAOImpl extends DAOImpl implements ActorDAO {
     }
 
     @Override
-    public List<Actor> getAllFromRange(int from, int amount) throws DBException {
-        List<Actor> actors = new ArrayList<Actor>();
+    public List<DomainWidgetContent> getAllFromRange(int from, int amount) throws DBException {
+        List<DomainWidgetContent> actors = new ArrayList<DomainWidgetContent>();
         Connection connection = null;
         try
         {

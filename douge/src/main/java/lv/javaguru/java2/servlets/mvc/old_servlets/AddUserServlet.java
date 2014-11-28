@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class AddUserServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //set content type
+       /* //set content type
         resp.setContentType("text/html");
 
 
@@ -47,16 +47,16 @@ public class AddUserServlet extends HttpServlet{
             }
         } else {
             out.println("<font color=\"red\">Login and/or Password can't be empty!</font> <a href=\"/adduser\">Back</a>");
-        }
+        }*/
 
     }
 
     private User createUser(int user_type, String login, String password, String comments) {
         User user = new User();
-        user.setComments(comments);
+        /*user.setComments(comments);
         user.setLogin(login);
         user.setPassword(password);
-        user.setUser_type(user_type);
+        user.setUser_type(user_type);*/
         return user;
     }
 }

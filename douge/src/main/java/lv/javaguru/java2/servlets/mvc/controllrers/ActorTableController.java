@@ -1,10 +1,7 @@
 package lv.javaguru.java2.servlets.mvc.controllrers;
 import com.google.visualization.datasource.base.TypeMismatchException;
-import lv.javaguru.java2.Controller.TableData;
-import lv.javaguru.java2.Controller.TableDataFactory;
-import lv.javaguru.java2.Controller.View.TableDataToGoogleWEBTableConverter;
-import lv.javaguru.java2.Controller.View.TableDataToWEBTableConverter;
-import lv.javaguru.java2.Controller.View.ToGoogleTableDataConverter;
+import lv.javaguru.java2.Controller.Builders.GoogleVisualizationDataTableBuilder;
+import lv.javaguru.java2.Controller.WidgetTableData;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
@@ -22,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ActorTableController implements MVCController {
 
     @Autowired @Qualifier("actorTableData")
-    private TableData actorTableData;
-    @Autowired @Qualifier("ToGoogleTableDataConverter")
-    ToGoogleTableDataConverter tableDataToWEBTableConverter;
+    private WidgetTableData actorTableData;
+    @Autowired
+    GoogleVisualizationDataTableBuilder tableBuilder;
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -36,10 +33,12 @@ public class ActorTableController implements MVCController {
         }
 
         try {
-            return new MVCModel("/jsp/tableconverter.jsp", tableDataToWEBTableConverter.convertDataTableToGoogleTable(actorTableData));
+            tableBuilder.prepareInfo(actorTableData);
         } catch (TypeMismatchException e) {
             e.printStackTrace();
         }
-        return null;
+
+        return new MVCModel("/jsp/tableconverter.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+
     }
 }
