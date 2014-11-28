@@ -1,10 +1,8 @@
 package lv.javaguru.java2.servlets.mvc.controllrers;
 
 import com.google.visualization.datasource.base.TypeMismatchException;
-import lv.javaguru.java2.Controller.TableData;
-import lv.javaguru.java2.Controller.TableDataFactory;
-import lv.javaguru.java2.Controller.View.TableDataToGoogleWEBTableConverter;
-import lv.javaguru.java2.Controller.View.TableDataToWEBTableConverter;
+import lv.javaguru.java2.Controller.Builders.GoogleVisualizationDataTableBuilder;
+import lv.javaguru.java2.Controller.WidgetTableData;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
@@ -21,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class FilmTableController implements MVCController {
     @Autowired @Qualifier("filmTableData")
-    private TableData filmTableData;
-    @Autowired  @Qualifier("tableDataToGoogleWEBTableConverter")
-    TableDataToGoogleWEBTableConverter tableDataToGoogleWEBTableConverter;
+    private WidgetTableData filmTableData;
+    @Autowired
+    GoogleVisualizationDataTableBuilder tableBuilder;
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
 
@@ -32,13 +30,13 @@ public class FilmTableController implements MVCController {
         } catch (DBException e) {
             e.printStackTrace();
         }
-        //TableDataToWEBTableConverter tableDataToWEBTableConverter = new TableDataToWEBTableConverter();
-       // return new MVCModel("/jsp/films.jsp", tableDataToWEBTableConverter.convertToWebTable(filmTableData));
         try {
-            return  new MVCModel("/jsp/films.jsp", tableDataToGoogleWEBTableConverter.convertToGoogleTable(filmTableData));
+            tableBuilder.prepareInfo(filmTableData);
         } catch (TypeMismatchException e) {
             e.printStackTrace();
         }
-        return null;
+
+        return  new MVCModel("/jsp/films.jsp", tableBuilder.getHTMLDecriptionofOfGoogleVizualizationDataTable());
+
     }
 }

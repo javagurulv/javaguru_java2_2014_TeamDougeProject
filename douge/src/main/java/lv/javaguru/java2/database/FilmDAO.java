@@ -1,6 +1,7 @@
 package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import lv.javaguru.java2.domain.Film;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public interface FilmDAO {
 
     Film getByID(Long id) throws DBException;
 
-    List<Film> getAll() throws DBException;
+    List<DomainWidgetContent> getAll() throws DBException;
 
-    List<Film> getAllFromRange(int from, int amount) throws DBException;
+    List<DomainWidgetContent> getAllFromRange(int from, int amount) throws DBException;
     Integer getFilmsAmount() throws DBException;
 }

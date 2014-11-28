@@ -1,9 +1,10 @@
 package lv.javaguru.java2.domain;
 
+import com.google.visualization.datasource.datatable.value.ValueType;
+
 import java.lang.reflect.Field;
-import java.util.ArrayList;
+
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,19 +64,19 @@ public class DBDomain implements DomainWidgetContent{
             if(!f_name.equals("INFOMAP") &&!f_name.equals("FULLINFOLIST")){
 
                 DBDomainDataInfo dbDomainDataInfo = new DBDomainDataInfo();
-                dbDomainDataInfo.dataName = f_name;
+                dbDomainDataInfo.setDataName(f_name);
                 if(field.getType().isInstance(Boolean.class)){
-                    dbDomainDataInfo.dataType = Boolean.class.getSimpleName();
-                    dbDomainDataInfo.dataName = "false";
+                    dbDomainDataInfo.setDataType(ValueType.BOOLEAN);
+                    dbDomainDataInfo.setDataName("false");
                 }
                 if (Number.class.isAssignableFrom(field.getType()))
                 {//field.getType().isInstance(Number.class)){
-                    dbDomainDataInfo.dataType = Number.class.getSimpleName();
-                    dbDomainDataInfo.dataValue = "0";
+                    dbDomainDataInfo.setDataType(ValueType.NUMBER);
+                    dbDomainDataInfo.setDataValue("0");
                 }
                 else {
-                    dbDomainDataInfo.dataType = String.class.getSimpleName();
-                    dbDomainDataInfo.dataValue = "";
+                    dbDomainDataInfo.setDataType(ValueType.TEXT);
+                    dbDomainDataInfo.setDataValue("");
                 }
 
                 Object a = null;
@@ -87,9 +88,9 @@ public class DBDomain implements DomainWidgetContent{
                     e.printStackTrace();
                 }
                 if (!(a == null)) {
-                    dbDomainDataInfo.dataValue = a.toString();
+                    dbDomainDataInfo.setDataValue(a.toString());
                 }
-                fullInfoList.put(dbDomainDataInfo.dataName, dbDomainDataInfo);
+                fullInfoList.put(dbDomainDataInfo.getDataName(), dbDomainDataInfo);
 
             }
         }

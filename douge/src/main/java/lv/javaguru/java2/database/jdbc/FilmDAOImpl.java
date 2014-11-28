@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.FilmDAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import lv.javaguru.java2.domain.Film;
 import org.springframework.stereotype.Component;
 
@@ -35,8 +36,8 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
     }
 
     @Override
-    public List<Film> getAllFromRange(int from, int amount) throws DBException {
-        List<Film> films = new ArrayList<Film>();
+    public List<DomainWidgetContent> getAllFromRange(int from, int amount) throws DBException {
+        List<DomainWidgetContent> films = new ArrayList<DomainWidgetContent>();
         Connection connection = null;
         try
         {
@@ -108,9 +109,9 @@ public class FilmDAOImpl extends DAOImpl implements FilmDAO {
 
 
     @Override
-    public List<Film> getAll() throws DBException {
+    public List<DomainWidgetContent> getAll() throws DBException {
         Connection connection = null;
-        List<Film> films = new ArrayList<Film>();
+        List<DomainWidgetContent> films = new ArrayList<DomainWidgetContent>();
         try
         {
             connection = getConnection();

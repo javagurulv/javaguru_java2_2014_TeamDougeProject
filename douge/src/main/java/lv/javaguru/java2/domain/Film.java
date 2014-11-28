@@ -1,6 +1,5 @@
 package lv.javaguru.java2.domain;
 
-import java.lang.reflect.Field;
 import java.util.*;
 
 /**

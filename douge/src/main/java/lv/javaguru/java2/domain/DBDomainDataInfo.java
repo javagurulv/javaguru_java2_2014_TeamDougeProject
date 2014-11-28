@@ -1,12 +1,40 @@
 package lv.javaguru.java2.domain;
 
+import com.google.visualization.datasource.datatable.ValueFormatter;
+import com.google.visualization.datasource.datatable.value.ValueType;
+import com.ibm.icu.util.ULocale;
+
 /**
  * Created by Sergo on 25.11.2014.
  */
 public class DBDomainDataInfo {
-    String dataName;
-    String dataType;
-    String dataValue;
+    private String dataName;
+    private ValueType dataType;
+    private String dataValue;
+
+    public String getDataValue() {
+        return dataValue;
+    }
+
+    public void setDataValue(String dataValue) {
+        this.dataValue = dataValue;
+    }
+
+    public ValueType getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(ValueType dataType) {
+        this.dataType = dataType;
+    }
+
+    public String getDataName() {
+        return dataName;
+    }
+
+    public void setDataName(String dataName) {
+        this.dataName = dataName;
+    }
 
     public String toString(){
         return dataName + " " + dataValue + " " + dataType;
