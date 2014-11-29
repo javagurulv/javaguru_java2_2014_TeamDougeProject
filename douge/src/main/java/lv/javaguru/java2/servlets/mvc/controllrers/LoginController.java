@@ -63,7 +63,7 @@ public class LoginController implements MVCController {
         return new MVCModel(Model, ErrorString);
     }
 
-    private boolean isParametersValid(HttpServletRequest req) {
+    protected boolean isParametersValid(HttpServletRequest req) {
         return !req.getParameter("login").trim().isEmpty() &&
                 !req.getParameter("passwd").trim().isEmpty();
     }

@@ -2,6 +2,8 @@ package lv.javaguru.java2.servlets.mvc.controllrers;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.database.jdbc.UserDAOImpl;
+import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -9,10 +11,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 public class LoginControllerTest extends MockitoTest{
 
@@ -22,18 +26,42 @@ public class LoginControllerTest extends MockitoTest{
     @InjectMocks
     private LoginController controller = new LoginController();
 
+
     @Test
     public void IsUserLogedIn() throws DBException{
         HttpServletRequest req = Mockito.mock(HttpServletRequest.class);
+        //HttpSession session = req.getSession();
         doReturn("submit").when(req).getParameter("submit");
         doReturn("juras").when(req).getParameter("login");
         doReturn("root").when(req).getParameter("passwd");
 
         MVCModel model=controller.processRequest(req, null);
 
+       // verify(userDAO, times(1)).getByLogin("juras");
+        assertNotNull(model);
+
+        assertEquals("", model.getData());
+        assertEquals("/jsp/securearea.jsp", model.getView());
+
+    }
+
+    @Test
+    public void IsUserLogedIn2() throws DBException{
+
+        HttpServletRequest req = Mockito.mock(HttpServletRequest.class);
+        doReturn("submit").when(req).getParameter("submit");
+        doReturn("juras").when(req).getParameter("login");
+        doReturn("root").when(req).getParameter("passwd");
+
+        controller = spy(controller);
+        doReturn(true).when(controller).isParametersValid(req);
+
+        MVCModel model=controller.processRequest(req, null);
+
+        verify(userDAO, times(1)).getByLogin("juras");
+        assertNotNull(model);
         assertEquals("/jsp/securearea.jsp", model.getView());
         assertEquals("", model.getData());
-
     }
 
 }
