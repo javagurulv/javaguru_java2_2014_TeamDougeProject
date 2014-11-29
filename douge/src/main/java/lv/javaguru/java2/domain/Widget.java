@@ -1,13 +1,35 @@
 package lv.javaguru.java2.domain;
 
+import javax.persistence.*;
+
 /**
  * Created by Radchuk on 10/10/2014.
  */
+
+@Entity
+@Table(name="widgets")
 public class Widget {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", columnDefinition = "INT(11)")
     private Long widget_id;
+
+    @Column(name="dashboard_id", nullable = false, columnDefinition = "INT(11)")
     private Long dashboard_id;
+
+    @Column(name="comments", nullable = false)
     private String comments;
+
+    @Column(name="metric_set_id", nullable = false, columnDefinition = "INT(11)")
     private long metric_set_id;
+
+    @Column(name="position", nullable = false, columnDefinition = "INT(11)")
+    private long position;
+
+    @Column(name="type_id", nullable = false, columnDefinition = "INT(11)")
+    private long widget_type_id;
+
 
     public long getMetric_set_id() {
         return metric_set_id;
@@ -32,9 +54,6 @@ public class Widget {
     public void setWidget_type_id(long widget_type_id) {
         this.widget_type_id = widget_type_id;
     }
-
-    private long position;
-    private long widget_type_id;
 
     public String getComments() {
         return comments;

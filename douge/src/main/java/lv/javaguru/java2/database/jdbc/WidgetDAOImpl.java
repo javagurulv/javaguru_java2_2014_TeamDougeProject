@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Sergo on 16.10.2014.
  */
-@Component
+@Component("JDBC_WidgetDAO")
 public class WidgetDAOImpl extends DAOImpl implements WidgetDAO {
     @Override
     public Widget getByID(Long id) throws DBException {
