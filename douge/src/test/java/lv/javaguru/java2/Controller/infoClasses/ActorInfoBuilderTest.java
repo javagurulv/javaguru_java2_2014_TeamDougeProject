@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.java2.Controller.infoClasses;
 
 import lv.javaguru.java2.Controller.Builders.ActorInfoBuilder;
@@ -15,9 +16,11 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+*/
 /**
  * Created by Juris on 05.11.2014.
- */
+ *//*
+
 @Ignore
 public class ActorInfoBuilderTest {
 
@@ -48,3 +51,4 @@ public class ActorInfoBuilderTest {
     }
 
 }
+*/

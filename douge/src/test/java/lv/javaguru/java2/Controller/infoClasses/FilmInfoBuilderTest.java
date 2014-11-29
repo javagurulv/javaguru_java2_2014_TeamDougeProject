@@ -1,8 +1,11 @@
+/*
 package lv.javaguru.java2.Controller.infoClasses;
 
+*/
 /**
  * Created by Radchuk on 11/3/2014.
- */
+ *//*
+
 import static org.junit.Assert.*;
 
 import lv.javaguru.java2.Controller.Builders.FilmInfoBuilder;
@@ -42,3 +45,4 @@ public class FilmInfoBuilderTest {
    }
 
 }
+*/

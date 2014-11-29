@@ -34,14 +34,14 @@ public class FilmDAOImplTest {
     {
         int count = filmDAO.getFilmsAmount();
 
-        List<Film> films = filmDAO.getAll();
+        List<DomainWidgetContent> films = filmDAO.getAll();
         assertEquals(films.size(),count);
     }
 
     @Test
     public void testGetAllFromRange() throws DBException
     {
-        List<Film> films = filmDAO.getAllFromRange(50,3);
+        List<DomainWidgetContent> films = filmDAO.getAllFromRange(50,3);
         List<DomainWidgetContent> f = new ArrayList<DomainWidgetContent>();
         for (int i = 0; i <films.size() ; i++) {
             Assert.assertTrue(f.add(films.get(i)));

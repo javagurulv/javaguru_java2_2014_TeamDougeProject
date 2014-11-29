@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.ActorDAO;
 import lv.javaguru.java2.database.DAOFactory;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Actor;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import org.junit.Test;
 
 import java.util.List;
@@ -22,14 +23,14 @@ public class ActorDAOImplTest {
     {
         int count = actorDAO.getActorsAmount();
 
-        List<Actor> actors = actorDAO.getAll();
+        List<DomainWidgetContent> actors = actorDAO.getAll();
         assertEquals(actors.size(),count);
     }
 
     @Test
     public void testGetAllFromRange() throws DBException
     {
-        List<Actor> actors = actorDAO.getAllFromRange(50,10);
+        List<DomainWidgetContent> actors = actorDAO.getAllFromRange(50,10);
         assertEquals(actors.size(),10);
     }
 
