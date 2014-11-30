@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Radchuk on 11/10/2014.
  */
-@Component
+@Component("JDBC_MetricDAO")
 public class MetricDAOImpl extends DAOImpl implements MetricDAO {
     @Override
     public void create(Metric metric) throws DBException {

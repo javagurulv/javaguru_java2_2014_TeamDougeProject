@@ -1,13 +1,24 @@
 package lv.javaguru.java2.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by Sergo on 21.10.2014.
  */
+@Entity
+@Table(name = "language")
 public class Language {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "language_id", nullable = false,  columnDefinition = "tinyint(3)")
     private int language_id;
+
+    @Column(name = "name", nullable = false,  columnDefinition = "char(20)")
     private String name;
+
+    @Column(name = "last_update", nullable = false,  columnDefinition = "timestamp")
     private Date last_update;
 
     public Language(int language_id, String name, Date last_update) {

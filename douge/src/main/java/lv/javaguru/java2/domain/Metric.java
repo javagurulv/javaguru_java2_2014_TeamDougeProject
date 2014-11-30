@@ -1,12 +1,26 @@
 package lv.javaguru.java2.domain;
 
+import javax.persistence.*;
+
 /**
  * Created by Radchuk on 11/10/2014.
  */
+@Entity
+@Table(name="metrics")
 public class Metric {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", columnDefinition = "int(11)")
     private Integer id;
+
+    @Column(name="type", nullable = false, columnDefinition = "varchar(50)")
     private  String type;
+
+    @Column(name="compatibility", nullable = false, columnDefinition = "int(11)")
     private Integer compatibility;
+
+    @Column(name="name", nullable = false, columnDefinition = "varchar(255)")
     private String name;
 
     public Integer getId() {

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Sergo on 21.10.2014.
  */
-@Component
+@Component("JDBC_LanguageDAO")
 public class LanguageDAOImpl extends DAOImpl implements LanguageDAO {
     @Override
     public Language getById(int id) throws DBException {
