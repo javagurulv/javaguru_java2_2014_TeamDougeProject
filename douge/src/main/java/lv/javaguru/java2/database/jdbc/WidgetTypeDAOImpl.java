@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Radchuk on 10/11/2014.
  */
-@Component
+@Component("JDBC_WidgetTypeDAO")
 public class WidgetTypeDAOImpl extends  DAOImpl implements WidgetTypeDAO {
 
     public void create (WidgetType widgetType)throws DBException{
