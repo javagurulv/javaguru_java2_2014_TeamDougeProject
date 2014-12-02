@@ -47,7 +47,7 @@ public class MVCFilter implements Filter {
         controllerMap.put("/logout", getBean(LogoutController.class));
         controllerMap.put("/adduser", getBean(AddUserController.class));
         controllerMap.put("/test", getBean(TestController.class));
-        controllerMap.put("/picture", getBean(PicturesController.class));
+        controllerMap.put("/picture", getBean(PictureController.class));
     }
 
     private MVCController getBean(Class clazz){
