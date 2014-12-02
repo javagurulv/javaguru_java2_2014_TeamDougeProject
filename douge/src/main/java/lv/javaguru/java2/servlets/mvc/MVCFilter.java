@@ -47,6 +47,7 @@ public class MVCFilter implements Filter {
         controllerMap.put("/logout", getBean(LogoutController.class));
         controllerMap.put("/adduser", getBean(AddUserController.class));
         controllerMap.put("/test", getBean(TestController.class));
+        controllerMap.put("/picture", getBean(PicturesController.class));
     }
 
     private MVCController getBean(Class clazz){
@@ -66,24 +67,26 @@ public class MVCFilter implements Filter {
 
         System.out.println("contextURI " + contextURI);
 
-        //String path = ((HttpServletRequest) request).getRequestURI();
-        //System.out.println(path);
+        String path = ((HttpServletRequest) request).getRequestURI();
+        System.out.println(path);
+        if (controllerMap.keySet().contains(contextURI)){
+            MVCController controller = controllerMap.get(contextURI);
+            MVCModel model = null;
+            try {
+                model = controller.processRequest(req, resp);
+            } catch (TypeMismatchException e) {
+                e.printStackTrace();
+            }
 
 
-        MVCController controller = controllerMap.get(contextURI);
-        MVCModel model = null;
-        try {
-            model = controller.processRequest(req, resp);
-        } catch (TypeMismatchException e) {
-            e.printStackTrace();
+            req.setAttribute("model", model.getData());
+            ServletContext context = req.getServletContext();
+            System.out.println("View: "+model.getView());
+            RequestDispatcher requestDispacher = context.getRequestDispatcher(model.getView());
+            requestDispacher.forward(req, resp);
         }
+        else filterChain.doFilter(request,response);
 
-
-        req.setAttribute("model", model.getData());
-        ServletContext context = req.getServletContext();
-        System.out.println("View: "+model.getView());
-        RequestDispatcher requestDispacher = context.getRequestDispatcher(model.getView());
-        requestDispacher.forward(req, resp);
     }
 
     @Override
