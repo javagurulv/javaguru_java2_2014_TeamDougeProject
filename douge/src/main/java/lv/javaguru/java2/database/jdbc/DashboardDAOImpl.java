@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Radchuk on 10/11/2014.
  */
 
-@Component
+@Component("JDBC_DashboardDAO")
 public class DashboardDAOImpl extends DAOImpl implements DashboardDAO {
 
     public void create(Dashboard dashboard)throws DBException{
