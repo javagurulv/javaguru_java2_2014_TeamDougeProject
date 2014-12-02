@@ -7,11 +7,13 @@ import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 /**
  * Created by Radchuk on 11/14/2014.
@@ -20,9 +22,11 @@ import javax.servlet.http.HttpSession;
 public class LoginController implements MVCController {
 
     @Autowired
+    @Qualifier("ORM_UserDAO")
     private UserDAO userDAO;
 
     @Override
+    @Transactional
     public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
 
         String Model = "/jsp/login.jsp";
