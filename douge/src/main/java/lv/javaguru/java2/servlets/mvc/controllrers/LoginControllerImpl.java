@@ -18,7 +18,7 @@ import javax.transaction.Transactional;
  * Created by Radchuk on 11/14/2014.
  */
 @Component
-public class LoginControllerImpl implements MVCController {
+public class LoginControllerImpl implements LoginController {
 
     @Autowired
     @Qualifier("ORM_UserDAO")
