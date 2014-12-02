@@ -5,11 +5,9 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,13 +15,13 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 
-public class AddUserControllerTest extends MockitoTest {
+public class AddUserControllerImplTest extends MockitoTest {
 
     @Mock
     private UserDAO userDAO;
 
     @InjectMocks
-    private AddUserController controller = new AddUserController();
+    private AddUserControllerImpl controller = new AddUserControllerImpl();
 
 
     @Test

@@ -2,8 +2,6 @@ package lv.javaguru.java2.servlets.mvc.controllrers;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
-import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,20 +9,19 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
-public class LoginControllerTest extends MockitoTest{
+
+public class LoginControllerImplTest extends MockitoTest{
 
     @Mock
     private UserDAO userDAO;
 
     @InjectMocks
-    private LoginController controller = new LoginController();
+    private LoginControllerImpl controller = new LoginControllerImpl();
 
 
     @Test
