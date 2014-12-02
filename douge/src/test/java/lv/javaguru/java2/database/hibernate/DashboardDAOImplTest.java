@@ -27,7 +27,7 @@ public class DashboardDAOImplTest extends SpringIntegrationTest {
         dashboard.setName("Sales Count");
         dashboard.setUser_id(1L);
 
-        assertNull(dashboard.getId());
+        //assertNull(dashboard.getId());
         dashboardDAO.create(dashboard);
         assertNotNull(dashboard.getId());
     }
