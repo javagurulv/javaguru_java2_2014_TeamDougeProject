@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id", columnDefinition = "int(11)")
-    private long userId;
+    private Long userId;
 
     @Column(name="login", nullable = false, columnDefinition = "varchar(45)")
     private String login;
@@ -34,11 +34,11 @@ public class User {
         this.user_type = user_type;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

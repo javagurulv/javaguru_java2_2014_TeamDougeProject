@@ -117,13 +117,13 @@ public class DashboardDAOImplTest {
 
         User user = new User();
 
-        user.setUserId(2);
+        user.setUserId(2L);
 
         List<Dashboard> dashboards = dashboardDAO.getAllForUser(user);
 
         assertEquals(dashboards.size(), 3);
 
-        user.setUserId(8);
+        user.setUserId(8L);
 
         dashboards = dashboardDAO.getAllForUser(user);
 
