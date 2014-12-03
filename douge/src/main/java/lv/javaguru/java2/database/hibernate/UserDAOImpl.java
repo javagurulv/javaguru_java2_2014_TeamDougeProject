@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User getByLogin(String login) throws DBException {
         Session session = sessionFactory.getCurrentSession();
-        return (User) session.get(User.class, login);
+        return (User) session.createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();
     }
 
     @Override

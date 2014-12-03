@@ -32,11 +32,21 @@ public class UserDAOImplTest extends SpringIntegrationTest {
     @Test
     @Transactional
     public void createNewUser() throws DBException {
-        User user = createUser(0, "Login2", "Password1", "Comment1");
+        User user = createUser(0, "Login1", "Password1", "Comment1");
 
         assertNull(user.getUserId());
         userDAO.create(user);
         assertNotNull(user.getUserId());
+    }
+
+    @Test
+    @Transactional
+    public void getUserByLogin() throws DBException {
+        User user = createUser(1, "Login2", "Passord2", "Comment2");
+        userDAO.create(user);
+
+        User userFromDB = userDAO.getByLogin("Login2");
+        assertEquals(user.getLogin(), userFromDB.getLogin());
     }
 
     private User createUser(int user_type, String login, String password, String comments){
