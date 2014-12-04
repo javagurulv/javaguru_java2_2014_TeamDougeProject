@@ -20,7 +20,7 @@ public class MetricDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
     private MetricDAO metricDAO = new MetricDAOImpl();
 
-    private Metric createMetric(String type, String name, Integer compatibility)
+    private Metric createMetric(String type, String name, Long compatibility)
     {
         Metric metric = new Metric();
         metric.setCompatibility(compatibility);
@@ -44,7 +44,7 @@ public class MetricDAOImplTest {
     @Test
     public void testCreate() throws DBException
     {
-        Metric metric = createMetric("Primary", "Count",30);
+        Metric metric = createMetric("Primary", "Count",30L);
         metricDAO.create(metric);
 
         Metric metricFromDB = metricDAO.getById(metric.getId());
@@ -56,7 +56,7 @@ public class MetricDAOImplTest {
     @Test
     public void testDelete() throws DBException
     {
-        Metric metric = createMetric("Primary", "Count",30);
+        Metric metric = createMetric("Primary", "Count",30L);
         metricDAO.create(metric);
         metricDAO.delete(metric.getId());
 
@@ -67,12 +67,12 @@ public class MetricDAOImplTest {
     @Test
     public void testUpdate() throws DBException
     {
-        Metric metric = createMetric("Primary", "Count",30);
+        Metric metric = createMetric("Primary", "Count",30L);
         metricDAO.create(metric);
 
         metric.setType("Secondary");
         metric.setName("DAY");
-        metric.setCompatibility(8);
+        metric.setCompatibility(8L);
 
         metricDAO.update(metric);
 
@@ -83,9 +83,9 @@ public class MetricDAOImplTest {
     @Test
     public void testGetAll() throws DBException
     {
-        Metric metric = createMetric("Primary", "Count",30);
+        Metric metric = createMetric("Primary", "Count",30L);
         metricDAO.create(metric);
-        Metric metric1 = createMetric("Secondary", "Staff", 8);
+        Metric metric1 = createMetric("Secondary", "Staff", 8L);
         metricDAO.create(metric1);
 
         List<Metric> metrics = metricDAO.getAll();

@@ -10,9 +10,9 @@ import java.util.List;
 public interface MetricDAO {
 
     void create(Metric metric) throws DBException;
-    void delete(Integer id) throws DBException;
+    void delete(Long id) throws DBException;
     void update(Metric metric) throws DBException;
-    Metric getById(Integer id) throws DBException;
+    Metric getById(Long id) throws DBException;
     List<Metric> getAll() throws DBException;
 
 }

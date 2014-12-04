@@ -12,24 +12,18 @@ public class Metric {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id", columnDefinition = "int(11)")
-    private Integer id;
+    private Long id;
 
     @Column(name="type", nullable = false, columnDefinition = "varchar(50)")
     private  String type;
 
     @Column(name="compatibility", nullable = false, columnDefinition = "int(11)")
-    private Integer compatibility;
+    private Long compatibility;
 
     @Column(name="name", nullable = false, columnDefinition = "varchar(255)")
     private String name;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getType() {
         return type;
@@ -39,13 +33,7 @@ public class Metric {
         this.type = type;
     }
 
-    public Integer getCompatibility() {
-        return compatibility;
-    }
 
-    public void setCompatibility(Integer compatibility) {
-        this.compatibility = compatibility;
-    }
 
     public String getName() {
         return name;
@@ -55,5 +43,19 @@ public class Metric {
         this.name = name;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCompatibility() {
+        return compatibility;
+    }
+
+    public void setCompatibility(Long compatibility) {
+        this.compatibility = compatibility;
+    }
 }

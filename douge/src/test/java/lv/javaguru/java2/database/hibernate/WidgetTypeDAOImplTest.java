@@ -19,11 +19,12 @@ public class WidgetTypeDAOImplTest extends SpringIntegrationTest{
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
-    private WidgetType createWidgetType( String name, String comments)
+    private WidgetType createWidgetType( String name, String comments, Long compat)
     {
         WidgetType widgetType = new WidgetType();
         widgetType.setComments(comments);
         widgetType.setName(name);
+        widgetType.setCompatibility_sign(compat );
 
         return widgetType;
     }
@@ -41,6 +42,7 @@ public class WidgetTypeDAOImplTest extends SpringIntegrationTest{
         WidgetType widgetType = new WidgetType();
         widgetType.setComments("comments");
         widgetType.setName("name");
+        widgetType.setCompatibility_sign(128L);
 
         assertNull(widgetType.getId());
         widgetTypeDAO.create(widgetType);
@@ -49,32 +51,32 @@ public class WidgetTypeDAOImplTest extends SpringIntegrationTest{
 
     @Test @Transactional
     public void getWidgetTypeById() throws DBException{
-        WidgetType widgetType1 = createWidgetType("name1","comments1");
+        WidgetType widgetType1 = createWidgetType("name1","comments1",128L);
         widgetTypeDAO.create(widgetType1);
 
-        WidgetType widgetType2 = createWidgetType("name2","comments2");
+        WidgetType widgetType2 = createWidgetType("name2","comments2", 64L);
         widgetTypeDAO.create(widgetType2);
 
-        WidgetType widgetTypeFromDB = widgetTypeDAO.getById(1L);
+        WidgetType widgetTypeFromDB = widgetTypeDAO.getById(widgetType1.getId());
         assertEquals(widgetType1.getName(),widgetTypeFromDB.getName());
         assertEquals(widgetType1.getComments(),widgetTypeFromDB.getComments());
     }
 
     @Test @Transactional
     public void getAllWidgetTypes() throws DBException{
-        WidgetType widgetType1 = createWidgetType("name1","comments1");
+       /* WidgetType widgetType1 = createWidgetType("name1","comments1");
         widgetTypeDAO.create(widgetType1);
 
         WidgetType widgetType2 = createWidgetType("name2","comments2");
-        widgetTypeDAO.create(widgetType2);
+        widgetTypeDAO.create(widgetType2);*/
 
         List<WidgetType> widgetTypes = widgetTypeDAO.getAll();
-        assertEquals(widgetTypes.size(),2);
+        assertEquals(widgetTypes.size(),4);
     }
 
     @Test @Transactional
     public void deleteWidgetType() throws DBException{
-        WidgetType widgetType = createWidgetType("name", "comments");
+        WidgetType widgetType = createWidgetType("name", "comments", 128L);
         widgetTypeDAO.create(widgetType);
 
         widgetTypeDAO.delete(widgetType.getId());
@@ -87,7 +89,7 @@ public class WidgetTypeDAOImplTest extends SpringIntegrationTest{
     @Test @Transactional
     public void updateWidgetType() throws DBException
     {
-        WidgetType widgetType = createWidgetType("name", "comments");
+        WidgetType widgetType = createWidgetType("name", "comments",128L);
         widgetTypeDAO.create(widgetType);
 
         widgetType.setName("name1");

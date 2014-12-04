@@ -33,7 +33,7 @@ public class MetricDAOImpl extends DAOImpl implements MetricDAO {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if(resultSet.next())
             {
-                metric.setId((int) resultSet.getLong(1));
+                metric.setId( resultSet.getLong(1));
             }
         }
         catch (Throwable e)
@@ -46,7 +46,7 @@ public class MetricDAOImpl extends DAOImpl implements MetricDAO {
     }
 
     @Override
-    public void delete(Integer id) throws DBException {
+    public void delete(Long id) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
@@ -93,15 +93,15 @@ public class MetricDAOImpl extends DAOImpl implements MetricDAO {
 
     private Metric buildMetric(ResultSet resultSet) throws SQLException {
         Metric metric = new Metric();
-        metric.setId((int) resultSet.getLong("id"));
+        metric.setId(resultSet.getLong("id"));
         metric.setType(resultSet.getString("type"));
         metric.setName(resultSet.getString("name"));
-        metric.setCompatibility((int) resultSet.getLong("compatibility"));
+        metric.setCompatibility( resultSet.getLong("compatibility"));
         return metric;
     }
 
     @Override
-    public Metric getById(Integer id) throws DBException {
+    public Metric getById(Long id) throws DBException {
         Metric metric = null;
         Connection connection = null;
         try

@@ -19,7 +19,7 @@ public class MetricDAOImpl implements MetricDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public Metric getById(Integer id) throws DBException {
+    public Metric getById(Long id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return (Metric) session.get(Metric.class, id);
     }
@@ -31,7 +31,7 @@ public class MetricDAOImpl implements MetricDAO {
     }
 
     @Override
-    public void delete(Integer id) throws DBException {
+    public void delete(Long id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         Metric metric = (Metric) session.get(Metric.class, id);
         session.delete(metric);
