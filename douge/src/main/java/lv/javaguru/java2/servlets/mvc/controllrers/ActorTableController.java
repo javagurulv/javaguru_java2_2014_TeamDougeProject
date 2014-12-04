@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Juris on 08.11.2014.
@@ -25,6 +27,11 @@ public class ActorTableController implements MVCController {
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        /*Map<String,String> params = new HashMap<String, String>();
+        if (request.getAttribute("interval")!=null){
+            params.put("interval",request.getAttribute("interval").toString());
+        }*/
 
         try {
             actorTableData.buildTableData();
