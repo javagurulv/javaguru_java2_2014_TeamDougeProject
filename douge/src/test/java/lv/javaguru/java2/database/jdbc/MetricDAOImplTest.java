@@ -83,15 +83,11 @@ public class MetricDAOImplTest {
     @Test
     public void testGetAll() throws DBException
     {
-        Metric metric = createMetric("Primary", "Count",30L);
-        metricDAO.create(metric);
-        Metric metric1 = createMetric("Secondary", "Staff", 8L);
-        metricDAO.create(metric1);
+
 
         List<Metric> metrics = metricDAO.getAll();
         assertEquals(metrics.size(), 2);
-        matchMetrics(metric, metrics.get(0));
-        matchMetrics(metric1, metrics.get(1));
+
     }
 
 
