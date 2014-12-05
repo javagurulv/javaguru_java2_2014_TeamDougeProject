@@ -20,9 +20,9 @@ public class LogoutController implements MVCController {
         //invalidate the session if exists
         if (session != null) {
             session.invalidate();
-            return new MVCModel("/jsp/login.jsp", "You have successfully logged out!");
+            return new MVCModel("/jsp/logout.jsp", 1); //logout and redirect
         } else {
-            return new MVCModel("/jsp/login.jsp", "");
+            return new MVCModel("/jsp/logout.jsp", 0); //just redirect
         }
     }
 }

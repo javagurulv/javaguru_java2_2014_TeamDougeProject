@@ -28,10 +28,7 @@ public class LoginControllerImpl implements LoginController {
     @Transactional
     public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
 
-        String Model = "/jsp/login.jsp";
-        String ErrorString = "";
-        final String incorrectLoginString = "<font color=\"red\">Login and/or password incorrect!</font>";
-        final String emptyLoginString ="<font color=\"red\">Name and/or password can't be empty!</font>";
+        Integer errorType = null;
 
         //check that submit button was pressed and POST data received
         if (req.getParameter("submit") != null) {
@@ -41,29 +38,28 @@ public class LoginControllerImpl implements LoginController {
                 String login = req.getParameter("login");
                 String password = req.getParameter("passwd");
 
-                User userFromDB;
+                User user;
 
                 try {
-                    userFromDB = userDAO.getByLogin(login);
+                    user = userDAO.getByLogin(login);
 
                     //check that login exists and password matches
-                    if (userFromDB != null && password.equals(userFromDB.getPassword())) {
+                    if (user != null && password.equals(user.getPassword())) {
                         HttpSession session = req.getSession();
                         session.setAttribute("sessionLogin", login);
                         session.setMaxInactiveInterval(300);
-
-                        Model = "/jsp/securearea.jsp";
+                        errorType = 0; //Login successful
                     } else {
-                        ErrorString = incorrectLoginString;
+                        errorType = 1; //Login or password incorrect
                     }
                 } catch (DBException e) {
                     e.printStackTrace();
                 }
             } else {
-                ErrorString = emptyLoginString;
+                errorType = 2; //Login or password is empty;
             }
         }
-        return new MVCModel(Model, ErrorString);
+        return new MVCModel("/jsp/login.jsp", errorType);
     }
 
     protected boolean isParametersValid(HttpServletRequest req) {
