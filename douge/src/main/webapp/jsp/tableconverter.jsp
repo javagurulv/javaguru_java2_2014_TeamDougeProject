@@ -36,11 +36,18 @@
     }
 </script>
 <div id="table_div"></div>
+<br>
+<div align="center">
+
 <%
  for (int i=0;i<interval;i++){
+     if(request.getParameter("interval")!=null && Integer.valueOf(request.getParameter("interval"))==i){
+         out.print(i+1);
+     } else{
         %>
 <a href="/actors?interval=<%out.print(i);%>"><%out.print(i+1);%></a>
-   <% }
+   <% }}
 %>
+</div>
 </body>
 </html>
