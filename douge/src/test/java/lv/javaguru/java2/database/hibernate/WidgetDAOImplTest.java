@@ -1,7 +1,9 @@
 package lv.javaguru.java2.database.hibernate;
 
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.DashboardDAO;
 import lv.javaguru.java2.database.WidgetDAO;
+import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.Widget;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,19 @@ public class WidgetDAOImplTest extends SpringIntegrationTest {
     @Qualifier("ORM_WidgetDAO")
     private WidgetDAO widgetDAO;
 
+    @Autowired
+    @Qualifier("ORM_DashboardDAO")
+    private DashboardDAO dashboardDAO;
 
     @Test
     @Transactional
     public void createNewWidgetInstance() throws DBException {
+
+        Dashboard dashboard = dashboardDAO.getById(2L);
+
         Widget widget = new Widget();
         widget.setComments("sdfsdfsd");
-        widget.setDashboard_id(50L);
+        widget.setDashboard(dashboard);
         widget.setMetric_set_id(8L);
         widget.setWidget_type_id(1);
         widget.setPosition(3L);

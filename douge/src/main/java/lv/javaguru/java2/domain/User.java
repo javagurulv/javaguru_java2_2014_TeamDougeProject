@@ -1,6 +1,9 @@
 package lv.javaguru.java2.domain;
 
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Viktor on 01/07/2014.
@@ -25,6 +28,10 @@ public class User {
 
     @Column(name="comments", nullable = true, columnDefinition = "varchar(255)")
     private String comments;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Dashboard> dashboards;
 
     public long getUser_type() {
         return user_type;
@@ -64,5 +71,9 @@ public class User {
 
     public String getComments() {
         return comments;
+    }
+
+    public List<Dashboard> getDashboards() {
+        return dashboards;
     }
 }

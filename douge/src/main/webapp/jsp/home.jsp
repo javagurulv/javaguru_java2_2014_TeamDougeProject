@@ -1,5 +1,7 @@
 <%@ page import="lv.javaguru.java2.domain.Dashboard" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="lv.javaguru.java2.domain.Widget" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -35,6 +37,16 @@
         for (int i = 0; i < dashboardList.size(); i++) {
             Dashboard dashboard = dashboardList.get(i);
             out.println("<a href=\"?id=" + dashboard.getId() + "\">" + dashboard.getName() + "</a><br>");
+        }
+
+        for (int i = 0; i < dashboardList.size(); i++) {
+            Dashboard dashboard = dashboardList.get(i);
+            List<Widget> widgets = dashboard.getWidgets();
+
+            for (int j = 0; j < widgets.size(); j++) {
+                Widget widget = widgets.get(j);
+                out.println("...<a href=\"?id=" + widget.getWidget_id() + "\">" + widget.getComments() + "</a><br>");
+            }
         }
     %>
 </body>

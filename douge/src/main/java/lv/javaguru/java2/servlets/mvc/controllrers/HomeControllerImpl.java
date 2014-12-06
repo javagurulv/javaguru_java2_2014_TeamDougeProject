@@ -2,6 +2,7 @@ package lv.javaguru.java2.servlets.mvc.controllrers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.DashboardDAO;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.database.WidgetDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
@@ -31,6 +32,10 @@ public class HomeControllerImpl implements HomeController {
     @Qualifier("ORM_DashboardDAO")
     private DashboardDAO dashboardDAO;
 
+    @Autowired
+    @Qualifier("ORM_WidgetDAO")
+    private WidgetDAO widgetDAO;
+
     @Override
     @Transactional
     public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
@@ -56,6 +61,12 @@ public class HomeControllerImpl implements HomeController {
                 e.printStackTrace();
             }
         }
+
+        for (Dashboard dashboard: dashboards) {
+            dashboard.getWidgets();
+        }
+
+
 
         return new MVCModel("/jsp/home.jsp", dashboards);
     }

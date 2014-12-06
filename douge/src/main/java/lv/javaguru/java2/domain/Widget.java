@@ -15,7 +15,8 @@ public class Widget {
     @Column(name="id", columnDefinition = "INT(11)")
     private Long widget_id;
 
-    @Column(name="dashboard_id", nullable = false, columnDefinition = "INT(11)")
+    //@Column(name="dashboard_id", nullable = false, columnDefinition = "INT(11)")
+    @Transient
     private Long dashboard_id;
 
     @Column(name="comments", nullable = false)
@@ -30,6 +31,10 @@ public class Widget {
     @Column(name="type_id", nullable = false, columnDefinition = "INT(11)")
     private long widget_type_id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "dashboard_id", nullable = false)
+    private Dashboard dashboard;
 
     public long getMetric_set_id() {
         return metric_set_id;
@@ -77,5 +82,14 @@ public class Widget {
 
     public Long getWidget_id() {
         return widget_id;
+    }
+
+
+    public Dashboard getDashboard() {
+        return dashboard;
+    }
+
+    public void setDashboard(Dashboard dashboard) {
+        this.dashboard = dashboard;
     }
 }
