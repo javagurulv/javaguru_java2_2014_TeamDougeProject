@@ -1,5 +1,7 @@
 <%@ page import="com.google.visualization.datasource.datatable.DataTable" %>
 <%@ page import="com.google.visualization.datasource.render.JsonRenderer" %>
+<%@ page import="org.springframework.ui.Model" %>
+<%@ page import="lv.javaguru.java2.servlets.mvc.models.MVCActorModel" %>
 <%--
   Created by IntelliJ IDEA.
   User: Juris
@@ -14,7 +16,9 @@
 </head>
 <body>
 <%
-    String str =(String)request.getAttribute("model");
+    MVCActorModel actorModel =(MVCActorModel)request.getAttribute("model");
+    String str = actorModel.getData().toString();
+    Integer interval = actorModel.getInterval();
 %>
 
 <script type="text/javascript">
@@ -32,5 +36,11 @@
     }
 </script>
 <div id="table_div"></div>
+<%
+ for (int i=0;i<interval;i++){
+        %>
+<a href="/actors?interval=<%out.print(i);%>"><%out.print(i+1);%></a>
+   <% }
+%>
 </body>
 </html>

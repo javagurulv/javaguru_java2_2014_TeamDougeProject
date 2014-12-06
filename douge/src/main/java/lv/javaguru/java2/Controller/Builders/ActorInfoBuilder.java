@@ -44,18 +44,17 @@ public class ActorInfoBuilder implements WidgetTableData {
     public void buildTableData(Map<String, String> params) throws DBException {
         Integer interval = 1;
         Integer from = 1;
-        Integer to = 10;
+        Integer amount = 10;
 
         if (params.keySet().contains("interval")&&params.get("interval")!=null){
             try {
                 interval = Integer.valueOf(params.get("interval"));
                 from = interval *10;
-                to = from+10;
             }
             catch (Exception e){
                 e.printStackTrace();
             }
         }
-        tableData = actorDAO.getAllFromRange(from,to);
+        tableData = actorDAO.getAllFromRange(from,amount);
     }
 }
