@@ -3,12 +3,12 @@ package lv.javaguru.java2.database.hibernate;
 import lv.javaguru.java2.database.ChartDataDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.ChartData;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -44,5 +44,15 @@ public class ChartDataDAOImpl implements ChartDataDAO {
         recordsAmount = Integer.valueOf(obj.toString());
 
         return recordsAmount;
+    }
+
+    @Override
+    public List<Object> getByQueryText(String queryText) throws DBException {
+       Session session = sessionFactory.getCurrentSession();
+        SQLQuery query = session.createSQLQuery(queryText);
+
+        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+        List result = query.list();
+        return result;
     }
 }
