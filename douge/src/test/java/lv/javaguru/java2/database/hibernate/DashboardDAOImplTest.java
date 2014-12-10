@@ -28,7 +28,7 @@ public class DashboardDAOImplTest extends SpringIntegrationTest {
     @Test
     @Transactional
     public void createNewDashboardInstance() throws DBException {
-        User user = userDAO.getById(2L);
+        User user = userDAO.getById(1L);
 
         Dashboard dashboard = new Dashboard();
         dashboard.setName("Sales Count");
