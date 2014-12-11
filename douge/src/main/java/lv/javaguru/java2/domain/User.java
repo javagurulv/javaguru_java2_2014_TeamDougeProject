@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="users")
-public class User {
+public class User extends DBDomain{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

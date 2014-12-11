@@ -2,6 +2,7 @@ package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -114,8 +115,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
-    public List<User> getAll() throws DBException {
-        List<User> users = new ArrayList<User>();
+    public List<DomainWidgetContent> getAll() throws DBException {
+        List<DomainWidgetContent> users = new ArrayList<DomainWidgetContent>();
         Connection connection = null;
         try {
             connection = getConnection();

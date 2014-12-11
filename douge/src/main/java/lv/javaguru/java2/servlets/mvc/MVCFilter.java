@@ -49,6 +49,7 @@ public class MVCFilter implements Filter {
         controllerMap.put("/adduser", getBean(AddUserController.class));
         controllerMap.put("/test", getBean(TestController.class));
         controllerMap.put("/picture", getBean(PictureController.class));
+        controllerMap.put("/users", getBean(UserTableController.class));
     }
 
     private MVCController getBean(Class clazz){

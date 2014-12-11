@@ -2,6 +2,7 @@ package lv.javaguru.java2.database.hibernate;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,12 +10,14 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by user on 02-Dec-14.
  */
 @Component("ORM_UserDAO")
+@Transactional
 public class UserDAOImpl implements UserDAO{
 
     @Autowired
@@ -52,7 +55,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public List<User> getAll() throws DBException {
+    public List<DomainWidgetContent> getAll() throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(User.class).list();
     }
