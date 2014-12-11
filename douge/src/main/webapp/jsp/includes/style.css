@@ -1,0 +1,32 @@
+#header {
+    background-color:lightgray;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    background-color:lightgray;
+    line-height:30px;
+    height:300px;
+    width:200px;
+    float:left;
+    margin-top:10px;
+    padding:10px;
+}
+#section {
+    float:left;
+    padding:10px;
+}
+#widget {
+    float:left;
+    margin:20px;
+    padding:10px;
+    width:500px;
+    height:300px;
+    background-color:lightgray;
+}
+#footer {
+    background-color:lightgray;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}

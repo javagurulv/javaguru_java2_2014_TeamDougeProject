@@ -6,6 +6,7 @@ import lv.javaguru.java2.database.WidgetDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Widget;
+import lv.javaguru.java2.servlets.mvc.models.MVCDashboardModel;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,16 +40,16 @@ public class HomeControllerImpl implements HomeController {
 
     @Override
     @Transactional
-    public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
+    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
 
         String sessionLogin = null;
+        HttpSession session = request.getSession();
 
-        HttpSession session = req.getSession();
-
+        //check that User sessions is set
         if (session.getAttribute("sessionLogin") != null) {
-
             sessionLogin = (String) session.getAttribute("sessionLogin");
 
+            //get current user
             User user = null;
             try {
                 user = userDAO.getByLogin(sessionLogin);
@@ -56,6 +57,7 @@ public class HomeControllerImpl implements HomeController {
                 e.printStackTrace();
             }
 
+            //get list of dashboard for current user
             try {
                 dashboards = dashboardDAO.getAllForUser(user);
             } catch (DBException e) {
@@ -63,13 +65,38 @@ public class HomeControllerImpl implements HomeController {
             }
         }
 
+        Dashboard currentDashboard = null;
+
+        if (request.getParameter("dashboard_id") != null &&
+                !request.getParameter("dashboard_id").trim().isEmpty()) {
+            //currentDashboardId = Integer.parseInt(request.getParameter("dashboard_id"));
+            //Long.parseLong(request.getParameter("dashboard_id"))
+            Long currentDashboardId = Long.parseLong(request.getParameter("dashboard_id"));
+            try {
+                currentDashboard = dashboardDAO.getById(currentDashboardId);
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+
+            for (Widget widget: currentDashboard.getWidgets()) {
+                widget.getWidget_id();
+            }
+        }
+
+        /*
+        //Hibernate workaround: loop through all widgets for current user
         for (Dashboard dashboard: dashboards) {
             dashboard.getWidgets();
             for (Widget widget: dashboard.getWidgets()) {
                 widget.getWidget_id();
             }
         }
+        */
 
-        return new MVCModel("/jsp/home.jsp", dashboards);
+        MVCDashboardModel mvcDashboardModel;
+
+        mvcDashboardModel = new MVCDashboardModel("/jsp/home.jsp", dashboards, currentDashboard);
+
+        return new MVCModel("/jsp/home.jsp", mvcDashboardModel);
     }
 }
