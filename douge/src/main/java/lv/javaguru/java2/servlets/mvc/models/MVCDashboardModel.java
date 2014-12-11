@@ -13,14 +13,7 @@ public class MVCDashboardModel extends MVCModel {
         this.currentDashboard = currentDashboard;
     }
 
-    /*
-    public Integer getCurrentDashboardId() {
-        return currentDashboardId;
-    }
-    */
-
     public Dashboard getCurrentDashboard() {
-        //this.currentDashboard;
         return currentDashboard;
     }
 

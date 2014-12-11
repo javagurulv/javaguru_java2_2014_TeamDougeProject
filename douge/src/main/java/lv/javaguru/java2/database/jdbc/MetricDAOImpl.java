@@ -150,4 +150,9 @@ public class MetricDAOImpl extends DAOImpl implements MetricDAO {
         }
         return metrics;
     }
+
+    @Override
+    public List<Metric> getAllByType(String type) throws DBException {
+        return null;
+    }
 }

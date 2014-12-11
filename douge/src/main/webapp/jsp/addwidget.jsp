@@ -1,5 +1,7 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="lv.javaguru.java2.domain.Metric" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -18,12 +20,9 @@
     else {
         response.sendRedirect("/login");
     }
-%>
 
-<%
-    ArrayList<Metric> metricArrayList = (ArrayList) request.getAttribute("model");
-
-
+    //get model
+    Map<String, List<Metric>> metricMap  = (HashMap) request.getAttribute("model");
 %>
 
 <html>
@@ -57,8 +56,13 @@
                 </td>
                 <td>
                     <select name="primary_metric">
-                        <option value="0">Item Count</option>
-                        <option value="1">Amount EUR</option>
+                        <%
+                            //populate primary metric dropdown list
+                            for (int i = 0; i < metricMap.get("Primary").size(); i++) {
+                                Metric metric = metricMap.get("Primary").get(i);
+                                out.println("<option value=\"" + metric.getId() + "\">" + metric.getName() + "</option>");
+                            }
+                        %>
                     </select>
                 </td>
             </tr>
@@ -68,11 +72,13 @@
                 </td>
                 <td>
                     <select name="group_by_metric">
-                        <option value="0">Staff</option>
-                        <option value="1">Film Category</option>
-                        <option value="2">Day</option>
-                        <option value="3">Week</option>
-                        <option value="4">Month</option>
+                        <%
+                            //populate group by metric dropdown list
+                            for (int i = 0; i < metricMap.get("GroupBy").size(); i++) {
+                                Metric metric = metricMap.get("GroupBy").get(i);
+                                out.println("<option value=\"" + metric.getId() + "\">" + metric.getName() + "</option>");
+                            }
+                        %>
                     </select>
                 </td>
             </tr>
@@ -82,12 +88,13 @@
                 </td>
                 <td>
                     <select name="limit">
-                        <option value="0">1</option>
-                        <option value="1">2</option>
-                        <option value="2">3</option>
-                        <option value="3">4</option>
-                        <option value="4">5</option>
-                        <option value="5">6</option>
+                        <%
+                            //populate limit metric dropdown list
+                            for (int i = 0; i < metricMap.get("Limit").size(); i++) {
+                                Metric metric = metricMap.get("Limit").get(i);
+                                out.println("<option value=\"" + metric.getId() + "\">" + metric.getName() + "</option>");
+                            }
+                        %>
                     </select>
                 </td>
             </tr>
@@ -97,6 +104,5 @@
             </tr>
         </table>
     </form>
-
 </body>
 </html>

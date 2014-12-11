@@ -14,5 +14,6 @@ public interface MetricDAO {
     void update(Metric metric) throws DBException;
     Metric getById(Long id) throws DBException;
     List<Metric> getAll() throws DBException;
+    List<Metric> getAllByType(String type) throws DBException;
 
 }

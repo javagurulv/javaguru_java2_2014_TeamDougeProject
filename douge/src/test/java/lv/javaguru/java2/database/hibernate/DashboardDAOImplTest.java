@@ -31,7 +31,7 @@ public class DashboardDAOImplTest extends SpringIntegrationTest {
         User user = userDAO.getById(1L);
 
         Dashboard dashboard = new Dashboard();
-        dashboard.setName("Sales Count");
+        dashboard.setName("Rental Count");
         dashboard.setUser(user);
 
         assertNull(dashboard.getId());

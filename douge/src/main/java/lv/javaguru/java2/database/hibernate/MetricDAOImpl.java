@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.MetricDAO;
 import lv.javaguru.java2.domain.Metric;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,4 +49,11 @@ public class MetricDAOImpl implements MetricDAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(Metric.class).list();
     }
+
+    @Override
+    public List<Metric> getAllByType(String type) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Metric.class).add(Restrictions.eq("type", type)).list();
+    }
+
 }

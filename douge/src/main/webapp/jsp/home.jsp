@@ -31,10 +31,10 @@
 
     <script>
         function addWidget(dashboard_id) {
-            window.open("/addwidget?dashboard_id=" + dashboard_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=400, height=400");
+            window.open("/addwidget?dashboard_id=" + dashboard_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
         }
         function editWidget(widget_id) {
-            window.open("/editwidget?widget_id=" + widget_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=400, height=400");
+            window.open("/editwidget?widget_id=" + widget_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
         }
     </script>
 
@@ -56,10 +56,9 @@
                 Dashboard dashboard = dashboardList.get(i);
                 out.println("<a href=\"?dashboard_id=" + dashboard.getId() + "\">" + dashboard.getName() + "</a><br>");
             }
-
-            //out.println("<br>Current Dashboard ID: " + currentDashboardId);
-
         %>
+        <br>
+        <a href="adddashboard">Create dashboard</a>
     </div>
 
     <div id="section">

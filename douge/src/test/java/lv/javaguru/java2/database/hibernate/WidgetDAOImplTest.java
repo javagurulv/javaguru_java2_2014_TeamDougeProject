@@ -29,7 +29,7 @@ public class WidgetDAOImplTest extends SpringIntegrationTest {
     @Transactional
     public void createNewWidgetInstance() throws DBException {
 
-        Dashboard dashboard = dashboardDAO.getById(1L);
+        Dashboard dashboard = dashboardDAO.getById(2L);
 
         Widget widget = new Widget();
         widget.setComments("Widget 1");
