@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database;
 
+import lv.javaguru.java2.domain.DomainWidgetContent;
 import lv.javaguru.java2.domain.User;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface UserDAO {
 
     void update(User user) throws DBException;
 
-    List<User> getAll() throws DBException;
+    List<DomainWidgetContent> getAll() throws DBException;
 
 }
