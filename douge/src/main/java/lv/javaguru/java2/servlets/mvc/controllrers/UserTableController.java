@@ -39,6 +39,6 @@ public class UserTableController implements MVCController {
 
         tableBuilder.prepareInfo(userTableData);
 
-        return new MVCModel("/jsp/users.jsp", tableBuilder.getHTMLDecriptionofOfGoogleVizualizationDataTable());
+        return new MVCModel("/jsp/users.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
     }
 }

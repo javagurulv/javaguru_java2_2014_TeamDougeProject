@@ -15,19 +15,19 @@ public class User extends DBDomain{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id", columnDefinition = "int(11)")
-    private Long userId;
+    protected Long userId;
 
     @Column(name="login", nullable = false, columnDefinition = "varchar(45)")
-    private String login;
+    protected String login;
 
     @Column(name="user_type", nullable = false, columnDefinition = "int(11)")
-    private long user_type;
+    protected long user_type;
 
     @Column(name="passwd", nullable = false, columnDefinition = "varchar(45)")
-    private String password;
+    protected String password;
 
     @Column(name="comments", nullable = true, columnDefinition = "varchar(255)")
-    private String comments;
+    protected String comments;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     //@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
