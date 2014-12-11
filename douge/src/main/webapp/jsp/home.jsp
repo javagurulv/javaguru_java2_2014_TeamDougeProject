@@ -28,6 +28,16 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/jsp/includes/style.css">
+
+    <script>
+        function addWidget(dashboard_id) {
+            window.open("/addwidget?dashboard_id=" + dashboard_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=400, height=400");
+        }
+        function editWidget(widget_id) {
+            window.open("/editwidget?widget_id=" + widget_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=400, height=400");
+        }
+    </script>
+
 </head>
 <body>
     <div align="right">Welcome, <%= sessionLogin %>! <a href="/logout">Log Out</a></div><br>
@@ -56,21 +66,20 @@
         <%
             if (dashboardModel.getCurrentDashboard() != null) {
 
-                //for (int i = 0; i < dashboardList.size(); i++) {
                 Dashboard currentDashboard = dashboardModel.getCurrentDashboard();
                 List<Widget> widgets = currentDashboard.getWidgets();
 
                 for (int j = 0; j < widgets.size(); j++) {
                     Widget widget = widgets.get(j);
-                    out.println("<div id=\"widget\"><a href=\"?widget_id=" + widget.getWidget_id() + "\">" + widget.getComments() + "</a></div>");
+                    //out.println("<div id=\"widget\"><a href=\"?widget_id=" + widget.getWidget_id() + "\" onclick=\"openPopup()\">" + widget.getComments() + "</a></div>");
+                    out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + widget.getWidget_id() + ")\">" + widget.getComments() + "</a></div>");
                     if (j % 2 == 1)
                         out.println("<br style=\"clear:both\" />");
                 }
-                //}
+
+                out.println("<div id=\"widget\"><a href=# onclick=\"addWidget(" + currentDashboard.getId() + ")\">Add new widget</a></div>");
             }
         %>
-
-        <div id="widget"><a href="/addwidget">Add new widget</a></div>
 
     </div>
 

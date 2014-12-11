@@ -38,7 +38,7 @@ public class UserDAOImplTest {
         assertEquals(user.getComments(), userFromDB.getComments());
         assertEquals(user.getUser_type(), userFromDB.getUser_type());
     }
-
+/*
     @Test
     public void testMultipleUserCreation() throws DBException {
         User user1 = createUser(0,"F1", "L1","C1");
@@ -48,7 +48,7 @@ public class UserDAOImplTest {
         List<User> users = userDAO.getAll();
         assertEquals(2, users.size());
     }
-
+*/
     @Test
     public void testUserUpdate() throws DBException
     {

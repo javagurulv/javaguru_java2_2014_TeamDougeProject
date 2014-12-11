@@ -32,7 +32,7 @@ public class WidgetDAOImplTest extends SpringIntegrationTest {
         Dashboard dashboard = dashboardDAO.getById(1L);
 
         Widget widget = new Widget();
-        widget.setComments("sdfsdfsd");
+        widget.setComments("Widget 1");
         widget.setDashboard(dashboard);
         widget.setMetric_set_id(8L);
         widget.setWidget_type_id(1);
