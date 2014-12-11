@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.WidgetDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.domain.Widget;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -64,9 +65,10 @@ public class HomeControllerImpl implements HomeController {
 
         for (Dashboard dashboard: dashboards) {
             dashboard.getWidgets();
+            for (Widget widget: dashboard.getWidgets()) {
+                widget.getWidget_id();
+            }
         }
-
-
 
         return new MVCModel("/jsp/home.jsp", dashboards);
     }
