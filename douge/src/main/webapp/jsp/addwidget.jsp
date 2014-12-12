@@ -21,6 +21,12 @@
         response.sendRedirect("/login");
     }
 
+    Integer dashboard_id = 0;
+
+    if (request.getParameter("dashboard_id") != null) {
+        dashboard_id = Integer.valueOf(request.getParameter("dashboard_id"));
+    }
+
     //get model
     Map<String, List<Metric>> metricMap  = (HashMap) request.getAttribute("model");
 %>
@@ -43,10 +49,10 @@
                 </td>
                 <td>
                     <select name="graph_type">
-                        <option value="0">Timeline</option>
-                        <option value="1">Pie Chart</option>
-                        <option value="2">Bar Chart</option>
-                        <option value="3">Table</option>
+                        <option value="1">Timeline</option>
+                        <option value="2">Pie Chart</option>
+                        <option value="3">Bar Chart</option>
+                        <option value="4">Table</option>
                     </select>
                 </td>
             </tr>
@@ -87,7 +93,7 @@
                     Limit:
                 </td>
                 <td>
-                    <select name="limit">
+                    <select name="limit_metric">
                         <%
                             //populate limit metric dropdown list
                             for (int i = 0; i < metricMap.get("Limit").size(); i++) {
@@ -100,7 +106,10 @@
             </tr>
             <tr>
                 <td></td>
-                <td align="right"><input type="SUBMIT" value="Submit" name="submit"></td>
+                <td align="right">
+                    <input type="hidden" value="<%= dashboard_id %>" name="dashboard_id">
+                    <input type="SUBMIT" value="Submit" name="submit">
+                </td>
             </tr>
         </table>
     </form>

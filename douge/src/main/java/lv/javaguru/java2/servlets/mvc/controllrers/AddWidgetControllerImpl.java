@@ -1,7 +1,10 @@
 package lv.javaguru.java2.servlets.mvc.controllrers;
 
 import lv.javaguru.java2.database.*;
+import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.Metric;
+import lv.javaguru.java2.domain.MetricSet;
+import lv.javaguru.java2.domain.Widget;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,8 +24,6 @@ import java.util.Map;
 @Component
 public class AddWidgetControllerImpl implements AddWidgetController {
 
-    private Map<String, List<Metric>> metricMap;
-
     @Autowired
     @Qualifier("ORM_UserDAO")
     private UserDAO userDAO;
@@ -39,26 +40,24 @@ public class AddWidgetControllerImpl implements AddWidgetController {
     @Qualifier("ORM_MetricDAO")
     private MetricDAO metricDAO;
 
+    @Autowired
+    @Qualifier("ORM_MetricSetDAO")
+    private MetricSetDAO metricSetDAO;
+
     @Override
     @Transactional
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
-        /*
-        Dashboard currentDashboard = null;
 
-        if (request.getParameter("dashboard_id") != null &&
-                !request.getParameter("dashboard_id").trim().isEmpty()) {
-            Long currentDashboardId = Long.parseLong(request.getParameter("dashboard_id"));
-            try {
-                currentDashboard = dashboardDAO.getById(currentDashboardId);
-            } catch (DBException e) {
-                e.printStackTrace();
-            }
+        if (request.getParameter("submit") != null) {
+            if (!request.getParameter("widget_name").trim().isEmpty()) {
+                MetricSet metricSet = createMetricSetFromRequest(request);
+                storeMetricSetToDatabase(metricSet);
 
-            for (Widget widget: currentDashboard.getWidgets()) {
-                widget.getWidget_id();
+                Widget widget = createWidgetFromRequest(request, metricSet.getId());
+                storeWidgetToDatabase(widget);
             }
         }
-        */
+
         List<Metric> primaryMetrics = new ArrayList<Metric>();
         List<Metric> groupByMetrics = new ArrayList<Metric>();
         List<Metric> limitMetrics = new ArrayList<Metric>();
@@ -71,7 +70,7 @@ public class AddWidgetControllerImpl implements AddWidgetController {
             e.printStackTrace();
         }
 
-        metricMap = new HashMap<String, List<Metric>>();
+        Map<String, List<Metric>> metricMap = new HashMap<String, List<Metric>>();
         metricMap.put("Primary", primaryMetrics);
         metricMap.put("GroupBy", groupByMetrics);
         metricMap.put("Limit", limitMetrics);
@@ -79,4 +78,64 @@ public class AddWidgetControllerImpl implements AddWidgetController {
         return new MVCModel("/jsp/addwidget.jsp", metricMap);
     }
 
+    private void storeMetricSetToDatabase(MetricSet metricSet) {
+        try {
+            metricSetDAO.create(metricSet);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void storeWidgetToDatabase(Widget widget) {
+        try {
+            widgetDAO.create(widget);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected MetricSet createMetricSetFromRequest(HttpServletRequest request) {
+        MetricSet metricSet = new MetricSet();
+        Integer primary_id = Integer.valueOf(request.getParameter("primary_metric"));
+        Integer groupby_id = Integer.valueOf(request.getParameter("group_by_metric"));
+        Integer limit_id = Integer.valueOf(request.getParameter("limit_metric"));
+
+        metricSet.setPrimary_id(primary_id);
+        metricSet.setGroupby_id(groupby_id);
+        metricSet.setLimit_id(limit_id);
+        return metricSet;
+    }
+
+    protected Widget createWidgetFromRequest(HttpServletRequest request, Integer metric_set_id) {
+
+        Widget widget = new Widget();
+        String comments = request.getParameter("widget_name");
+        Long dashboard_id = Long.valueOf(request.getParameter("dashboard_id"));
+        Long widget_type_id = Long.valueOf(request.getParameter("graph_type"));
+
+        Dashboard dashboard = null;
+        try {
+            dashboard = dashboardDAO.getById(dashboard_id);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+
+        widget.setComments(comments);
+        widget.setDashboard(dashboard);
+        widget.setMetric_set_id(metric_set_id);
+        widget.setWidget_type_id(widget_type_id);
+        widget.setPosition(1L);
+        return widget;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

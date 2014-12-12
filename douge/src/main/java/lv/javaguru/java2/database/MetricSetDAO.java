@@ -10,7 +10,7 @@ import java.util.List;
 public interface MetricSetDAO {
     void create(MetricSet metricSet) throws DBException;
     void delete(MetricSet metricSet) throws DBException;
-    List<MetricSet> getAllByMetricSetId(Integer id) throws DBException;
-    List<MetricSet> getAllByMetricId(Integer id) throws DBException;
-
+    MetricSet getById(Integer id) throws DBException;
+    //List<MetricSet> getAllByMetricSetId(Integer id) throws DBException;
+    //List<MetricSet> getAllByMetricId(Integer id) throws DBException;
 }

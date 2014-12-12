@@ -11,22 +11,17 @@ public class MetricSet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="record_id", nullable = false, columnDefinition = "INT(11)")
-    private Integer record_id;
-
     @Column(name="id", nullable = false, columnDefinition = "INT(11)")
     private Integer id;
 
-    @Column(name="metric_id", nullable = false, columnDefinition = "INT(11)")
-    private Integer metric_id;
+    @Column(name="primary_id", nullable = false, columnDefinition = "INT(11)")
+    private Integer primary_id;
 
-    public Integer getRecord_id() {
-        return record_id;
-    }
+    @Column(name="groupby_id", nullable = false, columnDefinition = "INT(11)")
+    private Integer groupby_id;
 
-    public void setRecord_id(Integer record_id) {
-        this.id = record_id;
-    }
+    @Column(name="limit_id", nullable = false, columnDefinition = "INT(11)")
+    private Integer limit_id;
 
     public Integer getId() {
         return id;
@@ -36,11 +31,27 @@ public class MetricSet {
         this.id = id;
     }
 
-    public Integer getMetric_id() {
-        return metric_id;
+    public Integer getPrimary_id() {
+        return primary_id;
     }
 
-    public void setMetric_id(Integer metric_id) {
-        this.metric_id = metric_id;
+    public void setPrimary_id(Integer primary_id) {
+        this.primary_id = primary_id;
+    }
+
+    public Integer getGroupby_id() {
+        return groupby_id;
+    }
+
+    public void setGroupby_id(Integer groupby_id) {
+        this.groupby_id = groupby_id;
+    }
+
+    public Integer getLimit_id() {
+        return limit_id;
+    }
+
+    public void setLimit_id(Integer limit_id) {
+        this.limit_id = limit_id;
     }
 }

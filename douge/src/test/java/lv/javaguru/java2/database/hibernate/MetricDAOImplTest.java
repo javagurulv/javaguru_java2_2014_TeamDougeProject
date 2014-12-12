@@ -44,9 +44,9 @@ public class MetricDAOImplTest extends SpringIntegrationTest {
     public void testCreate() throws DBException {
         Metric metric = createMetric("FlowChart", "Metric1", 1L);
         metricDAO.create(metric);
-        Metric languageFromDB = metricDAO.getById(metric.getId());
-        assertEquals("FlowChart", languageFromDB.getType());
-        assertEquals("Metric1", languageFromDB.getName());
+        Metric metricFromDB = metricDAO.getById(metric.getId());
+        assertEquals("FlowChart", metricFromDB.getType());
+        assertEquals("Metric1", metricFromDB.getName());
     }
 
     @Test

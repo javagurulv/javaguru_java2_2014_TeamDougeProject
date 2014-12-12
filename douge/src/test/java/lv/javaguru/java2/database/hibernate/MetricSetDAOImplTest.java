@@ -32,33 +32,16 @@ public class MetricSetDAOImplTest extends SpringIntegrationTest{
     @Transactional
     public void testGetAllByMetricSetId() throws DBException {
 
-        MetricSet metricSet1 = new MetricSet();
-        metricSet1.setId(1);
-        metricSet1.setMetric_id(1);
+        MetricSet metricSet = new MetricSet();
+        metricSet.setPrimary_id(1);
+        metricSet.setGroupby_id(1);
+        metricSet.setLimit_id(6);
 
-        MetricSet metricSet2 = new MetricSet();
-        metricSet2.setId(1);
-        metricSet2.setMetric_id(2);
+        metricSetDAO.create(metricSet);
 
-        MetricSet metricSet3 = new MetricSet();
-        metricSet3.setId(2);
-        metricSet3.setMetric_id(1);
 
-        MetricSet metricSet4 = new MetricSet();
-        metricSet4.setId(2);
-        metricSet4.setMetric_id(2);
+        MetricSet metricSetFromDB = metricSetDAO.getById(metricSet.getId());
+        assertEquals(metricSet.getGroupby_id(), metricSetFromDB.getGroupby_id());
 
-        metricSetDAO.create(metricSet1);
-        metricSetDAO.create(metricSet2);
-        metricSetDAO.create(metricSet3);
-        metricSetDAO.create(metricSet4);
-
-        List<MetricSet> metricList1 = metricSetDAO.getAllByMetricSetId(0);
-        List<MetricSet> metricList2 = metricSetDAO.getAllByMetricSetId(1);
-        List<MetricSet> metricList3 = metricSetDAO.getAllByMetricSetId(2);
-
-        assertEquals(0, metricList1.size());
-        assertEquals(2, metricList2.size());
-        assertEquals(2, metricList3.size());
     }
 }

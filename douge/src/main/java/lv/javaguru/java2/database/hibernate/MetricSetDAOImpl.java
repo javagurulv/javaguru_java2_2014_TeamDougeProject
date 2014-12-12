@@ -34,6 +34,13 @@ public class MetricSetDAOImpl implements MetricSetDAO {
     }
 
     @Override
+    public MetricSet getById(Integer id) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        return (MetricSet) session.get(MetricSet.class, id);
+    }
+
+    /*
+    @Override
     public List<MetricSet> getAllByMetricSetId(Integer id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM MetricSet WHERE id = :id");
@@ -48,4 +55,5 @@ public class MetricSetDAOImpl implements MetricSetDAO {
         query.setParameter("metric_id", id);
         return query.list();
     }
+    */
 }

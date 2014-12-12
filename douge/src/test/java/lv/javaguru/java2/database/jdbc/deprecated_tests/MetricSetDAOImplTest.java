@@ -1,22 +1,18 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_tests;
 
 /**
  * Created by Radchuk on 11/10/2014.
  */
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 
-import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.MetricSetDAO;
-import lv.javaguru.java2.domain.MetricSet;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import lv.javaguru.java2.database.jdbc.deprecated_implementation.MetricSetDAOImpl;
+import org.junit.Ignore;
 
-
+@Ignore
 public class MetricSetDAOImplTest {
-
+/*
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
     private MetricSetDAO metricSetDAO = new MetricSetDAOImpl();
 
@@ -87,4 +83,5 @@ public class MetricSetDAOImplTest {
         assertEquals(metricSetDAO.getAllByMetricId(metricSet2.getMetric_id()).size(),1);
 
     }
+*/
 }

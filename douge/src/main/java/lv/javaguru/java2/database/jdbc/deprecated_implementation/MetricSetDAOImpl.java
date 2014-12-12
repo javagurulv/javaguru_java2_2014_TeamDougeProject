@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.jdbc.deprecated_implementation;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.MetricSetDAO;
@@ -15,6 +15,9 @@ import java.util.List;
 /**
  * Created by Radchuk on 11/10/2014.
  */
+@Deprecated
+public class MetricSetDAOImpl {
+/*
 @Component("JDBC_MetricSetDAO")
 public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
     @Override
@@ -26,7 +29,7 @@ public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("INSERT INTO METRICS_SETS(id, metric_id) VALUES (?,?)");
             preparedStatement.setInt(1,metricSet.getId());
-            preparedStatement.setInt(2,metricSet.getMetric_id());
+            //preparedStatement.setInt(2,metricSet.getMetric_id());
             preparedStatement.executeUpdate();
         }
         catch (Throwable e)
@@ -47,7 +50,7 @@ public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("DELETE FROM METRICS_SETS where id = ? and metric_id = ?");
             preparedStatement.setInt(1,metricSet.getId());
-            preparedStatement.setInt(2, metricSet.getMetric_id());
+            //preparedStatement.setInt(2, metricSet.getMetric_id());
             preparedStatement.executeUpdate();
         }
         catch (Throwable e)
@@ -77,7 +80,7 @@ public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
             {
                 MetricSet metricSet = new MetricSet();
                 metricSet.setId(resultSet.getInt("id"));
-                metricSet.setMetric_id(resultSet.getInt("metric_id"));
+                //metricSet.setMetric_id(resultSet.getInt("metric_id"));
                 metricSets.add(metricSet);
             }
         }
@@ -106,7 +109,7 @@ public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
             {
                 MetricSet metricSet = new MetricSet();
                 metricSet.setId(resultSet.getInt("id"));
-                metricSet.setMetric_id(resultSet.getInt("metric_id"));
+                //metricSet.setMetric_id(resultSet.getInt("metric_id"));
                 metricSets.add(metricSet);
             }
         }
@@ -119,4 +122,5 @@ public class MetricSetDAOImpl extends DAOImpl implements MetricSetDAO {
         }
         return metricSets;
     }
+*/
 }
