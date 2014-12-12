@@ -5,6 +5,7 @@ import lv.javaguru.java2.Controller.Builders.GoogleVisualizationDataTableBuilder
 import lv.javaguru.java2.Controller.WidgetTableData;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Juris on 10.12.2014.
  */
 @Component
-public class UserTableController implements MVCController {
+public class UserTableController implements MVCController{
 
     @Autowired @Qualifier("userTableData")
     private WidgetTableData userTableData;
@@ -31,14 +32,109 @@ public class UserTableController implements MVCController {
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
+
+        if (request.getParameter("delete") != null) {
+           deleteUser(request);
+        }
+
+        if (request.getParameter("adduser")!=null) {
+            addUser(request);
+        }
+
+        if (request.getParameter("edituser")!=null){
+            editUser(request);
+        }
+
+
+
+        return userTableData();
+    }
+
+    private void deleteUser(HttpServletRequest request){
+        if (request.getParameter("useriddelete") != null) {
+            Long id = Long.valueOf(request.getParameter("useriddelete"));
+            try {
+                userDAO.delete(id);
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private  MVCModel userTableData(){
         try {
             userTableData.buildTableData();
         } catch (DBException e) {
             e.printStackTrace();
         }
 
-        tableBuilder.prepareInfo(userTableData);
+        try {
+            tableBuilder.prepareInfo(userTableData);
+        } catch (TypeMismatchException e) {
+            e.printStackTrace();
+        }
 
         return new MVCModel("/jsp/users.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
     }
+
+    private  void addUser(HttpServletRequest request){
+        //check that fields are not empty
+        if (isParametersValid(request)) {
+            //create user and add to database
+            User user = createUserFromRequest(request);
+            storeUserToDatabase(user);
+        }
+    }
+
+    protected void editUser(HttpServletRequest request){
+        try {
+            User user = userDAO.getById(Long.valueOf(request.getParameter("useridedit")));
+
+            user.setUser_type(Long.valueOf(request.getParameter("user_typee")));
+
+            if (request.getParameter("logine")!="") {
+                user.setLogin(request.getParameter("logine"));
+            }
+            if (request.getParameter("passwdee")!="") {
+                user.setPassword(request.getParameter("passwde"));
+            }
+            user.setComments(request.getParameter("commentse"));
+            userDAO.update(user);
+
+
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected boolean isParametersValid(HttpServletRequest req) {
+        return !req.getParameter("user_typed").trim().isEmpty() &&
+                !req.getParameter("logind").trim().isEmpty() &&
+                !req.getParameter("passwdd").trim().isEmpty();
+    }
+
+    private void storeUserToDatabase(User user) {
+        try {
+            userDAO.create(user);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected User createUserFromRequest(HttpServletRequest req) {
+        User user = new User();
+        String user_type = req.getParameter("user_typed");
+        String login = req.getParameter("logind");
+        String password = req.getParameter("passwdd");
+        String comments = req.getParameter("commentsd");
+
+        user.setComments(comments);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setUser_type(Long.parseLong(user_type));
+        return user;
+    }
+
+
 }
+

@@ -34,5 +34,51 @@
 </script>
 <div id="table_div"></div>
 
+<div align="center">
+    <form method="POST" action="users">
+
+        <br>
+
+        <b>Add user: </b>
+        User type:
+        <select name="user_typed">
+            <option value="0">Admin</option>
+            <option value="1">User</option>
+        </select>
+        login:
+        <input type="Text" name="logind">
+        Password:
+        <input type="Text" name="passwdd">
+        Comments:
+        <input type="Text" name="commentsd">
+        <input type="SUBMIT" value="Add user" name="adduser">
+
+        <br><br>
+
+        <b>Edit user: </b>
+        User id:
+        <input type="Text" name="useridedit">
+        User type:
+        <select name="user_typee">
+            <option value="0">Admin</option>
+            <option value="1">User</option>
+        </select>
+        login:
+        <input type="Text" name="logine">
+        Password:
+        <input type="Text" name="passwde">
+        Comments:
+        <input type="Text" name="commentse">
+        <input type="SUBMIT" value="Edit user" name="edituser">
+
+        <br><br>
+
+        <b>Deltete user: </b>
+        <input type="Text" name="useriddelete">
+        <input type="SUBMIT" value="Delete" name="delete">
+
+    </form>
+</div>
+
 </body>
 </html>
