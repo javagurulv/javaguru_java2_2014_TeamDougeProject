@@ -9,6 +9,12 @@
 <html>
 <head>
     <title>Edit widget</title>
+    <script>
+        window.onunload = refreshParent;
+        function refreshParent() {
+            window.opener.location.reload();
+        }
+    </script>
 </head>
 <body>
     <%=(String)request.getAttribute("model")%>

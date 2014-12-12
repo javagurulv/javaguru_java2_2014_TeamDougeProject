@@ -30,6 +30,9 @@
     <link rel="stylesheet" type="text/css" href="/jsp/includes/style.css">
 
     <script>
+        function addDashboard() {
+            window.open("/adddashboard", "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
+        }
         function addWidget(dashboard_id) {
             window.open("/addwidget?dashboard_id=" + dashboard_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
         }
@@ -58,7 +61,7 @@
             }
         %>
         <br>
-        <a href="adddashboard">Create dashboard</a>
+        <a href=# onclick="addDashboard()">Create dashboard</a>
     </div>
 
     <div id="section">
@@ -70,7 +73,6 @@
 
                 for (int j = 0; j < widgets.size(); j++) {
                     Widget widget = widgets.get(j);
-                    //out.println("<div id=\"widget\"><a href=\"?widget_id=" + widget.getWidget_id() + "\" onclick=\"openPopup()\">" + widget.getComments() + "</a></div>");
                     out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + widget.getWidget_id() + ")\">" + widget.getComments() + "</a></div>");
                     if (j % 2 == 1)
                         out.println("<br style=\"clear:both\" />");

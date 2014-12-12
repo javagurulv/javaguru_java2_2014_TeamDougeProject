@@ -34,6 +34,12 @@
 <html>
 <head>
     <title>Add new widget</title>
+    <script>
+        window.onunload = refreshParent;
+        function refreshParent() {
+            window.opener.location.reload();
+        }
+    </script>
 </head>
 <body>
     <h2>Add Widget</h2>

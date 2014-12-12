@@ -48,6 +48,8 @@ public class AddWidgetControllerImpl implements AddWidgetController {
     @Transactional
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
 
+        Integer errorCode = 0;
+
         if (request.getParameter("submit") != null) {
             if (!request.getParameter("widget_name").trim().isEmpty()) {
                 MetricSet metricSet = createMetricSetFromRequest(request);
@@ -55,6 +57,8 @@ public class AddWidgetControllerImpl implements AddWidgetController {
 
                 Widget widget = createWidgetFromRequest(request, metricSet.getId());
                 storeWidgetToDatabase(widget);
+            } else {
+                errorCode = 1; //Widget name is empty
             }
         }
 
