@@ -37,9 +37,9 @@
             <tr>
                 <td colspan="2">&nbsp;
                     <%
-                        if (errorCode == 0) {
+                        if (errorCode == 1) {
                             out.println("Dashboard successfully added!");
-                        } if (errorCode == 1) {
+                        } if (errorCode == 2) {
                             out.println("<font color=\"red\">Name can't be empty</font>");
                         }
                     %>

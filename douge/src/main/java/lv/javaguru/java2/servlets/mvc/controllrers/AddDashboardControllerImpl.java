@@ -53,12 +53,13 @@ public class AddDashboardControllerImpl implements AddDashboardController {
                         !request.getParameter("dashboard_name").trim().isEmpty()) {
                     Dashboard dashboard = createDashboardFromRequest(request, user);
                     storeDashboardToDatabase(dashboard);
+                    errorCode = 1; //Dashboard successfully added
                 } else {
-                    errorCode = 1; //Dashboard name is empty
+                    errorCode = 2; //Dashboard name is empty
                 }
             }
         } else {
-            errorCode = 2; //User not logged in
+            errorCode = 3; //User not logged in
         }
 
         return new MVCModel("/jsp/adddashboard.jsp", errorCode);
