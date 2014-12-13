@@ -40,7 +40,7 @@ public class MVCFilter implements Filter {
 
         controllerMap = new HashMap<String,MVCController>();
         controllerMap.put("/home", getBean(HomeController.class));
-        controllerMap.put("/hello", getBean(HelloWorldController.class));
+      //  controllerMap.put("/hello", getBean(HelloWorldController.class));
         controllerMap.put("/actors", getBean(ActorTableController.class));
         controllerMap.put("/films", getBean(FilmTableController.class));
         controllerMap.put("/index", getBean(IndexController.class));
