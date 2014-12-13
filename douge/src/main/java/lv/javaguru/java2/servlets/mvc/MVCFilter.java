@@ -47,8 +47,6 @@ public class MVCFilter implements Filter {
         controllerMap.put("/login", getBean(LoginController.class));
         controllerMap.put("/logout", getBean(LogoutController.class));
         controllerMap.put("/adduser", getBean(AddUserController.class));
-        controllerMap.put("/test", getBean(TestController.class));
-        controllerMap.put("/picture", getBean(PictureController.class));
         controllerMap.put("/users", getBean(UserTableController.class));
         controllerMap.put("/addwidget", getBean(AddWidgetController.class));
         controllerMap.put("/editwidget", getBean(EditWidgetController.class));

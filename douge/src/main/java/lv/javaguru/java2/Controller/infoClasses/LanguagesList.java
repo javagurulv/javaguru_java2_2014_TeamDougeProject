@@ -1,6 +1,6 @@
 package lv.javaguru.java2.Controller.infoClasses;
 
-import lv.javaguru.java2.domain.Language;
+import lv.javaguru.java2.domain.deprecated_classes.Language;
 
 import java.util.HashMap;
 import java.util.List;

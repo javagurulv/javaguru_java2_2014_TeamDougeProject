@@ -20,22 +20,24 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TestController implements MVCController {
 
-    @Autowired @Qualifier("chartInfoBuilderRentalCount")
-    private WidgetTableData tableData;
+   // @Autowired @Qualifier("chartInfoBuilderRentalCount")
+   // private WidgetTableData tableData;
 
-    @Autowired
-    private GoogleVisualizationDataTableBuilder tableBuilder;
+   // @Autowired
+   // private GoogleVisualizationDataTableBuilder tableBuilder;
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
-        try {
+       /* try {
             tableData.buildTableData();
         } catch (DBException e) {
             e.printStackTrace();
         }
 
         tableBuilder.prepareInfo(tableData);
-        return new MVCModel("/jsp/test.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+        return new MVCModel("/jsp/test.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());*/
+
+        return new MVCModel("/jsp/test.jsp", null);
 
     }
 }

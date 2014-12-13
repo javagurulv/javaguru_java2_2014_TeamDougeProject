@@ -33,9 +33,9 @@ public class MetricSetDAOImplTest extends SpringIntegrationTest{
     public void testGetAllByMetricSetId() throws DBException {
 
         MetricSet metricSet = new MetricSet();
-        metricSet.setPrimary_id(1);
-        metricSet.setGroupby_id(1);
-        metricSet.setLimit_id(6);
+        metricSet.setPrimary_id(1L);
+        metricSet.setGroupby_id(1L);
+        metricSet.setLimit_id(6L);
 
         metricSetDAO.create(metricSet);
 

@@ -100,9 +100,9 @@ public class AddWidgetControllerImpl implements AddWidgetController {
 
     protected MetricSet createMetricSetFromRequest(HttpServletRequest request) {
         MetricSet metricSet = new MetricSet();
-        Integer primary_id = Integer.valueOf(request.getParameter("primary_metric"));
-        Integer groupby_id = Integer.valueOf(request.getParameter("group_by_metric"));
-        Integer limit_id = Integer.valueOf(request.getParameter("limit_metric"));
+        Long primary_id = Long.valueOf(request.getParameter("primary_metric"));
+        Long groupby_id = Long.valueOf(request.getParameter("group_by_metric"));
+        Long limit_id = Long.valueOf(request.getParameter("limit_metric"));
 
         metricSet.setPrimary_id(primary_id);
         metricSet.setGroupby_id(groupby_id);
@@ -110,7 +110,7 @@ public class AddWidgetControllerImpl implements AddWidgetController {
         return metricSet;
     }
 
-    protected Widget createWidgetFromRequest(HttpServletRequest request, Integer metric_set_id) {
+    protected Widget createWidgetFromRequest(HttpServletRequest request, Long metric_set_id) {
 
         Widget widget = new Widget();
         String comments = request.getParameter("widget_name");

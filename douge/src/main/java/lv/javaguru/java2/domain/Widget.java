@@ -36,6 +36,19 @@ public class Widget {
     @JoinColumn(name = "dashboard_id", nullable = false)
     private Dashboard dashboard;
 
+    @Transient
+    private String jsonWidgetDAta;
+
+    public String getJsonWidgetDAta() {
+        return jsonWidgetDAta;
+    }
+
+    public void setJsonWidgetDAta(String jsonWidgetDAta) {
+        this.jsonWidgetDAta = jsonWidgetDAta;
+    }
+
+
+
     public long getMetric_set_id() {
         return metric_set_id;
     }

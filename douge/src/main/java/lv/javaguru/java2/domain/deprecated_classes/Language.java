@@ -1,4 +1,4 @@
-package lv.javaguru.java2.domain;
+package lv.javaguru.java2.domain.deprecated_classes;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -6,6 +6,7 @@ import java.util.Date;
 /**
  * Created by Sergo on 21.10.2014.
  */
+@Deprecated
 @Entity
 @Table(name = "language")
 public class Language {

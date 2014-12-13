@@ -4,6 +4,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.ChartDataDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.ChartData;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.util.Map;
 /**
  * Created by Sergo on 09.12.2014.
  */
+@Component("JDBC_ChartDataDAO")
 public class ChartDataDAOImpl extends DAOImpl implements ChartDataDAO {
     @Override
     public List<ChartData> getAll() throws DBException {
@@ -52,8 +54,8 @@ public class ChartDataDAOImpl extends DAOImpl implements ChartDataDAO {
     }
 
     @Override
-    public List<Object> getByQueryText(String queryText) throws DBException {
-        /*List<Object[]> objects = new ArrayList<Object[]>();
+    public List<Object[]> getByQueryText(String queryText) throws DBException {
+        List<Object[]> objects = new ArrayList<Object[]>();
         Connection connection = null;
         try {
             connection = getConnection();
@@ -80,7 +82,7 @@ public class ChartDataDAOImpl extends DAOImpl implements ChartDataDAO {
             closeConnection(connection);
         }
 
-        return objects;*/
-        return null;
+        return objects;
+
     }
 }

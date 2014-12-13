@@ -1,8 +1,11 @@
-package lv.javaguru.java2.domain;
+package lv.javaguru.java2.domain.deprecated_classes;
+
+import lv.javaguru.java2.domain.DBDomain;
 
 /**
  * Created by Sergo on 21.11.2014.
  */
+@Deprecated
 public class CountByMonths extends DBDomain {
     protected String monthName;
     protected Integer count;

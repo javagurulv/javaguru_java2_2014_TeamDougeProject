@@ -27,25 +27,16 @@ public class DAOFactory {
     }
     //-----------------------------------------------------------------------------
 
-    public CountByMonthsDAO getCountByMonthsDAO()
-    {
-        return new CountByMonthsDAOImpl();
-    }
+
 
 
     public FilmDAO getFilmDAO(){
         return  new FilmDAOImpl();
     }
 
-    public AmountRentalCountDAO getAmountRentalCountDAO()
-    {
-        return new AmountRentalCountDAOImpl();
-    }
 
-    public Film_ActorDAO getFilm_actorDAO()
-    {
-        return  new Film_ActorDAOImpl() ;
-    }
+
+
 
     public Film_CategoryDAO getFilmCategoryDAO()
     {
@@ -96,15 +87,8 @@ public class DAOFactory {
         return new InventoryDAOImpl();
     }
 
-    public LanguageDAO getLanguageDAO()
-    {
-        return new LanguageDAOImpl();
-    }
 
-    public RentalDAO getRentalDAO()
-    {
-        return new RentalDAOImpl();
-    }
+
 
     public StaffDAO getStaffDAO()
     {

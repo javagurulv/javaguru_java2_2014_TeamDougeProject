@@ -16,5 +16,5 @@ public interface ChartDataDAO {
 
     Integer getRecordsAmount() throws DBException;
 
-    List<Object> getByQueryText(String queryText) throws DBException;
+    public List<Object[]> getByQueryText(String queryText) throws DBException;
 }

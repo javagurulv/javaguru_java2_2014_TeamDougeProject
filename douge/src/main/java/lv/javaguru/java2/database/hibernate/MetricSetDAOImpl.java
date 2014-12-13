@@ -34,7 +34,7 @@ public class MetricSetDAOImpl implements MetricSetDAO {
     }
 
     @Override
-    public MetricSet getById(Integer id) throws DBException {
+    public MetricSet getById(Long id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return (MetricSet) session.get(MetricSet.class, id);
     }

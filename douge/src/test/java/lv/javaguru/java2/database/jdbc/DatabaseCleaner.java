@@ -14,18 +14,18 @@ public class DatabaseCleaner extends DAOImpl {
 
     private List<Table> getTableNames() {
         List<Table> tables = new ArrayList<Table>();
-        /*
+
         tables.add(new Table("USERS", "id", 1));
         tables.add(new Table("USER_TYPES", "id",1));
         tables.add(new Table("DASHBOARDS", "id", 1));
         tables.add(new Table("WIDGETS" , "id", 1));
-        tables.add(new Table("WIDGET_TYPES", "id", 5));
+        tables.add(new Table("WIDGET_TYPES", "id", 1));
 
-        tables.add(new Table("METRICS", "id", 8));
+        tables.add(new Table("METRICS", "id", 1));
 
         tables.add(new Table("METRICS_SETS","record_id",1));
-        List<String> tableNames = new ArrayList<String>();
-        */
+       // List<String> tableNames = new ArrayList<String>();
+
         return tables;
     }
 
