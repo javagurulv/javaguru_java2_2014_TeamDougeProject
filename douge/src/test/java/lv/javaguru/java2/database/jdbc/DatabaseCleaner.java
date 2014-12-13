@@ -21,8 +21,7 @@ public class DatabaseCleaner extends DAOImpl {
         tables.add(new Table("WIDGETS" , "id", 1));
         tables.add(new Table("WIDGET_TYPES", "id", 1));
         tables.add(new Table("METRICS", "id", 1));
-
-       tables.add(new Table("METRICS_SETS","id",1));
+        tables.add(new Table("METRICS_SETS","id",1));
        // List<String> tableNames = new ArrayList<String>();
 
         return tables;

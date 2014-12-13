@@ -44,6 +44,11 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
     @Qualifier("ORM_WidgetDAO")
     WidgetDAO widgetDAO;
 
+
+    @Autowired
+    @Qualifier("ORM_WidgetTypeDAO")
+    WidgetTypeDAO widgetTypeDAO;
+
     @Test
     public void testBuildQuery() throws DBException {
         String primaryMetric = "rental_id";
@@ -64,23 +69,20 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
         System.out.println(queryString);
     }
 
+    /*id	name	comments	compatibility_sign
+1	PieChart	PieChart	2
+2	BarChart	BarChart	4
+3	TimeLine	"Time Line"	8
+4	Table	Table	16*/
 
-    /*type	name	compatibility
-1	Primary	"Item Count"	30
-2	Primary	"Amount EUR"	30
-3	GroupBy	"Staff Name"	30
-4	GroupBy	"Film Category"	30
-5	GroupBy	"Film Rating"	30
-6	GroupBy	Day	30
-7	GroupBy	Week	30
-8	GroupBy	Month	30
-9	Limit	1	30
-10	Limit	2	30
-11	Limit	3	30
-12	Limit	4	30
-13	Limit	5	30
-14	Limit	6	30
-*/
+    @Transactional
+    private void generateWidgetTypes() throws DBException {
+        widgetTypeDAO.create(new WidgetType("PieChart","PieChart", 2L));
+        widgetTypeDAO.create(new WidgetType("BarChart","BarChart", 4L));
+        widgetTypeDAO.create(new WidgetType("TimeLine","TimeLine", 8L));
+        widgetTypeDAO.create(new WidgetType("Table","Table", 16L));
+    }
+
     @Transactional
     private void generateMetrics() throws DBException {
         metricDAO.create( new Metric("Primary","Item Count",30L));
