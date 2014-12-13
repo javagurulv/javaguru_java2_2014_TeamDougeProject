@@ -21,13 +21,15 @@ public class WidgetQueryBuilder {
 
     private final String countField = "rental_id";
     private final String amountField = "amount";
+    private final String countSign = "COUNT";
+    private final String amountSign = "AMOUNT";
     private final String queryTemplate = "SELECT {SECONDARY},{PRIMARY} FROM DATA_UNITED GROUP BY {SECONDARY} ORDER BY {PRIMARY} DESC LIMIT {LIMIT}";
     private final String primarySign  = "{PRIMARY}";
     private final String secondarySign = "{SECONDARY}";
     private final String limitSign = "{LIMIT}";
 
     @Autowired
-    @Qualifier("JDBC_MetricDAO")
+    @Qualifier("ORM_MetricDAO")
     private MetricDAO metricDAO;
 
     @Autowired
@@ -51,11 +53,13 @@ public class WidgetQueryBuilder {
         Metric primaryMetric = metricDAO.getById(primaryMetricID);
         Metric secondaryMetric = metricDAO.getById(secondaryMetricID);
         String primaryStr = "";
-        if (primaryMetric.getName().toUpperCase().equals("COUNT")){
+
+
+        if (primaryMetric.getName().toUpperCase().contains(countSign)){
             primaryStr ="count("+ countField + ")";
         }
 
-        else if (primaryMetric.getName().toUpperCase().equals("AMOUNT")){
+        else if (primaryMetric.getName().toUpperCase().contains(amountSign)){
             primaryStr = "sum(" + amountField + ")";
         }
 
@@ -65,10 +69,25 @@ public class WidgetQueryBuilder {
 
     public String buildQuery(Widget widget) throws DBException {
         MetricSet metricSet = metricSetDAO.getById(widget.getMetric_set_id());
-        Long m_id = metricSet.getPrimary_id();
         Metric metricPrimary = metricDAO.getById(metricSet.getPrimary_id());
+
         Metric metricGroupBy = metricDAO.getById(metricSet.getGroupby_id());
+
         Metric metricLimit = metricDAO.getById(metricSet.getLimit_id());
-        return  null;
+
+        metricGroupBy.setName(metricGroupBy.getName().replaceAll(" ","").toUpperCase());
+        metricPrimary.setName(metricPrimary.getName().toUpperCase());
+        Long limit = Long.valueOf(metricLimit.getName());
+        if(metricPrimary.getName().contains(countSign)){
+            metricPrimary.setName("count(" + countField+")");
+        }
+        else metricPrimary.setName("sum(" + amountField + ")");
+
+
+       String result =   buidQuery(metricPrimary.getName(), metricGroupBy.getName(), limit);
+        metricDAO.detachMetricFromSession(metricPrimary);
+        metricDAO.detachMetricFromSession(metricGroupBy);
+        metricDAO.detachMetricFromSession(metricLimit);
+        return result;
     }
 }

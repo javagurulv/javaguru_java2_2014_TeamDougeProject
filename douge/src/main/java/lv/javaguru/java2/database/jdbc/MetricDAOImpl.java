@@ -155,4 +155,9 @@ public class MetricDAOImpl extends DAOImpl implements MetricDAO {
     public List<Metric> getAllByType(String type) throws DBException {
         return null;
     }
+
+    @Override
+    public void detachMetricFromSession(Metric metric) {
+        ;
+    }
 }
