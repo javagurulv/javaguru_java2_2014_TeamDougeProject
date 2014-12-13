@@ -136,6 +136,24 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
 
         List<Object[]> resultList = chartDataDAO.getByQueryText(query);
         assertTrue(resultList.size() > 0);
+
+        MetricSet metricSet1 = new MetricSet();
+        metricSet1.setPrimary_id(2L);
+        metricSet1.setGroupby_id(4L);
+        metricSet1.setLimit_id(13L);
+        metricSetDAO.create(metricSet1);
+
+        Widget widget1 = new Widget();
+        widget1.setDashboard(dashboard);
+        widget1.setWidget_type_id(2L);
+        widget1.setMetric_set_id(metricSet1.getId());
+        widget1.setPosition(1L);
+        widget1.setComments("widget comment");
+        widgetDAO.create(widget1);
+
+        resultList = null;
+        resultList = chartDataDAO.getByQueryText(widgetQueryBuilder.buildQuery(widget1));
+        assertTrue(resultList.size() > 0);
     }
 
 }
