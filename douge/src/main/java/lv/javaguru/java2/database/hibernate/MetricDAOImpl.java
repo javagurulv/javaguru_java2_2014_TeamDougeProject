@@ -56,4 +56,9 @@ public class MetricDAOImpl implements MetricDAO {
         return session.createCriteria(Metric.class).add(Restrictions.eq("type", type)).list();
     }
 
+    @Override
+    public void detachMetricFromSession(Metric metric) {
+        Session session = sessionFactory.getCurrentSession();
+        session.evict(metric);
+    }
 }

@@ -23,7 +23,14 @@ public class Metric {
     @Column(name="name", nullable = false, columnDefinition = "varchar(255)")
     private String name;
 
+    public Metric(){}
 
+    public Metric(String type,String name, Long compatibility){
+        this.name = name;
+        this.type = type;
+        this.compatibility = compatibility;
+
+    }
 
     public String getType() {
         return type;
