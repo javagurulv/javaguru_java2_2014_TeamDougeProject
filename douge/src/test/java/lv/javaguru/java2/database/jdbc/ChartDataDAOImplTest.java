@@ -24,13 +24,13 @@ public class ChartDataDAOImplTest extends TestCase {
     }
     @Test
     public void testGetByQueryText() throws Exception {
-      /*String queryText = "select count(rental_id) as RentalCount, FilmCategory from data_united group by FilmCategory Order by RentalCount desc limit 10";
+      String queryText = "select count(rental_id) as RentalCount, FilmCategory from data_united group by FilmCategory Order by RentalCount desc limit 10";
         List<Object[]> objects = chartDataDAO.getByQueryText(queryText);
-        assertTrue(objects.size() == 10);
+        //assertTrue(objects.size() == 10);
         for (Object[] o : objects){
             for (int i = 0; i < o.length ; i++) {
                 System.out.println(o[i].toString() + " " + o[i].getClass().getSimpleName());
             }
-        }*/
+        }
     }
 }

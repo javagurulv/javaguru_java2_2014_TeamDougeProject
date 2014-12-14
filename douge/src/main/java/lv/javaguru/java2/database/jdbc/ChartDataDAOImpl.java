@@ -65,6 +65,11 @@ public class ChartDataDAOImpl extends DAOImpl implements ChartDataDAO {
 
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int numberOfColumns = rsmd.getColumnCount();
+            Object[] titles = new Object[numberOfColumns];
+            for (int i = 1; i <= numberOfColumns ; i++) {
+               titles[i - 1] = rsmd.getColumnName(i);
+            }
+            objects.add(titles);
             while (resultSet.next())
             {
                 Object[] obj = new Object[numberOfColumns];

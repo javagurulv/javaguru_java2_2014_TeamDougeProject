@@ -49,6 +49,9 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
     @Qualifier("ORM_WidgetTypeDAO")
     WidgetTypeDAO widgetTypeDAO;
 
+    @Autowired
+    DataGenerator dataGenerator;
+
     @Test
     public void testBuildQuery() throws DBException {
         String primaryMetric = "rental_id";
@@ -75,31 +78,7 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
 3	TimeLine	"Time Line"	8
 4	Table	Table	16*/
 
-    @Transactional
-    private void generateWidgetTypes() throws DBException {
-        widgetTypeDAO.create(new WidgetType("PieChart","PieChart", 2L));
-        widgetTypeDAO.create(new WidgetType("BarChart","BarChart", 4L));
-        widgetTypeDAO.create(new WidgetType("TimeLine","TimeLine", 8L));
-        widgetTypeDAO.create(new WidgetType("Table","Table", 16L));
-    }
 
-    @Transactional
-    private void generateMetrics() throws DBException {
-        metricDAO.create( new Metric("Primary","Item Count",30L));
-        metricDAO.create( new Metric("Primary","Amount EUR",30L));
-        metricDAO.create( new Metric("GroupBy","Staff Name",30L));
-        metricDAO.create( new Metric("GroupBy","Film Category",30L));
-        metricDAO.create( new Metric("GroupBy","Film Rating",30L));
-        metricDAO.create( new Metric("GroupBy","Day",30L));
-        metricDAO.create( new Metric("GroupBy","Week",30L));
-        metricDAO.create( new Metric("GroupBy","Month",30L));
-        metricDAO.create( new Metric("Limit","1",30L));
-        metricDAO.create( new Metric("Limit","2",30L));
-        metricDAO.create( new Metric("Limit","3",30L));
-        metricDAO.create( new Metric("Limit","4",30L));
-        metricDAO.create( new Metric("Limit","5",30L));
-        metricDAO.create( new Metric("Limit","6",30L));
-    }
 
     @Test
     @Transactional
@@ -117,7 +96,7 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
         dashboard.setUser(user);
         dashboard.setName("dashboard");
         dashboardDAO.create(dashboard);
-        generateMetrics();
+        dataGenerator.generateMetrics();
 
         MetricSet metricSet = new MetricSet();
         metricSet.setPrimary_id(1L);
@@ -153,7 +132,7 @@ public class WidgetQueryBuilderTest extends SpringIntegrationTest {
         widget1.setComments("widget comment");
         widgetDAO.create(widget1);
 
-        resultList = null;
+
         resultList = chartDataDAO.getByQueryText(widgetQueryBuilder.buildQuery(widget1));
         assertTrue(resultList.size() > 0);
     }

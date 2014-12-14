@@ -39,4 +39,25 @@ public class DBDomainDataInfo {
     public String toString(){
         return dataName + " " + dataValue + " " + dataType;
     }
+
+    public DBDomainDataInfo(){
+    }
+
+    public  DBDomainDataInfo(String dataName, Object dataValue){
+
+        this.dataName = dataName;
+        if(dataValue.getClass().isInstance(Boolean.class)){
+            this.dataType = ValueType.BOOLEAN;
+
+        }
+        else if(Number.class.isAssignableFrom(dataValue.getClass())){
+            this.dataType = ValueType.NUMBER;
+        }
+        else{
+            this.dataType = ValueType.TEXT;
+        }
+
+       this.dataValue = dataValue.toString();
+
+    }
 }
