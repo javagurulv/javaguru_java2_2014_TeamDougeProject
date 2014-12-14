@@ -11,6 +11,10 @@ import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Juris on 10.12.2014.
  */
-@Component
-public class UserTableController implements MVCController{
+@Controller
+public class UserTableController{
 
     @Autowired @Qualifier("userTableData")
     private WidgetTableData userTableData;
@@ -30,8 +34,8 @@ public class UserTableController implements MVCController{
     @Autowired @Qualifier("ORM_UserDAO")
     UserDAO userDAO;
 
-    @Override
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
+    @RequestMapping(value = "users", method = RequestMethod.GET)
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
 
         if (request.getParameter("delete") != null) {
            deleteUser(request);
@@ -61,7 +65,11 @@ public class UserTableController implements MVCController{
         }
     }
 
-    private  MVCModel userTableData(){
+    private  ModelAndView userTableData(){
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("users");
+
         try {
             userTableData.buildTableData();
         } catch (DBException e) {
@@ -74,7 +82,9 @@ public class UserTableController implements MVCController{
             e.printStackTrace();
         }
 
-        return new MVCModel("/jsp/users.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+        model.addObject(tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+
+        return model;
     }
 
     private  void addUser(HttpServletRequest request){
