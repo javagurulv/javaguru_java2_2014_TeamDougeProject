@@ -1,4 +1,5 @@
 <%@ page import="lv.javaguru.java2.servlets.mvc.models.MVCModel" %>
+<%@ page import="org.springframework.web.servlet.ModelAndView" %>
 <%--
   Created by IntelliJ IDEA.
   User: Juris
@@ -15,7 +16,8 @@
 </head>
 <body>
 <%
-    String str =(String)request.getAttribute("model");
+
+    String str = (String) request.getAttribute("model");
 %>
 
 <script type="text/javascript">

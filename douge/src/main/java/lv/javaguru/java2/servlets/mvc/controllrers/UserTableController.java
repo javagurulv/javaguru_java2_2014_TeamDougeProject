@@ -34,7 +34,7 @@ public class UserTableController{
     @Autowired @Qualifier("ORM_UserDAO")
     UserDAO userDAO;
 
-    @RequestMapping(value = "users", method = RequestMethod.GET)
+    @RequestMapping(value = "users", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
 
         if (request.getParameter("delete") != null) {
@@ -82,7 +82,7 @@ public class UserTableController{
             e.printStackTrace();
         }
 
-        model.addObject(tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+        model.addObject("model",tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
 
         return model;
     }
