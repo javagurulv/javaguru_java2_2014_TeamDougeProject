@@ -6,7 +6,13 @@ import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +21,17 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Juris on 09.11.2014.
  */
-@Component
-public class IndexController implements MVCController {
+@Controller
+public class IndexController{
 
-    private UserDAO userDAO = new UserDAOImpl();
+    @Autowired @Qualifier("ORM_UserDAO")
+    UserDAO userDAO;
 
-    @Override
-    public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
+    @RequestMapping(value = "index", method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView processRequest(HttpServletRequest req, HttpServletResponse resp) {
 
-        String Model = "/jsp/index.jsp";
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
         String ErrorString = "";
         final String incorrectLoginString = "<font color=\"red\">Login and/or password incorrect!</font>";
         final String emptyLoginString ="<font color=\"red\">Name and/or password can't be empty!</font>";
@@ -47,20 +55,21 @@ public class IndexController implements MVCController {
                         session.setAttribute("sessionLogin", login);
                         session.setMaxInactiveInterval(300);
 
-                        Model = "/jsp/securearea.jsp";
+                        model.setViewName("securearea");
                     } else {
                         ErrorString = incorrectLoginString;
-                        Model ="/jsp/login.jsp";
+                        model.setViewName("login");
                     }
                 } catch (DBException e) {
                     e.printStackTrace();
                 }
             } else {
                 ErrorString = emptyLoginString;
-                Model ="/jsp/login.jsp";
+                model.setViewName("login");
             }
         }
-        return new MVCModel(Model, ErrorString);
+        model.addObject("model",ErrorString);
+        return model;
     }
 
     private boolean isParametersValid(HttpServletRequest req) {
