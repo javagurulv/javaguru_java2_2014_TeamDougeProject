@@ -5,6 +5,6 @@ import lv.javaguru.java2.servlets.mvc.MVCController;
 /**
  * Created by Radchuk on 11/14/2014.
  */
-public interface LoginController extends MVCController {
+public interface LoginController{
 
 }

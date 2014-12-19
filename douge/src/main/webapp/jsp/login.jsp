@@ -32,6 +32,25 @@
         out.print("<font color=\"red\">" + errorMessage + "</font><br>");
     }
 %>
-<jsp:include page="templates/login_form.html" ></jsp:include>
+
+<h2>Sign In</h2>
+<form method="POST" action="login">
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="login"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="passwd"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="SUBMIT" value="Submit" name="submit"></td>
+        </tr>
+    </table>
+    <br><br>
+    <a href="/index"><button type="button">Back to Index</button></a>
+</form>
 </body>
 </html>

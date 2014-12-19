@@ -8,6 +8,10 @@ import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,17 +20,20 @@ import javax.transaction.Transactional;
 /**
  * Created by Viktor on 02/12/2014.
  */
-@Component
+@Controller
 public class AddUserControllerImpl implements AddUserController {
 
     @Autowired
     @Qualifier("ORM_UserDAO")
     private UserDAO userDAO;
 
-    @Override
+    @RequestMapping(value = "adduser", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public MVCModel processRequest(HttpServletRequest req,
+    public ModelAndView processRequest(HttpServletRequest req,
                                    HttpServletResponse resp) {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("adduser");
 
         String infoString = "";
         final String successString = "User successfully added!";
@@ -47,7 +54,9 @@ public class AddUserControllerImpl implements AddUserController {
             }
         }
 
-        return new MVCModel("/jsp/adduser.jsp", infoString);
+        model.addObject("model",infoString);
+
+        return model;
     }
 
     protected boolean isParametersValid(HttpServletRequest req) {

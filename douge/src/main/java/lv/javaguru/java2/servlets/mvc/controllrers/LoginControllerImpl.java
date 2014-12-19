@@ -8,6 +8,10 @@ import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,17 +21,19 @@ import javax.transaction.Transactional;
 /**
  * Created by Radchuk on 11/14/2014.
  */
-@Component
+@Controller
 public class LoginControllerImpl implements LoginController {
 
     @Autowired
     @Qualifier("ORM_UserDAO")
     private UserDAO userDAO;
 
-    @Override
+    @RequestMapping(value = "login", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public MVCModel processRequest(HttpServletRequest req, HttpServletResponse resp) {
+    public ModelAndView processRequest(HttpServletRequest req, HttpServletResponse resp) {
 
+        ModelAndView model = new ModelAndView();
+        model.setViewName("login");
         Integer errorType = null;
 
         //check that submit button was pressed and POST data received
@@ -59,7 +65,8 @@ public class LoginControllerImpl implements LoginController {
                 errorType = 2; //Login or password is empty;
             }
         }
-        return new MVCModel("/jsp/login.jsp", errorType);
+        model.addObject("model",errorType);
+        return model;
     }
 
     protected boolean isParametersValid(HttpServletRequest req) {
