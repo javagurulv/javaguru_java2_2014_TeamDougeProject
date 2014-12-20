@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Sergo
-  Date: 24.11.2014
-  Time: 16:22
+  Date: 20.12.2014
+  Time: 19:48
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,10 +16,11 @@
     var data =new google.visualization.DataTable("${param.dataSet}");
 
     var options = {
-      title: 'My Daily Activities'
+      title: 'Company Performance',
+      vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById(${param.divId}));
+    var chart = new google.visualization.BarChart(document.getElementById(${param.divId}));
 
     chart.draw(data, options);
   }

@@ -72,7 +72,9 @@ public class GoogleVisualizationDataTableBuilder {
     }
 
     public String getJsonDescriptionOfGoogleVizualizationDataTable(){
-        return JsonRenderer.renderDataTable(dataTable, true, true, true).toString();
+        String result = JsonRenderer.renderDataTable(dataTable, true, true, true).toString();
+        result = result.replace("\"", "\\\"");
+        return result;
     }
 
     public String getHTMLDecriptionofOfGoogleVizualizationDataTable(){

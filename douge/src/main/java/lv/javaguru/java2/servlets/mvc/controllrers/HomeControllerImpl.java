@@ -1,4 +1,6 @@
 package lv.javaguru.java2.servlets.mvc.controllrers;
+import com.google.visualization.datasource.base.TypeMismatchException;
+import lv.javaguru.java2.Controller.Builders.WidgetDataBuilder;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.DashboardDAO;
 import lv.javaguru.java2.database.UserDAO;
@@ -44,9 +46,12 @@ public class HomeControllerImpl{
     @Qualifier("ORM_WidgetDAO")
     private WidgetDAO widgetDAO;
 
+    @Autowired
+    private WidgetDataBuilder widgetDataBuilder;
+
     @RequestMapping(value = "home", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) throws DBException, TypeMismatchException {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("home");
@@ -88,7 +93,8 @@ public class HomeControllerImpl{
             }
 
             for (Widget widget: currentDashboard.getWidgets()) {
-                widget.getWidget_id();
+                widgetDataBuilder.buildWidgetdata(widget);
+                //widget.getWidget_id();
             }
         }
 

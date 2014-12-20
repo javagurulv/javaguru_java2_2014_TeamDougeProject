@@ -9,8 +9,9 @@
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-  google.load("visualization", "1", {packages:["corechart"]});
+  google.load("visualization", "1", {packages:["table"]});
   google.setOnLoadCallback(drawChart);
+
   function drawChart() {
 
     var data =new google.visualization.DataTable("${param.dataSet}");
@@ -19,9 +20,9 @@
       title: 'My Daily Activities'
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById(${param.divId}));
+    var table = new google.visualization.Table(document.getElementById("${param.divId}"));
 
-    chart.draw(data, options);
+    table.draw(data, {showRowNumber: false});
   }
 </script>
-<div id=${param.divId}></div>
+<div id="${param.divId}"></div>

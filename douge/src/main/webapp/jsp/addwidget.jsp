@@ -55,9 +55,10 @@
                 </td>
                 <td>
                     <select name="graph_type">
-                        <option value="1">Timeline</option>
-                        <option value="2">Pie Chart</option>
-                        <option value="3">Bar Chart</option>
+
+                        <option value="1">Pie Chart</option>
+                        <option value="2">Bar Chart</option>
+                       <!-- <option value="3">Timeline</option> -->
                         <option value="4">Table</option>
                     </select>
                 </td>

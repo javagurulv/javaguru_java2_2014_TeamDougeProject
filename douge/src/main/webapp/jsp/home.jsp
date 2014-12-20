@@ -3,6 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="lv.javaguru.java2.domain.Widget" %>
 <%@ page import="lv.javaguru.java2.servlets.mvc.models.MVCDashboardModel" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -27,7 +29,7 @@
 <html>
 <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/jsp/includes/style.css">
+    <link rel="stylesheet" type="text/css" href="/style/style.css">
 
     <script>
         function addDashboard() {
@@ -70,10 +72,26 @@
 
                 Dashboard currentDashboard = dashboardModel.getCurrentDashboard();
                 List<Widget> widgets = currentDashboard.getWidgets();
+                Map<Long,String> widgetTypes = new HashMap<Long, String>();
+                widgetTypes.put(1L,"includes/charts/pie_chart.jsp");
+                widgetTypes.put(2L,"includes/charts/bar_chart.jsp");
+                widgetTypes.put(3L,"includes/charts/timeline_chart.jsp");
+                widgetTypes.put(4L,"includes/charts/table.jsp");
+
 
                 for (int j = 0; j < widgets.size(); j++) {
                     Widget widget = widgets.get(j);
-                    out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + widget.getWidget_id() + ")\">" + widget.getComments() + "</a></div>");
+                    ;
+                    out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + widget.getWidget_id() + ")\">" + widget.getComments() + "</a>");
+                   // out.println(widget.getJsonWidgetDAta());
+        %>
+                    <jsp:include page="<%=widgetTypes.get(widget.getWidget_type_id())  %>">
+                        <jsp:param name="divId" value="<%=widget.getWidget_id() %>" />
+                        <jsp:param name="dataSet" value="<%=widget.getJsonWidgetDAta() %>" />
+                    </jsp:include>
+
+
+            <%      out.println("</div>");
                     if (j % 2 == 1)
                         out.println("<br style=\"clear:both\" />");
                 }
