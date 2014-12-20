@@ -13,7 +13,13 @@
         Integer errorType = (Integer) request.getAttribute("model");
 
         if (errorType == 0) { //Login Successfull
-            response.sendRedirect("/home");
+            Long userType = (Long) session.getAttribute("userType");
+            if (userType == 0){
+                response.sendRedirect("/users");
+            }
+            else {
+                response.sendRedirect("/home");
+            }
         } else if (errorType == 1) { //Login or password incorrect
             errorMessage = "Login and/or password incorrect!";
         } else if (errorType == 2) { //Login or password is empty;

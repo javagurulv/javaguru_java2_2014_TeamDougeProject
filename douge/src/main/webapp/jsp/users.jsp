@@ -26,7 +26,7 @@
     }
 
 %>
-<div align="right">Welcome, <%= sessionLogin %>! <a href="/logout">Log Out</a></div><br>
+<div align="right">Welcome, <%= sessionLogin %>! &nbsp <a href="/home">Home</a> &nbsp <a href="/logout">Log Out</a></div><br>
 
 <script type="text/javascript">
     google.load("visualization", "1", {packages:["table"]});

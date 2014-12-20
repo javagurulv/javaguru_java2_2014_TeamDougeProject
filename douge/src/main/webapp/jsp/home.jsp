@@ -15,14 +15,9 @@
 <%
     //allow access only if session exists
     String sessionLogin = null;
+    Long userType = (Long) session.getAttribute("userType");
     if (session.getAttribute("sessionLogin") != null) {
-        Long userType = (Long) session.getAttribute("userType");
-        if (userType == 0){
-            response.sendRedirect("/users");
-        }
-        else {
-            sessionLogin = (String) session.getAttribute("sessionLogin");
-        }
+        sessionLogin = (String) session.getAttribute("sessionLogin");
     }
     else {
         response.sendRedirect("/login");
@@ -49,7 +44,12 @@
 
 </head>
 <body>
-    <div align="right">Welcome, <%= sessionLogin %>! <a href="/logout">Log Out</a></div><br>
+<%  String output = "";
+    if (userType==0){
+        output = "&nbsp <a href=\"/users\">Admin Panel</a> &nbsp";
+    }
+%>
+    <div align="right">Welcome, <%= sessionLogin %>! <%=output%> <a href="/logout">Log Out</a></div><br>
     <div id="header">
         <h2>Team Douge Project</h2>
     </div>
