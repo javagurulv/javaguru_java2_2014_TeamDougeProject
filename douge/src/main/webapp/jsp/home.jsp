@@ -16,7 +16,13 @@
     //allow access only if session exists
     String sessionLogin = null;
     if (session.getAttribute("sessionLogin") != null) {
-        sessionLogin = (String) session.getAttribute("sessionLogin");
+        Long userType = (Long) session.getAttribute("userType");
+        if (userType == 0){
+            response.sendRedirect("/users");
+        }
+        else {
+            sessionLogin = (String) session.getAttribute("sessionLogin");
+        }
     }
     else {
         response.sendRedirect("/login");

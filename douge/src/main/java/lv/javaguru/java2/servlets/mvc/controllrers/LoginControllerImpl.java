@@ -50,6 +50,7 @@ public class LoginControllerImpl {
                     if (user != null && password.equals(user.getPassword())) {
                         HttpSession session = req.getSession();
                         session.setAttribute("sessionLogin", login);
+                        session.setAttribute("userType",user.getUser_type());
                         session.setMaxInactiveInterval(300);
                         errorType = 0; //Login successful
                     } else {

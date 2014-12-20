@@ -18,6 +18,13 @@
 <%
 
     String str = (String) request.getAttribute("model");
+    String sessionLogin = null;
+    Long userType = (Long) session.getAttribute("userType");
+
+    if (session.getAttribute("sessionLogin") == null || userType != 0) {
+            response.sendRedirect("/login");
+    }
+
 %>
 
 <script type="text/javascript">
