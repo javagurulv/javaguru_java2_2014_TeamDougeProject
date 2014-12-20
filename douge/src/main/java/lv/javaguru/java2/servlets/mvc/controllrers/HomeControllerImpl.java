@@ -67,6 +67,7 @@ public class HomeControllerImpl{
             User user = null;
             try {
                 user = userDAO.getByLogin(sessionLogin);
+
             } catch (DBException e) {
                 e.printStackTrace();
             }

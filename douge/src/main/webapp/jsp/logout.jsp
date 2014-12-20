@@ -18,7 +18,7 @@
 <html>
 <head>
     <title>Logout</title>
-    <meta http-equiv="refresh" content="3;url=/index" />
+    <meta http-equiv="refresh" content="3;url=/login" />
 </head>
 <body>
 You have successfully logged out. You will be redirected in 3 seconds...
