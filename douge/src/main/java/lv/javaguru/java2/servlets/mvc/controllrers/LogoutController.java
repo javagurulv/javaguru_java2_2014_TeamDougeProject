@@ -3,6 +3,7 @@ package lv.javaguru.java2.servlets.mvc.controllrers;
 import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by user on 14-Nov-14.
  */
-@Component
+@Controller
 @RequestMapping(value = "logout", method = {RequestMethod.GET,RequestMethod.POST})
 public class LogoutController{
     public ModelAndView processRequest(HttpServletRequest req, HttpServletResponse resp) {
