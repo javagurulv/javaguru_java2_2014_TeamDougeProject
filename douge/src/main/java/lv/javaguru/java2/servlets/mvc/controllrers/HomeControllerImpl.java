@@ -44,7 +44,7 @@ public class HomeControllerImpl{
     @Qualifier("ORM_WidgetDAO")
     private WidgetDAO widgetDAO;
 
-    @RequestMapping(value = "", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "home", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
 
