@@ -16,8 +16,9 @@ import javax.servlet.http.HttpSession;
  * Created by user on 14-Nov-14.
  */
 @Controller
-@RequestMapping(value = "logout", method = {RequestMethod.GET,RequestMethod.POST})
 public class LogoutController{
+
+    @RequestMapping(value = "logout", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest req, HttpServletResponse resp) {
 
         ModelAndView model = new ModelAndView();
