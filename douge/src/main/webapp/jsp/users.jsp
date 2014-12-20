@@ -18,7 +18,7 @@
 <%
 
     String str = (String) request.getAttribute("model");
-    String sessionLogin = null;
+    String sessionLogin = (String) session.getAttribute("sessionLogin");
     Long userType = (Long) session.getAttribute("userType");
 
     if (session.getAttribute("sessionLogin") == null || userType != 0) {
@@ -26,6 +26,7 @@
     }
 
 %>
+<div align="right">Welcome, <%= sessionLogin %>! <a href="/logout">Log Out</a></div><br>
 
 <script type="text/javascript">
     google.load("visualization", "1", {packages:["table"]});
