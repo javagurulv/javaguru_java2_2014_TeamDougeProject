@@ -39,18 +39,18 @@ public class MVCFilter implements Filter {
         }
 
         controllerMap = new HashMap<String,MVCController>();
-        controllerMap.put("/home", getBean(HomeController.class));
+      // controllerMap.put("/home", getBean(HomeController.class));
       //  controllerMap.put("/hello", getBean(HelloWorldController.class));
         controllerMap.put("/actors", getBean(ActorTableController.class));
         controllerMap.put("/films", getBean(FilmTableController.class));
-        controllerMap.put("/index", getBean(IndexController.class));
-        controllerMap.put("/login", getBean(LoginController.class));
-        controllerMap.put("/logout", getBean(LogoutController.class));
-        controllerMap.put("/adduser", getBean(AddUserController.class));
+      //  controllerMap.put("/index", getBean(IndexController.class));
+      //  controllerMap.put("/login", getBean(LoginController.class));
+      //  controllerMap.put("/logout", getBean(LogoutController.class));
+      //  controllerMap.put("/adduser", getBean(AddUserController.class));
       //  controllerMap.put("/users", getBean(UserTableController.class));
-        controllerMap.put("/addwidget", getBean(AddWidgetController.class));
-        controllerMap.put("/editwidget", getBean(EditWidgetController.class));
-        controllerMap.put("/adddashboard", getBean(AddDashboardController.class));
+      //  controllerMap.put("/addwidget", getBean(AddWidgetController.class));
+      //  controllerMap.put("/editwidget", getBean(EditWidgetController.class));
+      //  controllerMap.put("/adddashboard", getBean(AddDashboardController.class));
     }
 
     private MVCController getBean(Class clazz){

@@ -1,8 +1,13 @@
 package lv.javaguru.java2.servlets.mvc.controllrers;
 
+import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,17 +16,22 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by user on 11-Dec-14.
  */
-@Component
-public class EditWidgetControllerImpl implements EditWidgetController {
+@Controller
+public class EditWidgetControllerImpl{
 
-    @Override
+    @RequestMapping(value = "editwidget", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("editwidget");
 
         String sessionLogin = null;
         HttpSession session = request.getSession();
 
-        return new MVCModel("/jsp/editwidget.jsp", "test");
+        model.addObject("model","test");
+
+        return model;
 
     }
 

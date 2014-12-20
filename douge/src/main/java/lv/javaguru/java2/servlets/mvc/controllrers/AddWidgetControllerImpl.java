@@ -9,7 +9,11 @@ import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +25,8 @@ import java.util.Map;
 /**
  * Created by user on 11-Dec-14.
  */
-@Component
-public class AddWidgetControllerImpl implements AddWidgetController {
+@Controller
+public class AddWidgetControllerImpl{
 
     @Autowired
     @Qualifier("ORM_UserDAO")
@@ -44,9 +48,12 @@ public class AddWidgetControllerImpl implements AddWidgetController {
     @Qualifier("ORM_MetricSetDAO")
     private MetricSetDAO metricSetDAO;
 
-    @Override
+    @RequestMapping(value = "addwidget", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("addwidget");
 
         Integer errorCode = 0;
 
@@ -79,7 +86,9 @@ public class AddWidgetControllerImpl implements AddWidgetController {
         metricMap.put("GroupBy", groupByMetrics);
         metricMap.put("Limit", limitMetrics);
 
-        return new MVCModel("/jsp/addwidget.jsp", metricMap);
+        model.addObject("model",metricMap);
+
+        return model;
     }
 
     private void storeMetricSetToDatabase(MetricSet metricSet) {

@@ -3,11 +3,8 @@ package lv.javaguru.java2.servlets.mvc.controllrers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.servlets.mvc.MVCController;
-import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +18,7 @@ import javax.transaction.Transactional;
  * Created by Viktor on 02/12/2014.
  */
 @Controller
-public class AddUserControllerImpl implements AddUserController {
+public class AddUserControllerImpl {
 
     @Autowired
     @Qualifier("ORM_UserDAO")

@@ -5,10 +5,15 @@ import lv.javaguru.java2.database.DashboardDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +23,8 @@ import javax.transaction.Transactional;
 /**
  * Created by user on 12-Dec-14.
  */
-@Component
-public class AddDashboardControllerImpl implements AddDashboardController {
+@Controller
+public class AddDashboardControllerImpl{
 
     @Autowired
     @Qualifier("ORM_UserDAO")
@@ -29,9 +34,13 @@ public class AddDashboardControllerImpl implements AddDashboardController {
     @Qualifier("ORM_DashboardDAO")
     private DashboardDAO dashboardDAO;
 
-    @Override
+    @RequestMapping(value = "adddashboard", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView model = new ModelAndView();
+
+        model.setViewName("adddashboard");
 
         Integer errorCode = 0;
 
@@ -62,7 +71,9 @@ public class AddDashboardControllerImpl implements AddDashboardController {
             errorCode = 3; //User not logged in
         }
 
-        return new MVCModel("/jsp/adddashboard.jsp", errorCode);
+        model.addObject("model",errorCode);
+
+        return model;
     }
 
     private void storeDashboardToDatabase(Dashboard dashboard) {

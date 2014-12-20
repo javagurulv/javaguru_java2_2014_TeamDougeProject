@@ -6,11 +6,17 @@ import lv.javaguru.java2.database.WidgetDAO;
 import lv.javaguru.java2.domain.Dashboard;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Widget;
+import lv.javaguru.java2.servlets.mvc.MVCController;
 import lv.javaguru.java2.servlets.mvc.models.MVCDashboardModel;
 import lv.javaguru.java2.servlets.mvc.models.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,8 +27,8 @@ import java.util.List;
 /**
  * Created by user on 05-Dec-14.
  */
-@Component
-public class HomeControllerImpl implements HomeController {
+@Controller
+public class HomeControllerImpl{
 
     List<Dashboard> dashboards = new ArrayList<Dashboard>();
 
@@ -38,9 +44,12 @@ public class HomeControllerImpl implements HomeController {
     @Qualifier("ORM_WidgetDAO")
     private WidgetDAO widgetDAO;
 
-    @Override
+    @RequestMapping(value = "home", method = {RequestMethod.GET,RequestMethod.POST})
     @Transactional
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("home");
 
         String sessionLogin = null;
         HttpSession session = request.getSession();
@@ -93,10 +102,10 @@ public class HomeControllerImpl implements HomeController {
         }
         */
 
-        MVCDashboardModel mvcDashboardModel;
+        MVCDashboardModel mvcDashboardModel = new MVCDashboardModel("/jsp/home.jsp", dashboards, currentDashboard);
 
-        mvcDashboardModel = new MVCDashboardModel("/jsp/home.jsp", dashboards, currentDashboard);
+        model.addObject("model",mvcDashboardModel);
 
-        return new MVCModel("/jsp/home.jsp", mvcDashboardModel);
+        return model;
     }
 }
