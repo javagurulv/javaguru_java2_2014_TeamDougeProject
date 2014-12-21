@@ -31,7 +31,7 @@ public class WebMVCConfig   extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/style/**").addResourceLocations("/jsp/includes/");
+        registry.addResourceHandler("/style/**").addResourceLocations("/jsp/includes/style/");
     }
 
 }
