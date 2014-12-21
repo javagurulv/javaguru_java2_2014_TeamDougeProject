@@ -35,11 +35,11 @@
 
 
     function drawTable() {
-        var data = new google.visualization.DataTable(<%out.print(str);%>);
+        var data = new google.visualization.DataTable("<%out.print(str);%>");
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
 
-        table.draw(data, {showRowNumber: true});
+        table.draw(data, {showRowNumber: false});
     }
 </script>
 <div id="table_div"></div>
