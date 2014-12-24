@@ -24,11 +24,11 @@
 
 <table align="center" width="90%">
     <tr>
-        <td align="center"><a href="/home"><button type="button">Home</button></a></td>
+        <!--<td align="center"><a href="/home"><button type="button">Home</button></a></td>
         <td align="center"><a href="/login"><button type="button">Sign in</button></a></td>
-        <td align="center"><a href="/users"><button type="button">Add user</button></a></td>
+        <!-- <td align="center"><a href="/users"><button type="button">Add user</button></a></td>
         <td align="center"><a href="/films"><button type="button">Film list</button></a></td>
-        <td align="center"><a href="/actors"><button type="button">Actor list</button></a></td>
+        <td align="center"><a href="/actors"><button type="button">Actor list</button></a></td> -->
     </tr>
 </table></body>
 </html>

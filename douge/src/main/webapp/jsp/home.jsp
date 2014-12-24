@@ -20,7 +20,7 @@
 
     User user = (User)session.getAttribute("user");
 
-    if(user == null){response.sendRedirect("/login");}
+    if(user == null){response.sendRedirect("/index");}
     else{
         if (user.getUser_type() == 0L) {
             String adminLink = "&nbsp <a href='/users'>Admin Panel</a> &nbsp";

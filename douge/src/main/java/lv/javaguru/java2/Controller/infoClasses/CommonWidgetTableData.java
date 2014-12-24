@@ -30,4 +30,9 @@ public class CommonWidgetTableData implements WidgetTableData {
     public  CommonWidgetTableData(List<DomainWidgetContent> contents){
         this.contents = contents;
     }
+
+    @Override
+    public List<DomainWidgetContent> getWidgetTableData(Map<String, String> params) throws DBException {
+        return null;
+    }
 }
