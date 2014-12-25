@@ -13,4 +13,6 @@ public interface WidgetTableData {
     List<DomainWidgetContent> getWidgetTableData();
     void buildTableData() throws DBException;
     void buildTableData(Map<String, String> params) throws DBException;
+
+    List<DomainWidgetContent> getWidgetTableData(Map<String, String> params) throws DBException;
 }

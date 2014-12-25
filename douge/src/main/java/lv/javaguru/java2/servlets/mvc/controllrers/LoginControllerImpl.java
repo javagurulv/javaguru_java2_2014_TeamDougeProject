@@ -3,6 +3,7 @@ package lv.javaguru.java2.servlets.mvc.controllrers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,7 @@ public class LoginControllerImpl {
                         HttpSession session = req.getSession();
                         session.setAttribute("sessionLogin", login);
                         session.setAttribute("userType",user.getUser_type());
+                        session.setAttribute("user", user);
                         session.setMaxInactiveInterval(300);
                         errorType = 0; //Login successful
                     } else {

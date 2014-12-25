@@ -5,6 +5,7 @@
 <%@ page import="lv.javaguru.java2.servlets.mvc.models.MVCDashboardModel" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -16,14 +17,17 @@
 
 <%
     //allow access only if session exists
-    String sessionLogin = null;
-    Long userType = (Long) session.getAttribute("userType");
-    if (session.getAttribute("sessionLogin") != null) {
-        sessionLogin = (String) session.getAttribute("sessionLogin");
+
+    User user = (User)session.getAttribute("user");
+
+    if(user == null){response.sendRedirect("/index");}
+    else{
+        if (user.getUser_type() == 0L) {
+            String adminLink = "&nbsp <a href='/users'>Admin Panel</a> &nbsp";
+            session.setAttribute("adminlink",adminLink);
+        }
     }
-    else {
-        response.sendRedirect("/login");
-    }
+
 %>
 
 <!DOCTYPE html>
@@ -46,12 +50,8 @@
 
 </head>
 <body>
-<%  String output = "";
-    if (userType==0){
-        output = "&nbsp <a href=\"/users\">Admin Panel</a> &nbsp";
-    }
-%>
-    <div align="right">Welcome, <%= sessionLogin %>! <%=output%> <a href="/logout">Log Out</a></div><br>
+
+    <div align="right">Welcome, <%=(String)session.getAttribute("sessionLogin")%>! <%=(String)session.getAttribute("adminlink")%> <a href="/logout">Log Out</a></div><br>
     <div id="header">
         <h2>Team Douge Project</h2>
     </div>

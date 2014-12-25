@@ -22,7 +22,7 @@
     Long userType = (Long) session.getAttribute("userType");
 
     if (session.getAttribute("sessionLogin") == null || userType != 0) {
-            response.sendRedirect("/login");
+            response.sendRedirect("/index");
     }
 
 %>
@@ -35,81 +35,74 @@
 
 
     function drawTable() {
-        var data = new google.visualization.DataTable(<%out.print(str);%>);
+        var data = new google.visualization.DataTable("<%out.print(str);%>");
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
 
-        table.draw(data, {showRowNumber: true});
+        table.draw(data, {showRowNumber: false});
+
+        function clickEventHandler(e){
+            var selection = table.getSelection();
+            var item = selection[0];
+            document.getElementById("user_id").value = data.getFormattedValue(item.row,0);
+            document.getElementById("userlogin").value = data.getFormattedValue(item.row,1);
+            document.getElementById("userpassword").value = data.getFormattedValue(item.row,3);
+            document.getElementById("comments").value = data.getFormattedValue(item.row,4);
+            document.getElementById("user_type").value = data.getFormattedValue(item.row,2);
+        }
+
+        google.visualization.events.addListener(table, 'select', clickEventHandler);
     }
+
+    function userActionEvent(){
+       return confirm("Are you sure?");
+    }
+
+
 </script>
 <div id="table_div"></div>
 
-    <form method="POST" action="users">
-
+    <form method="POST" action="users" id="user_action">
+        <input type="hidden" name="user_id" id="user_id">
         <br>
 
-        <Table width="100%">
+        <Table>
             <tr>
-                <td><b>Add user: </b></td>
-                <td></td>
-                <td><b>Edit user: </b></td>
-                <td></td>
-                <td><b>Delete user: </b></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>User type:</td>
-                <td><select name="user_typed">
-                        <option value="0">Admin</option>
-                        <option value="1">User</option>
-                    </select></td>
-                <td>User id:</td>
-                <td> <input type="Text" name="useridedit"></td>
-                <td>User id:</td>
-                <td> <input type="Text" name="useriddelete"></td>
-            </tr>
-            <tr>
-                <td>login:</td>
-                <td><input type="Text" name="logind"></td>
-                <td> User type:</td>
-                <td><select name="user_typee">
-                        <option value="0">Admin</option>
-                        <option value="1">User</option>
-                    </select></td>
-                <td><input type="SUBMIT" value="Delete" name="delete"></td>
-                <td></td>
+                <td>
+                    Login:
+                </td>
+                <td>
+                    <input type="Text" id="userlogin" name="userlogin">
+                </td>
+
+
+                <td rowspan="3">
+                    <input type="radio" name="useraction" value="Add"> Add<br>
+                    <input type="radio" name="useraction" value="Edit"> Edit<br>
+                    <input type="radio" name="useraction" value="Delete" checked>Delete<br>
+                </td>
+
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><input type="Text" name="passwdd"></td>
-                <td>login:</td>
-                <td><input type="Text" name="logine"></td>
-                <td></td>
-                <td></td>
+                <td><input type="text" id="userpassword" name="userpassword"></td>
             </tr>
             <tr>
-                <td>Comments:</td>
-                <td><input type="Text" name="commentsd"></td>
-                <td>Password:</td>
-                <td><input type="Text" name="passwde"></td>
-                <td></td>
-                <td></td>
+                <td>Comments</td>
+                <td><input type="text" id="comments" name="comments"></td>
             </tr>
             <tr>
-                <td><input type="SUBMIT" value="Add user" name="adduser"></td>
-                <td></td>
-                <td>Comments:</td>
-                <td><input type="Text" name="commentse"></td>
-                <td></td>
-                <td></td>
+                <td>User Type</td>
+                <td>
+                    <select name="user_type" id="user_type">
+                        <option value="0">Admin</option>
+                        <option value="1">User</option>
+                    </select></td>
+                </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td><input type="SUBMIT" value="Edit user" name="edituser"></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Execute</td>
+                <td colspan="3"><input type="submit" value="Let's go bastards!!!!" onclick="return userActionEvent()"> </td>
             </tr>
         </Table>
     </form>

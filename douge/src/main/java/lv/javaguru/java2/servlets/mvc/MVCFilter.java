@@ -42,7 +42,7 @@ public class MVCFilter implements Filter {
       // controllerMap.put("/home", getBean(HomeController.class));
       //  controllerMap.put("/hello", getBean(HelloWorldController.class));
         controllerMap.put("/actors", getBean(ActorTableController.class));
-        controllerMap.put("/films", getBean(FilmTableController.class));
+
       //  controllerMap.put("/index", getBean(IndexController.class));
       //  controllerMap.put("/login", getBean(LoginController.class));
       //  controllerMap.put("/logout", getBean(LogoutController.class));

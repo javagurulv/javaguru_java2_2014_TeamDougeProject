@@ -40,4 +40,10 @@ public class UserInfoBuilder implements WidgetTableData {
     public void buildTableData(Map<String, String> params) throws DBException {
         buildUserInfo();
     }
+
+    @Override
+    public List<DomainWidgetContent> getWidgetTableData(Map<String, String> params) throws DBException {
+        List<DomainWidgetContent> tabledata = userDAO.getAll();
+        return tabledata;
+    }
 }

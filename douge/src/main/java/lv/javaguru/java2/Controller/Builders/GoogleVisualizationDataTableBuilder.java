@@ -6,7 +6,7 @@ import com.google.visualization.datasource.datatable.DataTable;
 import com.google.visualization.datasource.datatable.TableRow;
 import com.google.visualization.datasource.datatable.ValueFormatter;
 
-import com.google.visualization.datasource.render.HtmlRenderer;
+
 import com.google.visualization.datasource.render.JsonRenderer;
 import com.ibm.icu.util.ULocale;
 import lv.javaguru.java2.Controller.WidgetTableData;
@@ -24,20 +24,10 @@ import java.util.Set;
 @Component
 public class GoogleVisualizationDataTableBuilder {
 
-    private DataTable dataTable  = null;
 
-    private void setColumns(WidgetTableData tableData){
 
-        Map<String, DBDomainDataInfo> infoMap = tableData.getWidgetTableData().get(0).getFullDomainInfo();
-        for (String key : infoMap.keySet())
-        {
-            DBDomainDataInfo info =infoMap.get(key);
-            dataTable.addColumn(new ColumnDescription(key,info.getDataType(),key));
-        }
-        // dataTable.addColumns(cd);
-    }
-
-    private void addRow(WidgetTableData tableData, Integer position) throws TypeMismatchException {
+   //------------------------------------------------- Thread safe implementation ------------------------------------//
+    private void addRow(WidgetTableData tableData, DataTable dataTable, Integer position) throws TypeMismatchException {
         Map<String, DBDomainDataInfo> infoMap = tableData.getWidgetTableData().get(position).getFullDomainInfo();
 
         TableRow tableRow = new TableRow();
@@ -51,33 +41,43 @@ public class GoogleVisualizationDataTableBuilder {
 
     }
 
-    private void setRows(WidgetTableData tableData) throws TypeMismatchException {
+    private void setRows(WidgetTableData tableData, DataTable dataTable) throws TypeMismatchException {
         for (int i = 0; i < tableData.getWidgetTableData().size() ; i++) {
-            addRow(tableData, i);
+            addRow(tableData,dataTable,i);
         }
-
     }
 
-    public void prepareInfo(WidgetTableData tableData) throws TypeMismatchException {
-        dataTable = new DataTable();
+
+    private void setColumns(WidgetTableData tableData , DataTable dataTable){
+
+        Map<String, DBDomainDataInfo> infoMap = tableData.getWidgetTableData().get(0).getFullDomainInfo();
+        for (String key : infoMap.keySet())
+        {
+            DBDomainDataInfo info =infoMap.get(key);
+            dataTable.addColumn(new ColumnDescription(key,info.getDataType(),key));
+        }
+        // dataTable.addColumns(cd);
+    }
+
+    protected void buildDataSet(WidgetTableData tableData, DataTable dataTable) throws TypeMismatchException {
         List<DomainWidgetContent> widgetContents = tableData.getWidgetTableData();
         if (widgetContents.size() > 0){
-            setColumns(tableData);
-            setRows(tableData);
+            setColumns(tableData,dataTable);
+            setRows(tableData,dataTable);
         }
     }
 
-    public DataTable getGoogleVizualizationDataTable(){
-        return dataTable;
-    }
+    //------------------------------------------- End of thread safe implementation --------------------------//
 
-    public String getJsonDescriptionOfGoogleVizualizationDataTable(){
-        String result = JsonRenderer.renderDataTable(dataTable, true, true, true).toString();
+
+
+
+    public String  getJsonDescriptionOfGoogleVizualizationDataTable(WidgetTableData tableData) throws TypeMismatchException {
+        DataTable dataSet = new DataTable();
+        buildDataSet(tableData, dataSet);
+        String result = JsonRenderer.renderDataTable(dataSet, true,true,true).toString();
         result = result.replace("\"", "\\\"");
         return result;
     }
 
-    public String getHTMLDecriptionofOfGoogleVizualizationDataTable(){
-        return HtmlRenderer.renderDataTable(dataTable, ULocale.createCanonical("UTF-8")).toString();
-    }
 }
