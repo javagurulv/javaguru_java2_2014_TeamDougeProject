@@ -22,7 +22,7 @@
     Long userType = (Long) session.getAttribute("userType");
 
     if (session.getAttribute("sessionLogin") == null || userType != 0) {
-            response.sendRedirect("/login");
+            response.sendRedirect("/index");
     }
 
 %>
@@ -40,16 +40,88 @@
         var table = new google.visualization.Table(document.getElementById('table_div'));
 
         table.draw(data, {showRowNumber: false});
+
+        function clickEventHandler(e){
+            var selection = table.getSelection();
+            var message = '';
+                var item = selection[0];
+
+                document.getElementById("user_id").value = data.getFormattedValue(item.row,0);
+                document.getElementById("userlogin").value = data.getFormattedValue(item.row,1);
+                document.getElementById("userpassword").value = data.getFormattedValue(item.row,3);
+                document.getElementById("comments").value = data.getFormattedValue(item.row,4);
+                document.getElementById("user_type").value = data.getFormattedValue(item.row,2);
+                // document.getElementById("user_type").value = 1;
+                /* if (item.row != null && item.column != null) {
+                     document.getElementById("user_id").value = data.getFormattedValue(item.row,0);
+                     document.getElementById("userlogin").value = data.getFormattedValue(item.row,1);
+                     var str = data.getFormattedValue(item.row, item.column);
+                     message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
+                 }
+                 alert('You selected ' + message);
+
+                 /* DataTable.getValue() or getFormattedValue().*/
+
+
+        }
+
+        google.visualization.events.addListener(table, 'select', clickEventHandler);
     }
+
+    function userActionEvent(){
+       return cofirm("Are yiu sure?");
+    }
+
+
 </script>
 <div id="table_div"></div>
 
-    <form method="POST" action="users">
-
+    <form method="POST" action="users" id="user_action">
+        <input type="hidden" name="user_id" id="user_id">
         <br>
 
-        <Table width="100%">
+        <Table>
             <tr>
+                <td>
+                    Login:
+                </td>
+                <td>
+                    <input type="Text" id="userlogin" name="userlogin">
+                </td>
+
+
+                <td rowspan="3">
+                    <input type="radio" name="useraction" value="Add"> Add<br>
+                    <input type="radio" name="useraction" value="Edit"> Edit<br>
+                    <input type="radio" name="useraction" value="Delete" checked>Delete<br>
+                </td>
+
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="text" id="userpassword" name="userpassword"></td>
+            </tr>
+            <tr>
+                <td>Comments</td>
+                <td><input type="text" id="comments" name="comments"></td>
+            </tr>
+            <tr>
+                <td>User Type</td>
+                <td>
+                    <select name="user_type" id="user_type">
+                        <option value="0">Admin</option>
+                        <option value="1">User</option>
+                    </select></td>
+                </td>
+            </tr>
+            <tr>
+                <td>Execute</td>
+                <td colspan="3"><input type="submit" value="Let's go bastards!!!!" onclick="return userActionEvent()"> </td>
+            </tr>
+
+
+
+           <!-- <tr>
                 <td><b>Add user: </b></td>
                 <td></td>
                 <td><b>Edit user: </b></td>
@@ -110,7 +182,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
+            </tr> -->
         </Table>
     </form>
 

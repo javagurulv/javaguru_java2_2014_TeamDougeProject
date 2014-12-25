@@ -36,27 +36,31 @@ public class UserTableController{
 
     @RequestMapping(value = "users", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
+        System.out.println(request.getParameterMap().toString());
 
-        if (request.getParameter("delete") != null) {
-           deleteUser(request);
+        if(request.getParameter("useraction") != null){
+            System.out.println(request.getParameter("useraction"));
+            doUserAction(request);
         }
-
-        if (request.getParameter("adduser")!=null) {
-            addUser(request);
-        }
-
-        if (request.getParameter("edituser")!=null){
-            editUser(request);
-        }
-
-
-
         return userTableData();
     }
 
+    private void doUserAction(HttpServletRequest request){
+        String action = request.getParameter("useraction").toLowerCase();
+        if(action.equals("delete")){
+            deleteUser(request);
+        }
+        if(action.equals("edit")){
+            editUser(request);
+        }
+        if(action.equals("add")){
+            addUser(request);
+        }
+    }
+
     private void deleteUser(HttpServletRequest request){
-        if (request.getParameter("useriddelete") != null) {
-            Long id = Long.valueOf(request.getParameter("useriddelete"));
+        if (request.getParameter("user_id") != null) {
+            Long id = Long.valueOf(request.getParameter("user_id"));
             try {
                 userDAO.delete(id);
             } catch (DBException e) {
@@ -98,17 +102,13 @@ public class UserTableController{
 
     protected void editUser(HttpServletRequest request){
         try {
-            User user = userDAO.getById(Long.valueOf(request.getParameter("useridedit")));
+            User user = userDAO.getById(Long.valueOf(request.getParameter("user_id")));
 
-            user.setUser_type(Long.valueOf(request.getParameter("user_typee")));
+            user.setUser_type(Long.valueOf(request.getParameter("user_type")));
+            user.setLogin(request.getParameter("userlogin"));
+            user.setPassword(request.getParameter("userpassword"));
+            user.setComments(request.getParameter("comments"));
 
-            if (request.getParameter("logine")!="") {
-                user.setLogin(request.getParameter("logine"));
-            }
-            if (request.getParameter("passwdee")!="") {
-                user.setPassword(request.getParameter("passwde"));
-            }
-            user.setComments(request.getParameter("commentse"));
             userDAO.update(user);
 
 
@@ -118,9 +118,9 @@ public class UserTableController{
     }
 
     protected boolean isParametersValid(HttpServletRequest req) {
-        return !req.getParameter("user_typed").trim().isEmpty() &&
-                !req.getParameter("logind").trim().isEmpty() &&
-                !req.getParameter("passwdd").trim().isEmpty();
+        return !req.getParameter("user_type").trim().isEmpty() &&
+                !req.getParameter("userlogin").trim().isEmpty() &&
+                !req.getParameter("userpassword").trim().isEmpty();
     }
 
     private void storeUserToDatabase(User user) {
@@ -133,10 +133,10 @@ public class UserTableController{
 
     protected User createUserFromRequest(HttpServletRequest req) {
         User user = new User();
-        String user_type = req.getParameter("user_typed");
-        String login = req.getParameter("logind");
-        String password = req.getParameter("passwdd");
-        String comments = req.getParameter("commentsd");
+        String user_type = req.getParameter("user_type");
+        String login = req.getParameter("userlogin");
+        String password = req.getParameter("userpassword");
+        String comments = req.getParameter("comments");
 
         user.setComments(comments);
         user.setLogin(login);
