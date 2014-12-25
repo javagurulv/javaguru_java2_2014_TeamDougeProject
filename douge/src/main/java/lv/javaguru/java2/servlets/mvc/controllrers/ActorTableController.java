@@ -31,6 +31,7 @@ public class ActorTableController implements MVCController {
     @Autowired
     ActorDAO actorDAO;
 
+
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
 
