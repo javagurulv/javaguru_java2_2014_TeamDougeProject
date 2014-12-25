@@ -12,7 +12,8 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <head>
-    <title></title>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" type="text/css" href="/style/style.css">
 </head>
 <body>
 <%
@@ -27,6 +28,12 @@
 
 %>
 <div align="right">Welcome, <%= sessionLogin %>! &nbsp <a href="/home">Home</a> &nbsp <a href="/logout">Log Out</a></div><br>
+
+<div id="header">
+    <h2>Team Douge Project</h2>
+</div>
+
+<br>
 
 <script type="text/javascript">
     google.load("visualization", "1", {packages:["table"]});
@@ -106,6 +113,10 @@
             </tr>
         </Table>
     </form>
+
+<div id="footer">
+    Copyright © Team Douge Project
+</div>
 
 </body>
 </html>
