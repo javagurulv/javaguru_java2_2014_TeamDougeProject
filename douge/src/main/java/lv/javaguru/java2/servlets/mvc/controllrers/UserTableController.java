@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by Juris on 10.12.2014.
@@ -37,12 +38,20 @@ public class UserTableController{
     @RequestMapping(value = "users", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
         System.out.println(request.getParameterMap().toString());
+        HttpSession session = request.getSession();
+        try {
+            Long currentUserType = ((User) session.getAttribute("user")).getUser_type();
+            if ((request.getParameter("useraction") != null))//
+                if ((currentUserType == 0)) {
 
-        if(request.getParameter("useraction") != null){
-            System.out.println(request.getParameter("useraction"));
-            doUserAction(request);
+                    doUserAction(request);
+                }
         }
-        return userTableData();
+        catch (Exception e){}
+        finally {
+            return userTableData();
+        }
+
     }
 
     private void doUserAction(HttpServletRequest request){

@@ -43,26 +43,12 @@
 
         function clickEventHandler(e){
             var selection = table.getSelection();
-            var message = '';
-                var item = selection[0];
-
-                document.getElementById("user_id").value = data.getFormattedValue(item.row,0);
-                document.getElementById("userlogin").value = data.getFormattedValue(item.row,1);
-                document.getElementById("userpassword").value = data.getFormattedValue(item.row,3);
-                document.getElementById("comments").value = data.getFormattedValue(item.row,4);
-                document.getElementById("user_type").value = data.getFormattedValue(item.row,2);
-                // document.getElementById("user_type").value = 1;
-                /* if (item.row != null && item.column != null) {
-                     document.getElementById("user_id").value = data.getFormattedValue(item.row,0);
-                     document.getElementById("userlogin").value = data.getFormattedValue(item.row,1);
-                     var str = data.getFormattedValue(item.row, item.column);
-                     message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
-                 }
-                 alert('You selected ' + message);
-
-                 /* DataTable.getValue() or getFormattedValue().*/
-
-
+            var item = selection[0];
+            document.getElementById("user_id").value = data.getFormattedValue(item.row,0);
+            document.getElementById("userlogin").value = data.getFormattedValue(item.row,1);
+            document.getElementById("userpassword").value = data.getFormattedValue(item.row,3);
+            document.getElementById("comments").value = data.getFormattedValue(item.row,4);
+            document.getElementById("user_type").value = data.getFormattedValue(item.row,2);
         }
 
         google.visualization.events.addListener(table, 'select', clickEventHandler);
@@ -118,71 +104,6 @@
                 <td>Execute</td>
                 <td colspan="3"><input type="submit" value="Let's go bastards!!!!" onclick="return userActionEvent()"> </td>
             </tr>
-
-
-
-           <!-- <tr>
-                <td><b>Add user: </b></td>
-                <td></td>
-                <td><b>Edit user: </b></td>
-                <td></td>
-                <td><b>Delete user: </b></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>User type:</td>
-                <td><select name="user_typed">
-                        <option value="0">Admin</option>
-                        <option value="1">User</option>
-                    </select></td>
-                <td>User id:</td>
-                <td> <input type="Text" name="useridedit"></td>
-                <td>User id:</td>
-                <td> <input type="Text" name="useriddelete"></td>
-            </tr>
-            <tr>
-                <td>login:</td>
-                <td><input type="Text" name="logind"></td>
-                <td> User type:</td>
-                <td><select name="user_typee">
-                        <option value="0">Admin</option>
-                        <option value="1">User</option>
-                    </select></td>
-                <td><input type="SUBMIT" value="Delete" name="delete"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type="Text" name="passwdd"></td>
-                <td>login:</td>
-                <td><input type="Text" name="logine"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Comments:</td>
-                <td><input type="Text" name="commentsd"></td>
-                <td>Password:</td>
-                <td><input type="Text" name="passwde"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><input type="SUBMIT" value="Add user" name="adduser"></td>
-                <td></td>
-                <td>Comments:</td>
-                <td><input type="Text" name="commentse"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td><input type="SUBMIT" value="Edit user" name="edituser"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr> -->
         </Table>
     </form>
 
