@@ -69,7 +69,7 @@
     }
 
     function userActionEvent(){
-       return cofirm("Are yiu sure?");
+       return confirm("Are you sure?");
     }
 
 
