@@ -41,8 +41,7 @@ public class WidgetDataBuilder {
                 content.add(chartData);
             }
             CommonWidgetTableData widgetTableData = new CommonWidgetTableData(content);
-            tableBuilder.prepareInfo(widgetTableData);
-            widget.setJsonWidgetDAta(tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+            widget.setJsonWidgetDAta(tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable(widgetTableData));
         }
     }
 

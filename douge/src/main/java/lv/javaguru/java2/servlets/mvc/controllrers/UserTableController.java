@@ -78,7 +78,7 @@ public class UserTableController{
         }
     }
 
-    private  ModelAndView userTableData(){
+    private  ModelAndView userTableData() throws TypeMismatchException {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("users");
@@ -89,13 +89,7 @@ public class UserTableController{
             e.printStackTrace();
         }
 
-        try {
-            tableBuilder.prepareInfo(userTableData);
-        } catch (TypeMismatchException e) {
-            e.printStackTrace();
-        }
-
-        model.addObject("model",tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable());
+        model.addObject("model",tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable(userTableData));
 
         return model;
     }

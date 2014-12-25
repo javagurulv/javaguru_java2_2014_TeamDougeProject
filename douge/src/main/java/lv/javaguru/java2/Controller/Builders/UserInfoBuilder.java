@@ -43,6 +43,7 @@ public class UserInfoBuilder implements WidgetTableData {
 
     @Override
     public List<DomainWidgetContent> getWidgetTableData(Map<String, String> params) throws DBException {
-        return null;
+        List<DomainWidgetContent> tabledata = userDAO.getAll();
+        return tabledata;
     }
 }

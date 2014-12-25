@@ -32,7 +32,7 @@ public class ActorTableController implements MVCController {
     ActorDAO actorDAO;
 
     @Override
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) throws TypeMismatchException {
 
         Map<String,String> params = new HashMap<String, String>();
         if (request.getParameter("interval")!=null){
@@ -49,15 +49,15 @@ public class ActorTableController implements MVCController {
             e.printStackTrace();
         }
 
-        try {
+       /* try {
             tableBuilder.prepareInfo(actorTableData);
         } catch (TypeMismatchException e) {
             e.printStackTrace();
-        }
+        }*/
 
         MVCActorModel mvcActorModel = null;
         try {
-            mvcActorModel = new MVCActorModel("/jsp/tableconverter.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable(),actorDAO.getActorsAmount()/10);
+            mvcActorModel = new MVCActorModel("/jsp/tableconverter.jsp", tableBuilder.getJsonDescriptionOfGoogleVizualizationDataTable(actorTableData),actorDAO.getActorsAmount()/10);
         } catch (DBException e) {
             e.printStackTrace();
         }
