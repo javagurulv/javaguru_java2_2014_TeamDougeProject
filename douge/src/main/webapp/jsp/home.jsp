@@ -30,6 +30,14 @@
         response.sendRedirect("/index");
     }
 
+    MVCDashboardModel dashboardModel = (MVCDashboardModel) request.getAttribute("model");
+
+    // reload page if widget was deleted
+    if (request.getParameter("delete_widget") != null) {
+        Dashboard dashboard = dashboardModel.getCurrentDashboard();
+        response.sendRedirect("/home?dashboard_id=" + dashboard.getId());
+    }
+
 %>
 
 <!DOCTYPE html>
@@ -61,8 +69,6 @@
         <h3>Dashboards</h3>
 
         <%
-
-            MVCDashboardModel dashboardModel = (MVCDashboardModel) request.getAttribute("model");
             ArrayList<Dashboard> dashboardList = (ArrayList) dashboardModel.getData();
 
             for (int i = 0; i < dashboardList.size(); i++) {
@@ -71,7 +77,7 @@
             }
         %>
         <br>
-        <a href=# onclick="addDashboard()">Create dashboard</a>
+        <a href=# onclick="addDashboard()">Add new dashboard</a>
     </div>
 
     <div id="section">
@@ -89,30 +95,31 @@
 
                 for (int j = 0; j < widgets.size(); j++) {
                     Widget widget = widgets.get(j);
-                    ;
-                    out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + currentDashboard.getId() + "," + widget.getWidget_id() + ")\">" + widget.getComments() + "</a>");
-                   // out.println(widget.getJsonWidgetDAta());
         %>
-                    <jsp:include page="<%=widgetTypes.get(widget.getWidget_type_id())  %>">
-                        <jsp:param name="divId" value="<%=widget.getWidget_id() %>" />
-                        <jsp:param name="dataSet" value="<%=widget.getJsonWidgetDAta() %>" />
-                    </jsp:include>
-
-
-            <%      out.println("</div>");
-                    if (j % 2 == 1)
-                        out.println("<br style=\"clear:both\" />");
+                    <div id="widget">
+                        <table width="100%">
+                            <tr>
+                                <td><%=widget.getComments()%></td>
+                                <td align="right">
+                                    <a href=# onclick="editWidget(<%=currentDashboard.getId()%>,<%=widget.getWidget_id()%>)">Edit</a>
+                                    &nbsp;|&nbsp;
+                                    <a href="/home?dashboard_id=<%=currentDashboard.getId()%>&delete_widget=<%=widget.getWidget_id()%>">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <jsp:include page="<%=widgetTypes.get(widget.getWidget_type_id())  %>">
+                            <jsp:param name="divId" value="<%=widget.getWidget_id() %>" />
+                            <jsp:param name="dataSet" value="<%=widget.getJsonWidgetDAta() %>" />
+                        </jsp:include>
+                    </div>
+        <%          if (j % 2 == 1) out.println("<br style=\"clear:both\" />");
                 }
-
                 out.println("<div id=\"widget\"><a href=# onclick=\"addWidget(" + currentDashboard.getId() + ")\">Add new widget</a></div>");
             }
         %>
 
     </div>
-
-    <div id="footer">
-        Copyright © Team Douge Project
-    </div>
-
+    <div id="footer">Copyright © Team Douge Project</div>
 </body>
 </html>

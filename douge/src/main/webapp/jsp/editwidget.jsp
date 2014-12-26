@@ -54,7 +54,7 @@
     </script>
 </head>
 <body>
-    <h2>Edit Widget</h2>
+    <h3>Edit Widget</h3>
     <form method="POST" action="editwidget">
         <table cellpadding="5">
             <tr>
