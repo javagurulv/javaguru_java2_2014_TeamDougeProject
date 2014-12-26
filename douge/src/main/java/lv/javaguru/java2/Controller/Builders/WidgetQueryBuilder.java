@@ -36,7 +36,7 @@ public class WidgetQueryBuilder {
     @Qualifier("ORM_MetricSetDAO")
     private MetricSetDAO metricSetDAO;
 
-    public String buidQuery(String primaryMetric,String secondaryMetric, Long limit)
+    private String buidQuery(String primaryMetric,String secondaryMetric, Long limit)
     {
 
         String result =  queryTemplate;

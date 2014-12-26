@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@WebAppConfiguration
 public class MetricSetDAOImplTest extends SpringIntegrationTest{
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();

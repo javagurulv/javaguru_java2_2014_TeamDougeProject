@@ -37,21 +37,6 @@ public class AddUserControllerImplTest extends MockitoTest {
         verify(userDAO, times(1)).create(any(User.class));
     }
 
-    @Test
-    public void shouldStoreUserToDB2() throws DBException {
-        /*HttpServletRequest req = Mockito.mock(HttpServletRequest.class);
-        doReturn("submit").when(req).getParameter("submit");
 
-        controller = spy(controller);
-        doReturn(true).when(controller).isParametersValid(req);
-        doReturn(new User()).when(controller).createUserFromRequest(req);
-
-        MVCModel model = controller.processRequest(req, null);
-
-        verify(userDAO, times(1)).create(any(User.class));
-        assertNotNull(model);
-        assertEquals("/jsp/adduser.jsp", model.getView());
-        assertEquals("User successfully added!", model.getData()); */
-    }
 
 }
