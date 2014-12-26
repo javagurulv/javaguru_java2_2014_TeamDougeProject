@@ -16,7 +16,7 @@
     var data =new google.visualization.DataTable("${param.dataSet}");
 
     var options = {
-      title: 'My Daily Activities'
+
     };
 
     var chart = new google.visualization.PieChart(document.getElementById(${param.divId}));

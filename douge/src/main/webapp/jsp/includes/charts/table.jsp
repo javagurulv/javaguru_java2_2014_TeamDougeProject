@@ -17,7 +17,7 @@
     var data =new google.visualization.DataTable("${param.dataSet}");
 
     var options = {
-      title: 'My Daily Activities'
+
     };
 
     var table = new google.visualization.Table(document.getElementById("${param.divId}"));
