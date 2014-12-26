@@ -39,6 +39,12 @@ public class MetricSetDAOImpl implements MetricSetDAO {
         return (MetricSet) session.get(MetricSet.class, id);
     }
 
+    @Override
+    public  void update(MetricSet metricSet) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(metricSet);
+    }
+
     /*
     @Override
     public List<MetricSet> getAllByMetricSetId(Integer id) throws DBException {

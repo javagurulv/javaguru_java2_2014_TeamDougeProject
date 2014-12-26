@@ -44,10 +44,10 @@ public class DataGenerator {
 
     @Transactional
     public void generateWidgetTypes() throws DBException {
-        widgetTypeDAO.create(new WidgetType("PieChart","PieChart", 2L));
-        widgetTypeDAO.create(new WidgetType("BarChart","BarChart", 4L));
-        widgetTypeDAO.create(new WidgetType("TimeLine","TimeLine", 8L));
-        widgetTypeDAO.create(new WidgetType("Table","Table", 16L));
+        widgetTypeDAO.create(new WidgetType("PieChart","PieChart",2L));
+        widgetTypeDAO.create(new WidgetType("BarChart","BarChart",2L));
+        widgetTypeDAO.create(new WidgetType("TimeLine","TimeLine",2L));
+        widgetTypeDAO.create(new WidgetType("Table","Table",2L));
     }
 
 }
