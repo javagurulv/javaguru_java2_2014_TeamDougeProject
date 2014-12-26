@@ -42,7 +42,7 @@
     </script>
 </head>
 <body>
-    <h2>Add Widget</h2>
+    <h3>Add Widget</h3>
     <form method="POST" action="addwidget">
         <table cellpadding="5">
             <tr>

@@ -56,6 +56,17 @@ public class HomeControllerImpl{
         ModelAndView model = new ModelAndView();
         model.setViewName("home");
 
+        // delete widget if GET request contains delete_widget
+        if (request.getParameter("delete_widget") != null &&
+                !request.getParameter("dashboard_id").trim().isEmpty()) {
+            Long widgetId = Long.parseLong(request.getParameter("delete_widget"));
+            try {
+                widgetDAO.delete(widgetId);
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+        }
+
         String sessionLogin = null;
         HttpSession session = request.getSession();
 
