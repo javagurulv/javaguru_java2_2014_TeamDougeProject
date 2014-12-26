@@ -16,8 +16,7 @@
     var data =new google.visualization.DataTable("${param.dataSet}");
 
     var options = {
-      title: 'Company Performance',
-      vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
+
     };
 
     var chart = new google.visualization.BarChart(document.getElementById(${param.divId}));
