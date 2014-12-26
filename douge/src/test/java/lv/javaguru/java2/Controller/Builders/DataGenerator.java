@@ -32,7 +32,7 @@ public class DataGenerator {
         metricDAO.create( new Metric("GroupBy","Film Category",30L));
         metricDAO.create( new Metric("GroupBy","Film Rating",30L));
         metricDAO.create( new Metric("GroupBy","Date",30L));
-        metricDAO.create( new Metric("GroupBy","Week",30L));
+        metricDAO.create( new Metric("GroupBy","Week Number",30L));
         metricDAO.create( new Metric("GroupBy","Month",30L));
         metricDAO.create( new Metric("Limit","1",30L));
         metricDAO.create( new Metric("Limit","2",30L));
