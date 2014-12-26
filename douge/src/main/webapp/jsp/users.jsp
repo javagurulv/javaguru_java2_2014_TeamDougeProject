@@ -92,7 +92,7 @@
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><input type="text" id="userpassword" name="userpassword"></td>
+                <td><input type="password" id="userpassword" name="userpassword"></td>
             </tr>
             <tr>
                 <td>Comments</td>

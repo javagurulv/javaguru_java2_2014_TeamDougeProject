@@ -42,7 +42,7 @@ public class IndexController{
             //check that fields are not empty
             if (isParametersValid(req)) {
                 String login = req.getParameter("login");
-                String password = req.getParameter("passwd");
+                String password = MD5(req.getParameter("passwd"));
 
                 User userFromDB;
 
@@ -75,5 +75,19 @@ public class IndexController{
     private boolean isParametersValid(HttpServletRequest req) {
         return !req.getParameter("login").trim().isEmpty() &&
                 !req.getParameter("passwd").trim().isEmpty();
+    }
+
+    private String MD5(String md5) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] array = md.digest(md5.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < array.length; ++i) {
+                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+        }
+        return null;
     }
 }

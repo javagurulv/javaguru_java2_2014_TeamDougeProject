@@ -109,7 +109,7 @@ public class UserTableController{
 
             user.setUser_type(Long.valueOf(request.getParameter("user_type")));
             user.setLogin(request.getParameter("userlogin"));
-            user.setPassword(request.getParameter("userpassword"));
+            user.setPassword(MD5(request.getParameter("userpassword")));
             user.setComments(request.getParameter("comments"));
 
             userDAO.update(user);
@@ -138,7 +138,7 @@ public class UserTableController{
         User user = new User();
         String user_type = req.getParameter("user_type");
         String login = req.getParameter("userlogin");
-        String password = req.getParameter("userpassword");
+        String password = MD5(req.getParameter("userpassword"));
         String comments = req.getParameter("comments");
 
         user.setComments(comments);
@@ -148,6 +148,19 @@ public class UserTableController{
         return user;
     }
 
+    private String MD5(String md5) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] array = md.digest(md5.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < array.length; ++i) {
+                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+        }
+        return null;
+    }
 
 }
 
