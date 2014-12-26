@@ -12,9 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
-
+@WebAppConfiguration
 public class WidgetDataBuilderTest extends SpringIntegrationTest {
 
     @Autowired
