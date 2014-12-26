@@ -20,12 +20,14 @@
 
     User user = (User)session.getAttribute("user");
 
-    if(user == null){response.sendRedirect("/index");}
-    else{
+    String adminLink = "";
+
+    if (user != null) {
         if (user.getUser_type() == 0L) {
-            String adminLink = "&nbsp <a href='/users'>Admin Panel</a> &nbsp";
-            session.setAttribute("adminlink",adminLink);
+            adminLink = "&nbsp <a href='/users'>Admin Panel</a> &nbsp";
         }
+    } else {
+        response.sendRedirect("/index");
     }
 
 %>
@@ -51,7 +53,7 @@
 </head>
 <body>
 
-    <div align="right">Welcome, <%=(String)session.getAttribute("sessionLogin")%>! <%=(String)session.getAttribute("adminlink")%> <a href="/logout">Log Out</a></div><br>
+    <div align="right">Welcome, <%=(String)session.getAttribute("sessionLogin")%>! <%=adminLink%> <a href="/logout">Log Out</a></div><br>
     <div id="header">
         <h2>Team Douge Project</h2>
     </div>
