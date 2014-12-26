@@ -23,7 +23,6 @@ public class WidgetType {
     @Column(name = "compatibility_sign", nullable = false, columnDefinition = "int(11)")
     private Long compatibility_sign;
 
-    /*
     public WidgetType(){};
 
     public WidgetType(String name, String comments, Long compatibility_sign){
@@ -31,7 +30,6 @@ public class WidgetType {
         this.comments = comments;
         this.compatibility_sign = compatibility_sign;
     }
-    */
 
     public Long getId() {
         return id;
@@ -57,7 +55,6 @@ public class WidgetType {
         return name;
     }
 
-    /*
     public Long getCompatibility_sign() {
         return compatibility_sign;
     }
@@ -65,5 +62,5 @@ public class WidgetType {
     public void setCompatibility_sign(Long compatibility_sign) {
         this.compatibility_sign = compatibility_sign;
     }
-    */
+
 }

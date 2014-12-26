@@ -45,8 +45,8 @@
         function addWidget(dashboard_id) {
             window.open("/addwidget?dashboard_id=" + dashboard_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
         }
-        function editWidget(widget_id) {
-            window.open("/editwidget?widget_id=" + widget_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
+        function editWidget(dashboard_id, widget_id) {
+            window.open("/editwidget?dashboard_id=" + dashboard_id + "&widget_id=" + widget_id, "_blank", "toolbar=no, scrollbars=no, resizable=no, top=400, left=400, width=300, height=300");
         }
     </script>
 
@@ -90,7 +90,7 @@
                 for (int j = 0; j < widgets.size(); j++) {
                     Widget widget = widgets.get(j);
                     ;
-                    out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + widget.getWidget_id() + ")\">" + widget.getComments() + "</a>");
+                    out.println("<div id=\"widget\"><a href=# onclick=\"editWidget(" + currentDashboard.getId() + "," + widget.getWidget_id() + ")\">" + widget.getComments() + "</a>");
                    // out.println(widget.getJsonWidgetDAta());
         %>
                     <jsp:include page="<%=widgetTypes.get(widget.getWidget_type_id())  %>">
