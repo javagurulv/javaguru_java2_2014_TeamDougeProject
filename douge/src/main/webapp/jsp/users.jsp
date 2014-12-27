@@ -34,7 +34,9 @@
 </div>
 
 <br>
-
+<table width="80%" height="80%" align="center">
+    <tr>
+        <td valign="top">
 <script type="text/javascript">
     google.load("visualization", "1", {packages:["table"]});
     google.setOnLoadCallback(drawTable);
@@ -113,7 +115,9 @@
             </tr>
         </Table>
     </form>
-
+</td>
+</tr>
+</table>
 <div id="footer">
     Copyright © Team Douge Project
 </div>
